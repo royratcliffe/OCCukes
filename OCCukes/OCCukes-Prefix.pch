@@ -1,7 +1,8 @@
 //
 // Prefix header for all source files of the 'OCCukes' target in the 'OCCukes' project
+// Prefix header for all source files of the 'OCCukesLib' target in the 'OCCukesLib' project
 //
 
 #ifdef __OBJC__
-	#import <Cocoa/Cocoa.h>
+	#import <Foundation/Foundation.h>
 #endif
