@@ -11,6 +11,8 @@
 		788046E6158A244E00881CEA /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 788046E3158A244E00881CEA /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		788046E7158A244E00881CEA /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046E4158A244E00881CEA /* Versioning.m */; };
 		788046E8158A244E00881CEA /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046E4158A244E00881CEA /* Versioning.m */; };
+		788046EC158A272000881CEA /* OCCukes.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A9B8701589E14900FEFFA8 /* OCCukes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		788046ED158A272100881CEA /* OCCukes.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A9B8701589E14900FEFFA8 /* OCCukes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78A9B8641589E14900FEFFA8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8631589E14900FEFFA8 /* Cocoa.framework */; };
 		78A9B86E1589E14900FEFFA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78A9B86C1589E14900FEFFA8 /* InfoPlist.strings */; };
 		78A9B87A1589E14900FEFFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8791589E14900FEFFA8 /* SenTestingKit.framework */; };
@@ -199,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788046E5158A244E00881CEA /* Versioning.h in Headers */,
+				788046EC158A272000881CEA /* OCCukes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788046E6158A244E00881CEA /* Versioning.h in Headers */,
+				788046ED158A272100881CEA /* OCCukes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
