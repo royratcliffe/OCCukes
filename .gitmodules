@@ -1,0 +1,3 @@
+[submodule "CFSockets"]
+	path = CFSockets
+	url = git://github.com/royratcliffe/CFSockets.git
