@@ -29,6 +29,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		78791DFC1590EF3200C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78D32104159056650039E12B;
+			remoteInfo = CFSockets;
+		};
+		78791DFE1590EF3200C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78D3211C159056650039E12B;
+			remoteInfo = CFSocketsTests;
+		};
+		78791E001590EF3200C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78D3213A15905D570039E12B;
+			remoteInfo = CFSocketsLib;
+		};
+		78791E021590EF3200C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78D3214815905D570039E12B;
+			remoteInfo = CFSocketsLibTests;
+		};
+		78791E041590EF4C00C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78D32103159056650039E12B;
+			remoteInfo = CFSockets;
+		};
+		78791E061590EF5900C09841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78D3213915905D570039E12B;
+			remoteInfo = CFSocketsLib;
+		};
 		78A9B87C1589E14900FEFFA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78A9B8511589E0BE00FEFFA8 /* Project object */;
@@ -46,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78791DF11590EF3100C09841 /* CFSockets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CFSockets.xcodeproj; path = CFSockets/CFSockets.xcodeproj; sourceTree = "<group>"; };
 		788046E3158A244E00881CEA /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		788046E4158A244E00881CEA /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
 		78A9B8601589E14900FEFFA8 /* OCCukes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCCukes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,9 +153,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78791DF21590EF3100C09841 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78791DFD1590EF3200C09841 /* CFSockets.framework */,
+				78791DFF1590EF3200C09841 /* CFSocketsTests.octest */,
+				78791E011590EF3200C09841 /* libCFSockets.a */,
+				78791E031590EF3200C09841 /* CFSocketsLibTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78A9B84F1589E0BE00FEFFA8 = {
 			isa = PBXGroup;
 			children = (
+				78791DF11590EF3100C09841 /* CFSockets.xcodeproj */,
 				78A9B8691589E14900FEFFA8 /* OCCukes */,
 				78A9B87F1589E14900FEFFA8 /* OCCukesTests */,
 				78A9B8621589E14900FEFFA8 /* Frameworks */,
@@ -246,6 +301,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				78791E051590EF4C00C09841 /* PBXTargetDependency */,
 			);
 			name = OCCukes;
 			productName = OCCukes;
@@ -282,6 +338,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				78791E071590EF5900C09841 /* PBXTargetDependency */,
 			);
 			name = OCCukesLib;
 			productName = OCCukesLib;
@@ -326,6 +383,12 @@
 			mainGroup = 78A9B84F1589E0BE00FEFFA8;
 			productRefGroup = 78A9B8611589E14900FEFFA8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 78791DF21590EF3100C09841 /* Products */;
+					ProjectRef = 78791DF11590EF3100C09841 /* CFSockets.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				78A9B85F1589E14900FEFFA8 /* OCCukes */,
@@ -336,6 +399,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		78791DFD1590EF3200C09841 /* CFSockets.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CFSockets.framework;
+			remoteRef = 78791DFC1590EF3200C09841 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78791DFF1590EF3200C09841 /* CFSocketsTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CFSocketsTests.octest;
+			remoteRef = 78791DFE1590EF3200C09841 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78791E011590EF3200C09841 /* libCFSockets.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCFSockets.a;
+			remoteRef = 78791E001590EF3200C09841 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78791E031590EF3200C09841 /* CFSocketsLibTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CFSocketsLibTests.octest;
+			remoteRef = 78791E021590EF3200C09841 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		78A9B85E1589E14900FEFFA8 /* Resources */ = {
@@ -428,6 +522,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		78791E051590EF4C00C09841 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CFSockets;
+			targetProxy = 78791E041590EF4C00C09841 /* PBXContainerItemProxy */;
+		};
+		78791E071590EF5900C09841 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CFSocketsLib;
+			targetProxy = 78791E061590EF5900C09841 /* PBXContainerItemProxy */;
+		};
 		78A9B87D1589E14900FEFFA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 78A9B85F1589E14900FEFFA8 /* OCCukes */;
