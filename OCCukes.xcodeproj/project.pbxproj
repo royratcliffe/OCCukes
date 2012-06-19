@@ -24,7 +24,7 @@
 		78A9B8A21589E19500FEFFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8791589E14900FEFFA8 /* SenTestingKit.framework */; };
 		78A9B8A41589E19500FEFFA8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8A31589E19500FEFFA8 /* UIKit.framework */; };
 		78A9B8A51589E19500FEFFA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8941589E19400FEFFA8 /* Foundation.framework */; };
-		78A9B8A81589E19500FEFFA8 /* libOCCukesLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8931589E19400FEFFA8 /* libOCCukesLib.a */; };
+		78A9B8A81589E19500FEFFA8 /* libOCCukes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8931589E19400FEFFA8 /* libOCCukes.a */; };
 		78A9B8B81589E31900FEFFA8 /* OCCukesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A9B8861589E14900FEFFA8 /* OCCukesTests.m */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +63,7 @@
 		78A9B8831589E14900FEFFA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78A9B8851589E14900FEFFA8 /* OCCukesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCCukesTests.h; sourceTree = "<group>"; };
 		78A9B8861589E14900FEFFA8 /* OCCukesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCCukesTests.m; sourceTree = "<group>"; };
-		78A9B8931589E19400FEFFA8 /* libOCCukesLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOCCukesLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A9B8931589E19400FEFFA8 /* libOCCukes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOCCukes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9B8941589E19400FEFFA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78A9B8A11589E19500FEFFA8 /* OCCukesLibTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCCukesLibTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9B8A31589E19500FEFFA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -103,7 +103,7 @@
 				78A9B8A21589E19500FEFFA8 /* SenTestingKit.framework in Frameworks */,
 				78A9B8A41589E19500FEFFA8 /* UIKit.framework in Frameworks */,
 				78A9B8A51589E19500FEFFA8 /* Foundation.framework in Frameworks */,
-				78A9B8A81589E19500FEFFA8 /* libOCCukesLib.a in Frameworks */,
+				78A9B8A81589E19500FEFFA8 /* libOCCukes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +125,7 @@
 			children = (
 				78A9B8601589E14900FEFFA8 /* OCCukes.framework */,
 				78A9B8781589E14900FEFFA8 /* OCCukesTests.octest */,
-				78A9B8931589E19400FEFFA8 /* libOCCukesLib.a */,
+				78A9B8931589E19400FEFFA8 /* libOCCukes.a */,
 				78A9B8A11589E19500FEFFA8 /* OCCukesLibTests.octest */,
 			);
 			name = Products;
@@ -285,7 +285,7 @@
 			);
 			name = OCCukesLib;
 			productName = OCCukesLib;
-			productReference = 78A9B8931589E19400FEFFA8 /* libOCCukesLib.a */;
+			productReference = 78A9B8931589E19400FEFFA8 /* libOCCukes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		78A9B8A01589E19500FEFFA8 /* OCCukesLibTests */ = {
@@ -679,7 +679,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -703,7 +703,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
