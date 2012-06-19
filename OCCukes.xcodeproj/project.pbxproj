@@ -216,6 +216,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		78791DEC1590E75000C09841 /* OCCukesPages */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-c \"$HOME/.rvm/bin/rvm-auto-ruby -r XcodePages -e XcodePages.doxygen_docset_install\"";
+			buildConfigurationList = 78791DEF1590E75000C09841 /* Build configuration list for PBXLegacyTarget "OCCukesPages" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = OCCukesPages;
+			passBuildSettingsInEnvironment = 1;
+			productName = OCCukesPages;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		78A9B85F1589E14900FEFFA8 /* OCCukes */ = {
 			isa = PBXNativeTarget;
@@ -315,6 +332,7 @@
 				78A9B8771589E14900FEFFA8 /* OCCukesTests */,
 				78A9B8921589E19400FEFFA8 /* OCCukesLib */,
 				78A9B8A01589E19500FEFFA8 /* OCCukesLibTests */,
+				78791DEC1590E75000C09841 /* OCCukesPages */,
 			);
 		};
 /* End PBXProject section */
@@ -442,6 +460,61 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		78791DED1590E75000C09841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PATH = "/bin:/usr/bin:/usr/local/bin:/Applications/Doxygen.app/Contents/Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		78791DEE1590E75000C09841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PATH = "/bin:/usr/bin:/usr/local/bin:/Applications/Doxygen.app/Contents/Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		78A9B8561589E0BE00FEFFA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -701,6 +774,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		78791DEF1590E75000C09841 /* Build configuration list for PBXLegacyTarget "OCCukesPages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78791DED1590E75000C09841 /* Debug */,
+				78791DEE1590E75000C09841 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		78A9B8541589E0BE00FEFFA8 /* Build configuration list for PBXProject "OCCukes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
