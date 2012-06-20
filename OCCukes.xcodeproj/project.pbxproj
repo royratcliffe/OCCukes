@@ -26,6 +26,8 @@
 		78A9B8A51589E19500FEFFA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8941589E19400FEFFA8 /* Foundation.framework */; };
 		78A9B8A81589E19500FEFFA8 /* libOCCukes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8931589E19400FEFFA8 /* libOCCukes.a */; };
 		78A9B8B81589E31900FEFFA8 /* OCCukesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A9B8861589E14900FEFFA8 /* OCCukesTests.m */; };
+		78CAE1551591B61000BA2E63 /* CFSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791DFD1590EF3200C09841 /* CFSockets.framework */; };
+		78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791E011590EF3200C09841 /* libCFSockets.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CAE1551591B61000BA2E63 /* CFSockets.framework in Frameworks */,
 				78A9B8641589E14900FEFFA8 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */,
 				78A9B8951589E19400FEFFA8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -885,6 +889,7 @@
 				78791DEE1590E75000C09841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78A9B8541589E0BE00FEFFA8 /* Build configuration list for PBXProject "OCCukes" */ = {
 			isa = XCConfigurationList;
