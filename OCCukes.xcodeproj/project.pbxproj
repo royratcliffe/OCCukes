@@ -13,6 +13,10 @@
 		788046E8158A244E00881CEA /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046E4158A244E00881CEA /* Versioning.m */; };
 		788046EC158A272000881CEA /* OCCukes.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A9B8701589E14900FEFFA8 /* OCCukes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		788046ED158A272100881CEA /* OCCukes.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A9B8701589E14900FEFFA8 /* OCCukes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		788046FC158A523600881CEA /* OCCucumberRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 788046FA158A523600881CEA /* OCCucumberRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		788046FD158A523600881CEA /* OCCucumberRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 788046FA158A523600881CEA /* OCCucumberRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		788046FE158A523600881CEA /* OCCucumberRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046FB158A523600881CEA /* OCCucumberRuntime.m */; };
+		788046FF158A523600881CEA /* OCCucumberRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046FB158A523600881CEA /* OCCucumberRuntime.m */; };
 		78A9B8641589E14900FEFFA8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8631589E14900FEFFA8 /* Cocoa.framework */; };
 		78A9B86E1589E14900FEFFA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78A9B86C1589E14900FEFFA8 /* InfoPlist.strings */; };
 		78A9B87A1589E14900FEFFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8791589E14900FEFFA8 /* SenTestingKit.framework */; };
@@ -28,6 +32,8 @@
 		78A9B8B81589E31900FEFFA8 /* OCCukesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A9B8861589E14900FEFFA8 /* OCCukesTests.m */; };
 		78CAE1551591B61000BA2E63 /* CFSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791DFD1590EF3200C09841 /* CFSockets.framework */; };
 		78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791E011590EF3200C09841 /* libCFSockets.a */; };
+		78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
+		78CAE15A1591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +99,8 @@
 		78791DF11590EF3100C09841 /* CFSockets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CFSockets.xcodeproj; path = CFSockets/CFSockets.xcodeproj; sourceTree = "<group>"; };
 		788046E3158A244E00881CEA /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		788046E4158A244E00881CEA /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
+		788046FA158A523600881CEA /* OCCucumberRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberRuntime.h; sourceTree = "<group>"; };
+		788046FB158A523600881CEA /* OCCucumberRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberRuntime.m; sourceTree = "<group>"; };
 		78A9B8601589E14900FEFFA8 /* OCCukes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCCukes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9B8631589E14900FEFFA8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		78A9B8661589E14900FEFFA8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -112,6 +120,8 @@
 		78A9B8941589E19400FEFFA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78A9B8A11589E19500FEFFA8 /* OCCukesLibTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCCukesLibTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9B8A31589E19500FEFFA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		78CAE1571591BC6300BA2E63 /* LineRangeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineRangeTests.h; sourceTree = "<group>"; };
+		78CAE1581591BC6300BA2E63 /* LineRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineRangeTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				78A9B8701589E14900FEFFA8 /* OCCukes.h */,
+				788046FA158A523600881CEA /* OCCucumberRuntime.h */,
+				788046FB158A523600881CEA /* OCCucumberRuntime.m */,
 				788046E3158A244E00881CEA /* Versioning.h */,
 				788046E4158A244E00881CEA /* Versioning.m */,
 				78A9B86A1589E14900FEFFA8 /* Supporting Files */,
@@ -238,6 +250,8 @@
 			children = (
 				78A9B8851589E14900FEFFA8 /* OCCukesTests.h */,
 				78A9B8861589E14900FEFFA8 /* OCCukesTests.m */,
+				78CAE1571591BC6300BA2E63 /* LineRangeTests.h */,
+				78CAE1581591BC6300BA2E63 /* LineRangeTests.m */,
 				78A9B8801589E14900FEFFA8 /* Supporting Files */,
 			);
 			path = OCCukesTests;
@@ -261,6 +275,7 @@
 			files = (
 				788046E5158A244E00881CEA /* Versioning.h in Headers */,
 				788046EC158A272000881CEA /* OCCukes.h in Headers */,
+				788046FC158A523600881CEA /* OCCucumberRuntime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +285,7 @@
 			files = (
 				788046E6158A244E00881CEA /* Versioning.h in Headers */,
 				788046ED158A272100881CEA /* OCCukes.h in Headers */,
+				788046FD158A523600881CEA /* OCCucumberRuntime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788046E7158A244E00881CEA /* Versioning.m in Sources */,
+				788046FE158A523600881CEA /* OCCucumberRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A9B8871589E14900FEFFA8 /* OCCukesTests.m in Sources */,
+				78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				788046E8158A244E00881CEA /* Versioning.m in Sources */,
+				788046FF158A523600881CEA /* OCCucumberRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A9B8B81589E31900FEFFA8 /* OCCukesTests.m in Sources */,
+				78CAE15A1591BC6300BA2E63 /* LineRangeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

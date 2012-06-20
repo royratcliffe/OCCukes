@@ -22,4 +22,5 @@
 //
 //------------------------------------------------------------------------------
 
+#import <OCCukes/OCCucumberRuntime.h>
 #import <OCCukes/Versioning.h>
