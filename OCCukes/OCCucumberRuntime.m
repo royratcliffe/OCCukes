@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberRuntime.h"
+#import "OCCucumberRuntime+WireProtocol.h"
 
 @interface OCCucumberRuntime()
 
@@ -90,10 +91,26 @@
 
 - (void)streamPair:(CFStreamPair *)streamPair hasBytesAvailable:(NSUInteger)bytesAvailable
 {
+	// The wire protocol begins by quantising the request messages by line
+	// terminator. One line equates to one message, or wire packet. The request
+	// is a JSON array. The first element specifies the message, one of:
+	// step_matches, invoke, begin_scenario, end_scenario, or snippet_text. The
+	// second array element specifies the parameters, a hash or array depending
+	// on the message. Demultiplex the JSON request and invoke the corresponding
+	// handler.
 	NSString *line = [streamPair receiveLineUsingEncoding:NSUTF8StringEncoding];
 	if (line)
 	{
-		
+		NSError *__autoreleasing error = nil;
+		id object = [NSJSONSerialization JSONObjectWithData:[line dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+		if (object)
+		{
+			[self handleWirePacketWithObject:object];
+		}
+		else
+		{
+			
+		}
 	}
 }
 

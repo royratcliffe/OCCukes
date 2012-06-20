@@ -34,6 +34,10 @@
 		78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791E011590EF3200C09841 /* libCFSockets.a */; };
 		78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
 		78CAE15A1591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
+		78CAE169159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CAE167159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h */; };
+		78CAE16A159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CAE167159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h */; };
+		78CAE16B159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE168159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m */; };
+		78CAE16C159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE168159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +126,8 @@
 		78A9B8A31589E19500FEFFA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		78CAE1571591BC6300BA2E63 /* LineRangeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineRangeTests.h; sourceTree = "<group>"; };
 		78CAE1581591BC6300BA2E63 /* LineRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineRangeTests.m; sourceTree = "<group>"; };
+		78CAE167159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCCucumberRuntime+WireProtocol.h"; sourceTree = "<group>"; };
+		78CAE168159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCCucumberRuntime+WireProtocol.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +234,8 @@
 				78A9B8701589E14900FEFFA8 /* OCCukes.h */,
 				788046FA158A523600881CEA /* OCCucumberRuntime.h */,
 				788046FB158A523600881CEA /* OCCucumberRuntime.m */,
+				78CAE167159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h */,
+				78CAE168159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m */,
 				788046E3158A244E00881CEA /* Versioning.h */,
 				788046E4158A244E00881CEA /* Versioning.m */,
 				78A9B86A1589E14900FEFFA8 /* Supporting Files */,
@@ -276,6 +284,7 @@
 				788046E5158A244E00881CEA /* Versioning.h in Headers */,
 				788046EC158A272000881CEA /* OCCukes.h in Headers */,
 				788046FC158A523600881CEA /* OCCucumberRuntime.h in Headers */,
+				78CAE169159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +295,7 @@
 				788046E6158A244E00881CEA /* Versioning.h in Headers */,
 				788046ED158A272100881CEA /* OCCukes.h in Headers */,
 				788046FD158A523600881CEA /* OCCucumberRuntime.h in Headers */,
+				78CAE16A159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +523,7 @@
 			files = (
 				788046E7158A244E00881CEA /* Versioning.m in Sources */,
 				788046FE158A523600881CEA /* OCCucumberRuntime.m in Sources */,
+				78CAE16B159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +542,7 @@
 			files = (
 				788046E8158A244E00881CEA /* Versioning.m in Sources */,
 				788046FF158A523600881CEA /* OCCucumberRuntime.m in Sources */,
+				78CAE16C159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
