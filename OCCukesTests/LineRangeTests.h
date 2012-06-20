@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukes LineRangeTests.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,34 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import <SenTestingKit/SenTestingKit.h>
 
-#import <OCCukes/OCCukes.h>
-
-@interface OCCukesTests()
-
-@property(strong, NS_NONATOMIC_IOSONLY) OCCucumberRuntime *cucumberRuntime;
-
-@end
-
-@implementation OCCukesTests
-
-@synthesize cucumberRuntime = _cucumberRuntime;
-
-- (void)setUp
-{
-	[self setCucumberRuntime:[[OCCucumberRuntime alloc] init]];
-	[[self cucumberRuntime] setUp];
-}
-
-- (void)tearDown
-{
-	[[self cucumberRuntime] tearDown];
-}
-
-- (void)testCucumberRuntime
-{
-	[[self cucumberRuntime] run];
-}
+@interface LineRangeTests : SenTestCase
 
 @end

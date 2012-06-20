@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukes LineRangeTests.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,34 +22,23 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import "LineRangeTests.h"
 
-#import <OCCukes/OCCukes.h>
+@implementation LineRangeTests
 
-@interface OCCukesTests()
-
-@property(strong, NS_NONATOMIC_IOSONLY) OCCucumberRuntime *cucumberRuntime;
-
-@end
-
-@implementation OCCukesTests
-
-@synthesize cucumberRuntime = _cucumberRuntime;
-
-- (void)setUp
+- (void)testLineRangeForRange
 {
-	[self setCucumberRuntime:[[OCCucumberRuntime alloc] init]];
-	[[self cucumberRuntime] setUp];
-}
-
-- (void)tearDown
-{
-	[[self cucumberRuntime] tearDown];
-}
-
-- (void)testCucumberRuntime
-{
-	[[self cucumberRuntime] run];
+	// empty string --> no line
+	STAssertEqualObjects(NSStringFromRange([@"" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 0}", nil);
+	
+	// two lines --> first line only
+	STAssertEqualObjects(NSStringFromRange([@"\n\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 1}", nil);
+	
+	// carriage return, line feed --> one line terminator
+	STAssertEqualObjects(NSStringFromRange([@"123\r\n456\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 5}", nil);
+	
+	// carriage return --> one line terminator
+	STAssertEqualObjects(NSStringFromRange([@"123\r456\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 4}", nil);
 }
 
 @end
