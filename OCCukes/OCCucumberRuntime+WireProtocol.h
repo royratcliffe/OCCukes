@@ -26,7 +26,27 @@
 
 @interface OCCucumberRuntime(WireProtocol)
 
-- (void)handleWirePacketWithObject:(id)object;
-- (void)handleWirePacketWithArray:(NSArray *)array;
+- (id)handleWirePacketWithObject:(id)object;
+- (id)handleWirePacketWithArray:(NSArray *)array;
+
+/*!
+ * @brief Finds out whether the wire server has a definition for a given step.
+ */
+- (id)handleStepMatchesWithHash:(NSDictionary *)hash;
+
+/*!
+ * @brief Requests a snippet for an undefined step.
+ */
+- (id)handleSnippetTextWithHash:(NSDictionary *)hash;
+
+/*!
+ * @brief Signals that cucumber is about to execute a scenario.
+ */
+- (id)handleBeginScenario;
+
+/*!
+ * @brief Signals that cucumber has finished executing a scenario.
+ */
+- (id)handleEndScenario;
 
 @end

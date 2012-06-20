@@ -105,7 +105,16 @@
 		id object = [NSJSONSerialization JSONObjectWithData:[line dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
 		if (object)
 		{
-			[self handleWirePacketWithObject:object];
+			id result = [self handleWirePacketWithObject:object];
+			if (result)
+			{
+				NSData *data = [NSJSONSerialization dataWithJSONObject:result options:0 error:&error];
+				if (data)
+				{
+					[streamPair sendBytes:data];
+					[streamPair sendBytes:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
+				}
+			}
 		}
 		else
 		{

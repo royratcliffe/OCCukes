@@ -28,16 +28,19 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 
 @implementation OCCucumberRuntime(WireProtocol)
 
-- (void)handleWirePacketWithObject:(id)object
+- (id)handleWirePacketWithObject:(id)object
 {
+	id result = nil;
 	if ([object isKindOfClass:[NSArray class]])
 	{
-		[self handleWirePacketWithArray:(NSArray *)object];
+		result = [self handleWirePacketWithArray:(NSArray *)object];
 	}
+	return result;
 }
 
-- (void)handleWirePacketWithArray:(NSArray *)array
+- (id)handleWirePacketWithArray:(NSArray *)array
 {
+	id result = nil;
 	switch ([array count])
 	{
 		case 1:
@@ -45,7 +48,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 			SEL selector = NSSelectorFromString([NSString stringWithFormat:@"handle%@", __OCCucumberRuntimeCamelize([array objectAtIndex:0])]);
 			if ([self respondsToSelector:selector])
 			{
-				[self performSelector:selector];
+				result = [self performSelector:selector];
 			}
 			break;
 		}
@@ -77,11 +80,37 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 				SEL selector = NSSelectorFromString([NSString stringWithFormat:@"handle%@With%@:", __OCCucumberRuntimeCamelize([array objectAtIndex:0]), with]);
 				if ([self respondsToSelector:selector])
 				{
-					[self performSelector:selector withObject:object];
+					result = [self performSelector:selector withObject:object];
 				}
 			}
 		}
 	}
+	return result;
+}
+
+- (id)handleStepMatchesWithHash:(NSDictionary *)hash
+{
+	NSMutableArray *stepMatches = [NSMutableArray array];
+	NSString *nameToMatch = [hash objectForKey:@"name_to_match"];
+	return [NSArray arrayWithObjects:@"success", [stepMatches copy], nil];
+}
+
+- (id)handleSnippetTextWithHash:(NSDictionary *)hash
+{
+	NSString *multilineArgClass = [hash objectForKey:@"multiline_arg_class"];
+	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
+	NSString *stepName = [hash objectForKey:@"step_name"];
+	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *args) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t}];", [stepKeyword lowercaseString], stepName], nil];
+}
+
+- (id)handleBeginScenario
+{
+	return [NSArray arrayWithObject:@"success"];
+}
+
+- (id)handleEndScenario
+{
+	return [NSArray arrayWithObject:@"success"];
 }
 
 @end
