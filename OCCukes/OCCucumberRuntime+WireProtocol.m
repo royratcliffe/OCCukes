@@ -27,12 +27,20 @@
 #import "OCCucumberStepDefinition.h"
 #import "OCCucumberStepMatch.h"
 
+// Semantic issue: performSelector may cause a leak because its selector is
+// unknown! Ignore this "ARC performSelector leaks" warning.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 NSString *__OCCucumberRuntimeCamelize(NSString *string);
 
 @implementation OCCucumberRuntime(WireProtocol)
 
 - (id)handleWirePacketWithObject:(id)object
 {
+	// By default, all paths through the demultiplexer answer nil. All the
+	// handler methods follow this same outline: set up a default nil result
+	// then attempt to handle the wire packet.
 	id result = nil;
 	if ([object isKindOfClass:[NSArray class]])
 	{
@@ -95,6 +103,8 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 {
 	NSMutableArray *stepMatches = [NSMutableArray array];
 	NSString *nameToMatch = [hash objectForKey:@"name_to_match"];
+	// You can override the runtime instance's language. By default, if language
+	// equals nil, the runtime picks up the shared language.
 	OCCucumberLanguage *language = [self language];
 	if (language == nil)
 	{
@@ -174,3 +184,6 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string)
 	}
 	return [components componentsJoinedByString:@""];
 }
+
+// arc-performSelector-leaks ignored
+#pragma clang diagnostic pop
