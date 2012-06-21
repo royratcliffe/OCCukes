@@ -40,11 +40,18 @@
 
 @implementation OCCucumberRuntime
 
+@synthesize language = _language;
+
 @synthesize wireSocket = _wireSocket;
 @synthesize wirePairs = _wirePairs;
 
 - (void)setUp
 {
+	if ([self language] == nil)
+	{
+		
+	}
+	
 	CFSocket *socket = [[CFSocket alloc] initForTCPv6];
 	[socket setDelegate:self];
 	[socket setReuseAddressOption:YES];
@@ -84,6 +91,10 @@
 {
 	// Accepts new connections. Attaches a stream-pair to each incoming
 	// connection. Retains, delegates and opens the new wire pair.
+	// The wire server opens one "wire" for each connection, each Cucumber
+	// client. The wire connection's stream-pair encapsulates client-server
+	// interactions. It decodes wire packets from the request stream and encodes
+	// wire packets to the response stream.
 	[[self wirePairs] addObject:streamPair];
 	[streamPair setDelegate:self];
 	[streamPair open];
@@ -115,10 +126,6 @@
 					[streamPair sendBytes:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
 				}
 			}
-		}
-		else
-		{
-			
 		}
 	}
 }

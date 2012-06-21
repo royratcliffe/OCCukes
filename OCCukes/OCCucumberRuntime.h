@@ -26,10 +26,14 @@
 
 #import <CFSockets/CFSockets.h>
 
+@class OCCucumberLanguage;
+
 /*!
  * @brief Ties everything together, the meaty part.
  */
 @interface OCCucumberRuntime : NSObject<CFSocketDelegate, CFStreamPairDelegate>
+
+@property(strong, NS_NONATOMIC_IOSONLY) OCCucumberLanguage *language;
 
 - (void)setUp;
 - (void)tearDown;

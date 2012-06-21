@@ -113,6 +113,12 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	return [NSArray arrayWithObject:@"success"];
 }
 
+- (id)handleInvokeWithHash:(NSDictionary *)hash
+{
+	id result = nil;
+	return result;
+}
+
 @end
 
 /*

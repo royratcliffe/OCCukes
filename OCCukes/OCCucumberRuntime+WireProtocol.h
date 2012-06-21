@@ -31,6 +31,10 @@
 
 /*!
  * @brief Finds out whether the wire server has a definition for a given step.
+ * @details When features have been parsed, Cucumber will send a "step_matches"
+ * message to ask the wire server if it can match a step name. This happens for
+ * each of the steps in each of the features.
+ * @result The wire server replies with an array of StepMatch objects.
  */
 - (id)handleStepMatchesWithHash:(NSDictionary *)hash;
 
@@ -40,13 +44,18 @@
 - (id)handleSnippetTextWithHash:(NSDictionary *)hash;
 
 /*!
- * @brief Signals that cucumber is about to execute a scenario.
+ * @brief Signals that Cucumber is about to execute a scenario.
  */
 - (id)handleBeginScenario;
 
 /*!
- * @brief Signals that cucumber has finished executing a scenario.
+ * @brief Signals that Cucumber has finished executing a scenario.
  */
 - (id)handleEndScenario;
+
+/*!
+ * @brief Asks for a step definition to be invoked.
+ */
+- (id)handleInvokeWithHash:(NSDictionary *)hash;
 
 @end
