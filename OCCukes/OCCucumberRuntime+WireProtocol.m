@@ -131,6 +131,30 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 - (id)handleInvokeWithHash:(NSDictionary *)hash
 {
 	id result = nil;
+	OCCucumberLanguage *language = [self language];
+	if (language == nil)
+	{
+		language = [OCCucumberLanguage sharedLanguage];
+	}
+	NSString *identifierString = [hash objectForKey:@"id"];
+	for (OCCucumberStepDefinition *stepDefinition in [language stepDefinitions])
+	{
+		if ([[stepDefinition identifierString] isEqualToString:identifierString])
+		{
+			// The step block throws any object in order to respond. If the wire
+			// server can successfully convert the thrown object to JSON, it
+			// becomes the reply. If not, there is no reply.
+			@try
+			{
+				[stepDefinition block]([hash objectForKey:@"args"]);
+			}
+			@catch (id object)
+			{
+				result = object;
+			}
+			break;
+		}
+	}
 	return result;
 }
 

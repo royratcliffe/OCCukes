@@ -22,6 +22,7 @@
 //
 //------------------------------------------------------------------------------
 
+#import <OCCukes/OCCucumber.h>
 #import <OCCukes/OCCucumberRuntime.h>
 #import <OCCukes/OCCucumberLanguage.h>
 #import <OCCukes/OCCucumberStepDefinition.h>

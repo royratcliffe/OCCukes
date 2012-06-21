@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukes OCCucumber.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,33 +22,34 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import "OCCucumber.h"
+#import "OCCucumberLanguage.h"
 
-#import <OCCukes/OCCukes.h>
+@implementation OCCucumber
 
-@interface OCCukesTests()
-
-@end
-
-@implementation OCCukesTests
-
-- (void)setUp
++ (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block
 {
-	[OCCucumber given:@"^a standard Cucumber project directory structure$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"WIP"];
-	}];
-	[[OCCucumberRuntime sharedRuntime] setUp];
+	[[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
 }
 
-- (void)tearDown
++ (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block
 {
-	[[OCCucumberRuntime sharedRuntime] tearDown];
+	[[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
 }
 
-- (void)testCucumberRuntime
++ (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block
 {
-	[[OCCucumberRuntime sharedRuntime] run];
+	[[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
+}
+
++ (void)pending
+{
+	@throw [NSArray arrayWithObject:@"pending"];
+}
+
++ (void)pending:(NSString *)message
+{
+	@throw [NSArray arrayWithObjects:@"pending", message, nil];
 }
 
 @end

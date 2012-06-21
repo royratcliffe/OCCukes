@@ -45,6 +45,16 @@
 	[[self stepDefinitions] addObject:stepDefinition];
 }
 
+- (void)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block
+{
+	[self registerStepDefinition:[[OCCucumberStepDefinition alloc] initWithRegularExpression:regularExpression block:block]];
+}
+
+- (void)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block
+{
+	[self registerStepDefinition:[[OCCucumberStepDefinition alloc] initWithPattern:pattern block:block]];
+}
+
 - (NSArray *)stepMatches:(NSString *)nameToMatch
 {
 	NSMutableArray *matches = [NSMutableArray array];

@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukes OCCucumber.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,33 +22,22 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import <Foundation/Foundation.h>
 
-#import <OCCukes/OCCukes.h>
+/*!
+ * @brief Offers a set of class-scoped convenience methods for interacting with
+ * Cucumber language and runtime.
+ * @details Typically, your unit tests will interact via this interface, rather
+ * than via the Cucumber shared language, or some other instance of the language
+ * class.
+ */
+@interface OCCucumber : NSObject
 
-@interface OCCukesTests()
++ (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
++ (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
++ (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 
-@end
-
-@implementation OCCukesTests
-
-- (void)setUp
-{
-	[OCCucumber given:@"^a standard Cucumber project directory structure$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"WIP"];
-	}];
-	[[OCCucumberRuntime sharedRuntime] setUp];
-}
-
-- (void)tearDown
-{
-	[[OCCucumberRuntime sharedRuntime] tearDown];
-}
-
-- (void)testCucumberRuntime
-{
-	[[OCCucumberRuntime sharedRuntime] run];
-}
++ (void)pending;
++ (void)pending:(NSString *)message;
 
 @end
