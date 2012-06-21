@@ -43,4 +43,6 @@
  */
 - (void)run;
 
++ (OCCucumberRuntime *)sharedRuntime;
+
 @end

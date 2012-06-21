@@ -32,4 +32,6 @@
 
 - (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition;
 
++ (OCCucumberLanguage *)sharedLanguage;
+
 @end

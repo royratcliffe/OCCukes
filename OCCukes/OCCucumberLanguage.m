@@ -43,4 +43,13 @@
 	[[self stepDefinitions] addObject:stepDefinition];
 }
 
++ (OCCucumberLanguage *)sharedLanguage
+{
+	static OCCucumberLanguage *__strong sharedLanguage;
+	if (sharedLanguage == nil)
+	{
+		sharedLanguage = [[OCCucumberLanguage alloc] init];
+	}
+	return sharedLanguage;
+}
 @end

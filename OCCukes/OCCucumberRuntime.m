@@ -47,11 +47,6 @@
 
 - (void)setUp
 {
-	if ([self language] == nil)
-	{
-		
-	}
-	
 	CFSocket *socket = [[CFSocket alloc] initForTCPv6];
 	[socket setDelegate:self];
 	[socket setReuseAddressOption:YES];
@@ -137,6 +132,16 @@
 		case NSStreamEventEndEncountered:
 			[[self wirePairs] removeObject:streamPair];
 	}
+}
+
++ (OCCucumberRuntime *)sharedRuntime
+{
+	static OCCucumberRuntime *__strong sharedRuntime;
+	if (sharedRuntime == nil)
+	{
+		sharedRuntime = [[OCCucumberRuntime alloc] init];
+	}
+	return sharedRuntime;
 }
 
 @end

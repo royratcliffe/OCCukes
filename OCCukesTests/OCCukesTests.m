@@ -28,28 +28,23 @@
 
 @interface OCCukesTests()
 
-@property(strong, NS_NONATOMIC_IOSONLY) OCCucumberRuntime *cucumberRuntime;
-
 @end
 
 @implementation OCCukesTests
 
-@synthesize cucumberRuntime = _cucumberRuntime;
-
 - (void)setUp
 {
-	[self setCucumberRuntime:[[OCCucumberRuntime alloc] init]];
-	[[self cucumberRuntime] setUp];
+	[[OCCucumberRuntime sharedRuntime] setUp];
 }
 
 - (void)tearDown
 {
-	[[self cucumberRuntime] tearDown];
+	[[OCCucumberRuntime sharedRuntime] tearDown];
 }
 
 - (void)testCucumberRuntime
 {
-	[[self cucumberRuntime] run];
+	[[OCCucumberRuntime sharedRuntime] run];
 }
 
 @end
