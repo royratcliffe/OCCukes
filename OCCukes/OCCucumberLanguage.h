@@ -1,4 +1,4 @@
-// OCCukes OCCukes.h
+// OCCukes OCCucumberLanguage.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,6 +22,14 @@
 //
 //------------------------------------------------------------------------------
 
-#import <OCCukes/OCCucumberRuntime.h>
-#import <OCCukes/OCCucumberLanguage.h>
-#import <OCCukes/Versioning.h>
+#import <Foundation/Foundation.h>
+
+@class OCCucumberStepDefinition;
+
+@interface OCCucumberLanguage : NSObject
+
+@property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *stepDefinitions;
+
+- (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition;
+
+@end
