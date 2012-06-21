@@ -34,7 +34,13 @@
  * @details When features have been parsed, Cucumber will send a "step_matches"
  * message to ask the wire server if it can match a step name. This happens for
  * each of the steps in each of the features.
- * @result The wire server replies with an array of StepMatch objects.
+ * @result The wire server replies with an array of Step Match objects.
+ * Each Step Match hash element comprises the following key-value pairs.
+ * - An "id" string identifier for the step definition to be referenced later
+ *   when it needs to be invoked. The identifier can be any string value and is
+ *   simply used for wire server's own reference.
+ * - An "args" array for any argument values captured by the wire end's own
+ *   regular expression (or other argument matching) process.
  */
 - (id)handleStepMatchesWithHash:(NSDictionary *)hash;
 
