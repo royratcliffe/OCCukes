@@ -1,4 +1,4 @@
-// OCCukes OCCukes.h
+// OCCukes OCCucumberStepDefinition.h
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import <OCCukes/OCCucumberRuntime.h>
-#import <OCCukes/OCCucumberLanguage.h>
-#import <OCCukes/OCCucumberStepDefinition.h>
-#import <OCCukes/Versioning.h>
+#import <Foundation/Foundation.h>
+
+@interface OCCucumberStepDefinition : NSObject
+
+@property(strong, NS_NONATOMIC_IOSONLY) NSRegularExpression *regularExpression;
+@property(copy, NS_NONATOMIC_IOSONLY) void (^block)(NSArray *arguments);
+
+@end

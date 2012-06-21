@@ -1,4 +1,4 @@
-// OCCukes OCCukes.h
+// OCCukes OCCucumberStepDefinition.m
 //
 // Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
 //
@@ -22,7 +22,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import <OCCukes/OCCucumberRuntime.h>
-#import <OCCukes/OCCucumberLanguage.h>
-#import <OCCukes/OCCucumberStepDefinition.h>
-#import <OCCukes/Versioning.h>
+#import "OCCucumberStepDefinition.h"
+
+@implementation OCCucumberStepDefinition
+
+@synthesize regularExpression = _regularExpression;
+@synthesize block = _block;
+
+@end

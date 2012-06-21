@@ -11,6 +11,10 @@
 		781DF1001592EDE0007270C8 /* OCCucumberLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		781DF1011592EDE0007270C8 /* OCCucumberLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */; };
 		781DF1021592EDE0007270C8 /* OCCucumberLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */; };
+		781DF1051592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 781DF1031592EF79007270C8 /* OCCucumberStepDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		781DF1061592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 781DF1031592EF79007270C8 /* OCCucumberStepDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		781DF1071592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 781DF1041592EF79007270C8 /* OCCucumberStepDefinition.m */; };
+		781DF1081592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 781DF1041592EF79007270C8 /* OCCucumberStepDefinition.m */; };
 		788046E5158A244E00881CEA /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 788046E3158A244E00881CEA /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		788046E6158A244E00881CEA /* Versioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 788046E3158A244E00881CEA /* Versioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		788046E7158A244E00881CEA /* Versioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 788046E4158A244E00881CEA /* Versioning.m */; };
@@ -106,6 +110,8 @@
 /* Begin PBXFileReference section */
 		781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberLanguage.h; sourceTree = "<group>"; };
 		781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberLanguage.m; sourceTree = "<group>"; };
+		781DF1031592EF79007270C8 /* OCCucumberStepDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberStepDefinition.h; sourceTree = "<group>"; };
+		781DF1041592EF79007270C8 /* OCCucumberStepDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberStepDefinition.m; sourceTree = "<group>"; };
 		78791DF11590EF3100C09841 /* CFSockets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CFSockets.xcodeproj; path = CFSockets/CFSockets.xcodeproj; sourceTree = "<group>"; };
 		788046E3158A244E00881CEA /* Versioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioning.h; sourceTree = "<group>"; };
 		788046E4158A244E00881CEA /* Versioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Versioning.m; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 				78CAE168159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m */,
 				781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */,
 				781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */,
+				781DF1031592EF79007270C8 /* OCCucumberStepDefinition.h */,
+				781DF1041592EF79007270C8 /* OCCucumberStepDefinition.m */,
 				788046E3158A244E00881CEA /* Versioning.h */,
 				788046E4158A244E00881CEA /* Versioning.m */,
 				78A9B86A1589E14900FEFFA8 /* Supporting Files */,
@@ -294,6 +302,7 @@
 				788046FC158A523600881CEA /* OCCucumberRuntime.h in Headers */,
 				78CAE169159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */,
 				781DF0FF1592EDE0007270C8 /* OCCucumberLanguage.h in Headers */,
+				781DF1051592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +315,7 @@
 				788046FD158A523600881CEA /* OCCucumberRuntime.h in Headers */,
 				78CAE16A159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h in Headers */,
 				781DF1001592EDE0007270C8 /* OCCucumberLanguage.h in Headers */,
+				781DF1061592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +545,7 @@
 				788046FE158A523600881CEA /* OCCucumberRuntime.m in Sources */,
 				78CAE16B159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */,
 				781DF1011592EDE0007270C8 /* OCCucumberLanguage.m in Sources */,
+				781DF1071592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +566,7 @@
 				788046FF158A523600881CEA /* OCCucumberRuntime.m in Sources */,
 				78CAE16C159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.m in Sources */,
 				781DF1021592EDE0007270C8 /* OCCucumberLanguage.m in Sources */,
+				781DF1081592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
