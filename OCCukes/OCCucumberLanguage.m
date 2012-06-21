@@ -23,6 +23,8 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberLanguage.h"
+#import "OCCucumberStepDefinition.h"
+#import "OCCucumberStepMatch.h"
 
 @implementation OCCucumberLanguage
 
@@ -41,6 +43,20 @@
 - (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition
 {
 	[[self stepDefinitions] addObject:stepDefinition];
+}
+
+- (NSArray *)stepMatches:(NSString *)nameToMatch
+{
+	NSMutableArray *matches = [NSMutableArray array];
+	for (OCCucumberStepDefinition *stepDefinition in [self stepDefinitions])
+	{
+		NSArray *arguments = [stepDefinition argumentsFromStepName:nameToMatch];
+		if (arguments)
+		{
+			[matches addObject:[[OCCucumberStepMatch alloc] initWithDefinition:stepDefinition arguments:arguments]];
+		}
+	}
+	return [matches copy];
 }
 
 + (OCCucumberLanguage *)sharedLanguage

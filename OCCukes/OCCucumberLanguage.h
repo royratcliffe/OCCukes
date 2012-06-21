@@ -32,6 +32,14 @@
 
 - (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition;
 
+/*!
+ * @brief Answers the steps matching a given step name.
+ * @details There could be more than one. The resulting array contains Step
+ * Match objects. Each Step Match retains its step definition for later
+ * invocation and the argument values derived from the match.
+ */
+- (NSArray *)stepMatches:(NSString *)nameToMatch;
+
 + (OCCucumberLanguage *)sharedLanguage;
 
 @end

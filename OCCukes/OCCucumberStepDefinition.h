@@ -29,6 +29,17 @@
 @property(strong, NS_NONATOMIC_IOSONLY) NSRegularExpression *regularExpression;
 @property(copy, NS_NONATOMIC_IOSONLY) void (^block)(NSArray *arguments);
 
+// convenience initialisers
+- (id)initWithRegularExpression:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
+
+/*!
+ * @brief Constructs a new step definition from a given pattern string.
+ * @details Compiles a new regular expression for the step based on the given
+ * pattern string. Answers a new step definition if the expression successfully
+ * compiles. Otherwise answers @c nil.
+ */
+- (id)initWithPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
+
 /*!
  * @brief Answers a unique string identifier for the step definition.
  * @details All step definitions need a unique string identifier. The Cucumber
@@ -39,5 +50,14 @@
  * uses a string value based on the "self" pointer.
  */
 - (NSString *)identifierString;
+
+/*!
+ * @result Answers an array of regular-expression match capture values, one for
+ * each matching capture group. Answers @c nil if the step definition's regular
+ * expression pattern does not match the given step name. Answers an array of
+ * zero length if the pattern matches but no capture groups exist in the step
+ * expression.
+ */
+- (NSArray *)argumentsFromStepName:(NSString *)stepName;
 
 @end

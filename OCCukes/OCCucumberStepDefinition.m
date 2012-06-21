@@ -29,9 +29,54 @@
 @synthesize regularExpression = _regularExpression;
 @synthesize block = _block;
 
+- (id)initWithRegularExpression:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block
+{
+	if ((self = [self init]))
+	{
+		[self setRegularExpression:regularExpression];
+		[self setBlock:block];
+	}
+	return self;
+}
+
+- (id)initWithPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block
+{
+	NSError *__autoreleasing error = nil;
+	NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+	// What to do with the error if the expression compiler raises one?
+	if (error)
+	{
+		[NSException raise:[error domain] format:@"%@", [error localizedDescription]];
+	}
+	return regularExpression ? [self initWithRegularExpression:regularExpression block:block] : nil;
+}
+
 - (NSString *)identifierString
 {
 	return [NSString stringWithFormat:@"%p", self];
+}
+
+- (NSArray *)argumentsFromStepName:(NSString *)stepName
+{
+	NSMutableArray *arguments;
+	NSTextCheckingResult *match = [[self regularExpression] firstMatchInString:stepName options:0 range:NSMakeRange(0, [stepName length])];
+	if (match)
+	{
+		arguments = [NSMutableArray array];
+		// The first range always captures the entire match; subsequent ranges
+		// match regular expression capture groups.
+		for (NSUInteger i = 1; i < [match numberOfRanges]; i++)
+		{
+			[arguments addObject:[stepName substringWithRange:[match rangeAtIndex:i]]];
+		}
+	}
+	else
+	{
+		// Yes, you can send -copy to nil; [(NSObject *)nil copy] answers
+		// nil. In Objective-C, nil is a valid message receiver.
+		arguments = nil;
+	}
+	return [arguments copy];
 }
 
 @end

@@ -23,6 +23,9 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberRuntime+WireProtocol.h"
+#import "OCCucumberLanguage.h"
+#import "OCCucumberStepDefinition.h"
+#import "OCCucumberStepMatch.h"
 
 NSString *__OCCucumberRuntimeCamelize(NSString *string);
 
@@ -92,6 +95,18 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 {
 	NSMutableArray *stepMatches = [NSMutableArray array];
 	NSString *nameToMatch = [hash objectForKey:@"name_to_match"];
+	OCCucumberLanguage *language = [self language];
+	if (language == nil)
+	{
+		language = [OCCucumberLanguage sharedLanguage];
+	}
+	for (OCCucumberStepDefinition *stepDefinition in [language stepDefinitions])
+	{
+		for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
+		{
+			[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[match stepDefinition] identifierString], @"id", [match stepArguments], @"args", nil]];
+		}
+	}
 	return [NSArray arrayWithObjects:@"success", [stepMatches copy], nil];
 }
 
