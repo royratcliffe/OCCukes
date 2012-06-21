@@ -29,4 +29,9 @@
 @synthesize regularExpression = _regularExpression;
 @synthesize block = _block;
 
+- (NSString *)identifierString
+{
+	return [NSString stringWithFormat:@"%p", self];
+}
+
 @end

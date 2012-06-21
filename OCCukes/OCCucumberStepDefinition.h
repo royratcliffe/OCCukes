@@ -29,4 +29,15 @@
 @property(strong, NS_NONATOMIC_IOSONLY) NSRegularExpression *regularExpression;
 @property(copy, NS_NONATOMIC_IOSONLY) void (^block)(NSArray *arguments);
 
+/*!
+ * @brief Answers a unique string identifier for the step definition.
+ * @details All step definitions need a unique string identifier. The Cucumber
+ * client utilises these identifiers in order to reference remote step
+ * definitions across the wire. Identifiers are string values. So long as they
+ * are one-to-one with the identity of the step definition, and not the state of
+ * the step definition, their exact contents are arbitrary. The implementation
+ * uses a string value based on the "self" pointer.
+ */
+- (NSString *)identifierString;
+
 @end
