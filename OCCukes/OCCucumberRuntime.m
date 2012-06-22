@@ -112,14 +112,19 @@
 		if (object)
 		{
 			id result = [self handleWirePacketWithObject:object];
-			if (result)
+			// Always answer with something whenever the request decodes valid
+			// JSON. Send valid JSON back because at the other end of the
+			// connection likely sits a Cucumber instance. Send a Cucumber
+			// wire-protocol failure packet.
+			if (result == nil)
 			{
-				NSData *data = [NSJSONSerialization dataWithJSONObject:result options:0 error:&error];
-				if (data)
-				{
-					[streamPair sendBytes:data];
-					[streamPair sendBytes:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
-				}
+				result = [NSArray arrayWithObject:@"fail"];
+			}
+			NSData *data = [NSJSONSerialization dataWithJSONObject:result options:0 error:&error];
+			if (data)
+			{
+				[streamPair sendBytes:data];
+				[streamPair sendBytes:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
 			}
 		}
 	}
