@@ -79,4 +79,9 @@
 	return [arguments copy];
 }
 
+- (void)invokeWithArguments:(NSArray *)arguments
+{
+	[self block](arguments);
+}
+
 @end

@@ -156,7 +156,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 			// becomes the reply. If not, there is no reply.
 			@try
 			{
-				[stepDefinition block]([hash objectForKey:@"args"]);
+				[stepDefinition invokeWithArguments:[hash objectForKey:@"args"]];
 			}
 			@catch (id object)
 			{

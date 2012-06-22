@@ -24,6 +24,11 @@
 
 #import <Foundation/Foundation.h>
 
+/*!
+ * @brief Step definitions hold a regular expression and a C block.
+ * @details You create a step definition by registering a Give, When or Then
+ * step. You can invoke a step definition.
+ */
 @interface OCCucumberStepDefinition : NSObject
 
 @property(strong, NS_NONATOMIC_IOSONLY) NSRegularExpression *regularExpression;
@@ -59,5 +64,7 @@
  * expression.
  */
 - (NSArray *)argumentsFromStepName:(NSString *)stepName;
+
+- (void)invokeWithArguments:(NSArray *)arguments;
 
 @end
