@@ -65,6 +65,15 @@
  */
 - (NSArray *)argumentsFromStepName:(NSString *)stepName;
 
+/*!
+ * @brief Invokes a step given its name, using the given arguments.
+ * @details First derives the step matches. If it finds just one, invokes the
+ * step using the supplied arguments.
+ * Step definitions can invoke other step definitions as necessary. This method
+ * gives access to the steps @em by @em name. There could be more than one
+ * matching definition. There may even be no match. In such cases, the step
+ * invocation throws an exception.
+ */
 - (void)invokeWithArguments:(NSArray *)arguments;
 
 @end
