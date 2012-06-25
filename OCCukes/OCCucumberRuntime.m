@@ -136,6 +136,9 @@
 	{
 		case NSStreamEventEndEncountered:
 			[[self wirePairs] removeObject:streamPair];
+			break;
+		default:
+			;
 	}
 }
 
