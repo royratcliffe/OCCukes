@@ -1,0 +1,8 @@
+host: localhost
+port: 54321
+
+# The default three-second time-out might not help a debugging
+# effort. Instead, lengthen the timeouts for specific wire protocol
+# messages.
+timeout:
+  step_matches: 120
