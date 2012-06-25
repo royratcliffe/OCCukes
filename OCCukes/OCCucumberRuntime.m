@@ -36,14 +36,30 @@
 @property(strong, NS_NONATOMIC_IOSONLY) CFSocket *wireSocket;
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *wirePairs;
 
+@property(strong, NS_NONATOMIC_IOSONLY) NSDate *expiresDate;
+
 @end
 
 @implementation OCCucumberRuntime
 
 @synthesize language = _language;
+@synthesize connectTimeout = _connectTimeout;
+@synthesize disconnectTimeout = _disconnectTimeout;
 
 @synthesize wireSocket = _wireSocket;
 @synthesize wirePairs = _wirePairs;
+
+@synthesize expiresDate = _expiresDate;
+
+- (id)init
+{
+	if ((self = [super init]))
+	{
+		[self setConnectTimeout:10.0];
+		[self setDisconnectTimeout:1.0];
+	}
+	return self;
+}
 
 - (void)setUp
 {
@@ -75,11 +91,13 @@
 
 - (void)run
 {
+	[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self connectTimeout]]];
 	do
 	{
-		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:10.0]];
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	}
-	while ([[self wirePairs] count]);
+	while ([[self expiresDate] compare:[NSDate date]] == NSOrderedDescending);
+	[self setExpiresDate:nil];
 }
 
 - (void)socket:(CFSocket *)socket acceptStreamPair:(CFStreamPair *)streamPair
@@ -90,6 +108,10 @@
 	// client. The wire connection's stream-pair encapsulates client-server
 	// interactions. It decodes wire packets from the request stream and encodes
 	// wire packets to the response stream.
+	if ([[self wirePairs] count] == 0)
+	{
+		[self setExpiresDate:[NSDate distantFuture]];
+	}
 	[[self wirePairs] addObject:streamPair];
 	[streamPair setDelegate:self];
 	[streamPair open];
@@ -136,6 +158,10 @@
 	{
 		case NSStreamEventEndEncountered:
 			[[self wirePairs] removeObject:streamPair];
+			if ([[self wirePairs] count] == 0)
+			{
+				[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self disconnectTimeout]]];
+			}
 			break;
 		default:
 			;
