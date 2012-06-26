@@ -110,12 +110,9 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	{
 		language = [OCCucumberLanguage sharedLanguage];
 	}
-	for (OCCucumberStepDefinition *stepDefinition in [language stepDefinitions])
+	for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
 	{
-		for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
-		{
-			[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[match stepDefinition] identifierString], @"id", [match stepArguments], @"args", nil]];
-		}
+		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[match stepDefinition] identifierString], @"id", [match stepArguments], @"args", nil]];
 	}
 	return [NSArray arrayWithObjects:@"success", [stepMatches copy], nil];
 }
