@@ -153,10 +153,12 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 		{
 			// The step block throws any object in order to respond. If the wire
 			// server can successfully convert the thrown object to JSON, it
-			// becomes the reply. If not, there is no reply.
+			// becomes the reply. If the step does not raise an exception,
+			// answer with success.
 			@try
 			{
 				[stepDefinition invokeWithArguments:[hash objectForKey:@"args"]];
+				result = [NSArray arrayWithObject:@"success"];
 			}
 			@catch (id object)
 			{

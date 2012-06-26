@@ -3,6 +3,9 @@
 # just one of many. No straightforward way exists for accessing the
 # current language, or even the current runtime from within Cucumber
 # step definition Ruby blocks.
+#
+# No need to send an exit message. The wire server automatically exits
+# when all the connections close.
 AfterConfiguration do |config|
   Process.daemon(true, true)
   feature_dirs = ['features'].map { |f| File.directory?(f) ? f : File.dirname(f) }.uniq
