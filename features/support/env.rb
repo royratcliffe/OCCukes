@@ -1,3 +1,8 @@
+# Navigate to the wire language configuration. Cucumber supports
+# multiple languages, even during the same run. The wire language is
+# just one of many. No straightforward way exists for accessing the
+# current language, or even the current runtime from within Cucumber
+# step definition Ruby blocks.
 AfterConfiguration do |config|
   Process.daemon(true, true)
   feature_dirs = ['features'].map { |f| File.directory?(f) ? f : File.dirname(f) }.uniq
