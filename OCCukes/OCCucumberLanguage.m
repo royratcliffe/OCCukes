@@ -45,14 +45,18 @@
 	[[self stepDefinitions] addObject:stepDefinition];
 }
 
-- (void)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block
+- (OCCucumberStepDefinition *)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block
 {
-	[self registerStepDefinition:[[OCCucumberStepDefinition alloc] initWithRegularExpression:regularExpression block:block]];
+	OCCucumberStepDefinition *stepDefinition = [[OCCucumberStepDefinition alloc] initWithRegularExpression:regularExpression block:block];
+	[self registerStepDefinition:stepDefinition];
+	return stepDefinition;
 }
 
-- (void)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block
+- (OCCucumberStepDefinition *)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block
 {
-	[self registerStepDefinition:[[OCCucumberStepDefinition alloc] initWithPattern:pattern block:block]];
+	OCCucumberStepDefinition *stepDefinition = [[OCCucumberStepDefinition alloc] initWithPattern:pattern block:block];
+	[self registerStepDefinition:stepDefinition];
+	return stepDefinition;
 }
 
 - (NSArray *)stepMatches:(NSString *)nameToMatch

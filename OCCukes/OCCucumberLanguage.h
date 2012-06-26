@@ -31,8 +31,8 @@
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *stepDefinitions;
 
 - (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition;
-- (void)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
-- (void)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
+- (OCCucumberStepDefinition *)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
+- (OCCucumberStepDefinition *)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
 
 /*!
  * @brief Answers the steps matching a given step name.
