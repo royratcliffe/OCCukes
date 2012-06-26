@@ -155,10 +155,18 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 			// server can successfully convert the thrown object to JSON, it
 			// becomes the reply. If the step does not raise an exception,
 			// answer with success.
+			//
+			// Catch NextStep exceptions. Such an exception gives a Cucumber
+			// failure result, where the exception reason becomes the failure
+			// message.
 			@try
 			{
 				[stepDefinition invokeWithArguments:[hash objectForKey:@"args"]];
 				result = [NSArray arrayWithObject:@"success"];
+			}
+			@catch (NSException *exception)
+			{
+				result = [NSArray arrayWithObjects:@"fail", [NSDictionary dictionaryWithObjectsAndKeys:[exception reason], @"message", [exception name], @"exception", nil], nil];
 			}
 			@catch (id object)
 			{
