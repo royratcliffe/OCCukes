@@ -24,6 +24,7 @@
 
 #import "OCCucumber.h"
 #import "OCCucumberLanguage.h"
+#import "OCCucumberStepDefinition.h"
 
 @implementation OCCucumber
 
@@ -40,6 +41,27 @@
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block
 {
 	[[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
+}
+
++ (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
+{
+	OCCucumberStepDefinition *stepDefinition = [[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
+	[stepDefinition setFile:file];
+	[stepDefinition setLine:line];
+}
+
++ (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
+{
+	OCCucumberStepDefinition *stepDefinition = [[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
+	[stepDefinition setFile:file];
+	[stepDefinition setLine:line];
+}
+
++ (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
+{
+	OCCucumberStepDefinition *stepDefinition = [[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
+	[stepDefinition setFile:file];
+	[stepDefinition setLine:line];
 }
 
 + (void)pending

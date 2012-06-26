@@ -28,11 +28,20 @@
  * @brief Step definitions hold a regular expression and a C block.
  * @details You create a step definition by registering a Give, When or Then
  * step. You can invoke a step definition.
+ *
+ * Step definitions carry a file and line property. Assign these to __FILE__ and
+ * __LINE__ respectively. Cucumber reports source file-colon-line references for
+ * step definitions. These become clickable in editors such as TextMate and
+ * RubyMine. Very useful when developing. Note that __FILE__ is a pointer to a
+ * static string of characters. No need to copy the static null-terminated C
+ * string. As a static, the string will remain in place and unchanged.
  */
 @interface OCCucumberStepDefinition : NSObject
 
 @property(strong, NS_NONATOMIC_IOSONLY) NSRegularExpression *regularExpression;
 @property(copy, NS_NONATOMIC_IOSONLY) void (^block)(NSArray *arguments);
+@property(assign, NS_NONATOMIC_IOSONLY) const char *file;
+@property(assign, NS_NONATOMIC_IOSONLY) unsigned int line;
 
 // convenience initialisers
 - (id)initWithRegularExpression:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;

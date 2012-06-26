@@ -112,7 +112,10 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	}
 	for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
 	{
-		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[match stepDefinition] identifierString], @"id", [match stepArguments], @"args", nil]];
+		OCCucumberStepDefinition *stepDefinition = [match stepDefinition];
+		const char *file = [stepDefinition file];
+		NSString *source = file ? [NSString stringWithFormat:@"%s:%u", file, [stepDefinition line]] : nil;
+		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[stepDefinition identifierString], @"id", [match stepArguments], @"args", source, @"source", nil]];
 	}
 	return [NSArray arrayWithObjects:@"success", [stepMatches copy], nil];
 }

@@ -28,6 +28,8 @@
 
 @synthesize regularExpression = _regularExpression;
 @synthesize block = _block;
+@synthesize file = _file;
+@synthesize line = _line;
 
 - (id)initWithRegularExpression:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block
 {
