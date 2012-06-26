@@ -125,7 +125,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	NSString *multilineArgClass = [hash objectForKey:@"multiline_arg_class"];
 	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
 	NSString *stepName = [hash objectForKey:@"step_name"];
-	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t}];", [stepKeyword lowercaseString], stepName], nil];
+	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t} file:__FILE__ line:__LINE__];", [stepKeyword lowercaseString], stepName], nil];
 }
 
 - (id)handleBeginScenario
