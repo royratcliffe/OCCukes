@@ -6,6 +6,9 @@ source 'https://rubygems.org'
 # environment using Bundler, a good thing.
 gem 'cucumber'
 
+# Cucumber syntax highlighting.
+gem 'syntax'
+
 # Add RSpec to the bundle. Without this specific inclusion, you cannot
 # run Cucumber from TextMate without error. TextMate looks for the
 # Gemfile and runs Cucumber and RSpec within the bundled environment.
