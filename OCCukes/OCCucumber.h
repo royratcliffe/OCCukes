@@ -33,10 +33,12 @@
  */
 @interface OCCucumber : NSObject
 
+// language shortcuts
 + (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 
+// runtime shortcuts
 + (void)pending;
 + (void)pending:(NSString *)message;
 
