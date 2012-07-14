@@ -12,7 +12,7 @@ It allows Cucumber to touch your application in _intimate places_. Goals include
 
 Why the OC name-space prefix? OC stands for Objective-C. It emphasises the underlying dependency as well as the multiplatform capability. OCCukes supports Objective-C on all Apple platforms: iOS and OS X.
 
-The project does _not_ include an expectation framework. It only runs Objective-C coded step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions. Since you write your Cucumber step definitions in Objective-C, you can therefore use any kind of assertion framework, or even write your own. Exceptions thrown by the step become Cucumber step failures.
+The project does _not_ include an expectation framework. It only runs Objective-C coded step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions. Since you write your Cucumber step definitions in Objective-C, you can use any kind of assertion framework, or even write your own. Exceptions thrown by the step become Cucumber step failures.
 
 ## Usage
 
@@ -50,7 +50,7 @@ Host and port describe where to find the wire socket service. The Cucumber wire 
 
 ### Environment Support
 
-Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration.
+Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from `features/support/env.rb`.
 
 ```ruby
 AfterConfiguration do |config|
@@ -70,8 +70,7 @@ AfterConfiguration do |config|
   # at this point during the AfterConfiguration block. Instead
   # therefore, replicate Cucumber's way of finding and loading the
   # wire configuration.
-  feature_dirs = ['features'].map { |f| File.directory?(f) ? f : File.dirname(f) }.uniq
-  wire_files = feature_dirs.map do |path|
+  wire_files = config.feature_dirs.map do |path|
     path = path.gsub(/\/$/, '')
     File.directory?(path) ? Dir["#{path}/**/*"] : path
   end.flatten.uniq
