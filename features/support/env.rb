@@ -3,8 +3,8 @@ AfterConfiguration do |config|
   # launches Cucumber as a pre-action for the test scheme. If you use
   # RVM, the pre-action script might look something like this:
   #
-  #   cd "$SRCROOT"
-  #   "$HOME/.rvm/bin/rvm-shell" -c "cucumber"
+  #   PATH=$PATH:$HOME/.rvm/bin
+  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
   #
   Process.daemon(true, true)
 
