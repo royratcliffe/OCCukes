@@ -12,6 +12,8 @@ It allows Cucumber to touch your application in _intimate places_. Goals include
 
 Why the OC name-space prefix? OC stands for Objective-C. It emphasises the underlying dependency as well as the multiplatform capability. OCCukes supports Objective-C on all Apple platforms: iOS and OS X.
 
+The project does _not_ include an expectation framework. It only runs Objective-C step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions.
+
 ## Advantages
 
 Why use OCCukes?

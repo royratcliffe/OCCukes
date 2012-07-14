@@ -33,7 +33,8 @@
  */
 @interface OCCucumber : NSObject
 
-// language shortcuts
+//----------------------------------------------------------- Language Shortcuts
+
 + (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
@@ -42,7 +43,8 @@
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 
-// runtime shortcuts
+//------------------------------------------------------------ Runtime Shortcuts
+
 + (void)pending;
 + (void)pending:(NSString *)message;
 
