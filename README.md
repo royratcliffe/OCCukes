@@ -3,9 +3,30 @@
 It allows Cucumber to touch your application in _intimate places_. Goals include and exclude:
 
 * Implement the Cucumber wire protocol.
+
+  This is the most direct way to connect Cucumber to non-Ruby environments.
+
 * Not to link against the C++ standard library.
 
-Why the OC name-space prefix? OC stands for Objective-C.
+  Just pure Objective-C based on Apple's Foundation framework.
+
+Why the OC name-space prefix? OC stands for Objective-C. It emphasises the underlying dependency as well as the multiplatform capability. OCCukes supports Objective-C on all Apple platforms: iOS and OS X.
+
+## Advantages
+
+Why use OCCukes?
+
+### Test bundle injection
+
+Takes advantage of Apple's test bundle injection mechanism. In other words, you do not need to link your target against some other library. Your target needs nothing extra. This obviates any need for maintaining multiple targets, one for the application proper, then another one for Cucumber testing. Xcode takes care of the injection of the wire protocol server along with all other tests and dependencies at testing time.
+
+This prevents a proliferation of targets, making project maintenance easier. You do not need to have a Cucumber'ified target which duplicates your target proper but adds additional dependencies. Bundle injection handles all that for you. One application, one target.
+
+### No additional Ruby
+
+The OCCukes approach obviates any additional Ruby-side client gem needed for bridging work between Cucumber and iOS or OS X. Cucumber is the direct client end-point. It already contains the necessary equipment for talking to OCCukes. No need for another adapter. OCCukes talks _native_ Cucumber.
+
+This also means that you do not need to build and maintain a skeletal structure within your features just for adapting and connecting to a remote test system. Cuts out the [cruft](http://foldoc.org/cruft).
 
 ## When and how to launch Cucumber?
 
