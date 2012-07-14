@@ -50,7 +50,7 @@ Host and port describe where to find the wire socket service. The Cucumber wire 
 
 ### Environment Support
 
-Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from `features/support/env.rb`.
+Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from [`features/support/env.rb`](https://github.com/royratcliffe/OCCukes/blob/master/features/support/env.rb).
 
 ```ruby
 AfterConfiguration do |config|
