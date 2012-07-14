@@ -50,7 +50,7 @@ Host and port describe where to find the wire socket service. The Cucumber wire 
 
 ### Environment Support
 
-Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from [`features/support/env.rb`](https://github.com/royratcliffe/OCCukes/blob/master/features/support/env.rb).
+Set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from [`features/support/env.rb`](https://github.com/royratcliffe/OCCukes/blob/master/features/support/env.rb).
 
 ```ruby
 AfterConfiguration do |config|
@@ -99,6 +99,63 @@ AfterConfiguration do |config|
 end
 ```
 
+### Add test case
+
+Finally, integrate Cucumber tests with your standard unit test cases by adding a special test case.
+
+Header file for test case, `CucumberTests.h`:
+```objc
+#import <SenTestingKit/SenTestingKit.h>
+
+@interface CucumberTests : SenTestCase
+
+@end
+```
+
+Source file for test case, `CucumberTests.m`:
+```objective-c
+
+#import "CucumberTests.h"
+
+#import <OCCukes/OCCukes.h>
+
+@implementation CucumberTests
+
+- (void)setUp
+{
+	[OCCucumber given:@"^context$" step:^(NSArray *arguments) {
+		// express the regular expression above with the code you wish you had
+		[OCCucumber pending:@"TODO"];
+	} file:__FILE__ line:__LINE__];
+	
+	[OCCucumber when:@"^event$" step:^(NSArray *arguments) {
+		// express the regular expression above with the code you wish you had
+		[OCCucumber pending:@"TODO"];
+	} file:__FILE__ line:__LINE__];
+	
+	[OCCucumber then:@"^outcome$" step:^(NSArray *arguments) {
+		// express the regular expression above with the code you wish you had
+		[OCCucumber pending:@"TODO"];
+	} file:__FILE__ line:__LINE__];
+	
+	[[OCCucumberRuntime sharedRuntime] setUp];
+}
+
+- (void)tearDown
+{
+	[[OCCucumberRuntime sharedRuntime] tearDown];
+}
+
+- (void)testCucumber
+{
+	[[OCCucumberRuntime sharedRuntime] run];
+}
+
+@end
+```
+
+Link your test target against the `OCCukes.framework` for OS X platforms; or against the libOCCukes.a static library for iOS test targets. For iOS targets, you also need `OTHER_LDFLAGS` equal to `-all_load`.
+
 ## Advantages
 
 Why use OCCukes?
@@ -114,6 +171,10 @@ This prevents a proliferation of targets, making project maintenance easier. You
 The OCCukes approach obviates any additional Ruby-side client gem needed for bridging work between Cucumber and iOS or OS X. Cucumber is the direct client end-point. It already contains the necessary equipment for talking to OCCukes. No need for another adapter. OCCukes talks _native_ Cucumber.
 
 This also means that you do not need to build and maintain a skeletal structure within your features just for adapting and connecting to a remote test system. Cuts out the [cruft](http://foldoc.org/cruft).
+
+### No private dependencies
+
+The software only makes use of public APIs. This makes it far less brittle. Private frameworks can and do change without notice. Projects relying on them can easily become redundant especially as Apple's operating systems advance rapidly.
 
 ## When and how to launch Cucumber?
 
