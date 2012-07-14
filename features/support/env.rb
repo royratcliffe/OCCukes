@@ -15,8 +15,7 @@ AfterConfiguration do |config|
   # at this point during the AfterConfiguration block. Instead
   # therefore, replicate Cucumber's way of finding and loading the
   # wire configuration.
-  feature_dirs = ['features'].map { |f| File.directory?(f) ? f : File.dirname(f) }.uniq
-  wire_files = feature_dirs.map do |path|
+  wire_files = config.feature_dirs.map do |path|
     path = path.gsub(/\/$/, '')
     File.directory?(path) ? Dir["#{path}/**/*"] : path
   end.flatten.uniq
