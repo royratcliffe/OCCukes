@@ -14,6 +14,92 @@ Why the OC name-space prefix? OC stands for Objective-C. It emphasises the under
 
 The project does _not_ include an expectation framework. It only runs Objective-C coded step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions. Since you write your Cucumber step definitions in Objective-C, you can therefore use any kind of assertion framework, or even write your own. Exceptions thrown by the step become Cucumber step failures.
 
+## Usage
+
+OCCukes integrates with Xcode. You launch a Cucumber-based test suite as you would any other Xcode project test suite: just press Command+U. To set up the pre- and post-actions for your test target, just install Cucumber using RVM.
+
+### Test scheme pre-action
+
+Make this your pre-action for the Test scheme:
+
+	PATH=$PATH:$HOME/.rvm/bin
+	rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
+
+This assumes you have already installed Cucumber in the Ruby 1.9.3 RVM; adjust according to your local environment and personal preferences.
+
+### Test scheme post-action
+
+Then make this your post-action:
+
+	open "$SRCROOT/features.html"
+
+### Wire protocol configuration
+
+Add a wire configuration to your `features/step_definitions` folder, a YAML file with a `.wire` extension. Contents as follows.
+
+	host: localhost
+	port: 54321
+
+	# The default three-second time-out might not help a debugging
+	# effort. Instead, lengthen the timeouts for specific wire protocol
+	# messages.
+	timeout:
+	  step_matches: 120
+
+Host and port describe where to find the wire socket service. The Cucumber wire service accepts connections at port 54321 on _any_ interface. So you can connect to non-local hosts as well.
+
+### Environment Support
+
+Finally, set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration.
+
+```ruby
+AfterConfiguration do |config|
+  # First, daemonise this Cucumber process. This assumes that Xcode
+  # launches Cucumber as a pre-action for the test scheme. If you use
+  # RVM, the pre-action script might look something like this:
+  #
+  #   PATH=$PATH:$HOME/.rvm/bin
+  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
+  #
+  Process.daemon(true, true)
+
+  # Navigate to the wire language configuration. Cucumber supports
+  # multiple languages, even during the same run. The wire language is
+  # just one of many. No straightforward way exists for accessing the
+  # current language, or even the current runtime from within Cucumber
+  # at this point during the AfterConfiguration block. Instead
+  # therefore, replicate Cucumber's way of finding and loading the
+  # wire configuration.
+  feature_dirs = ['features'].map { |f| File.directory?(f) ? f : File.dirname(f) }.uniq
+  wire_files = feature_dirs.map do |path|
+    path = path.gsub(/\/$/, '')
+    File.directory?(path) ? Dir["#{path}/**/*"] : path
+  end.flatten.uniq
+  wire_files.reject! { |f| !File.file?(f) }
+  wire_files.reject! { |f| File.extname(f) != '.wire' }
+  params = YAML.load(ERB.new(File.read(wire_files[0])).result)
+
+  # Finally, wait for the wire socket to open. Try a connection once a
+  # second for ten seconds. Continue when the connection does not
+  # refuse. This adds a short latency: the distance in time between
+  # the wire server accepting connections and the socket probe finding
+  # a non-refusal. The latency is always less than one second.
+  #
+  # No need to send an exit message. The wire server automatically exits
+  # when all the connections close.
+  Timeout.timeout(10) do
+    loop do
+      begin
+        TCPSocket.open(params['host'], params['port']).close
+        break
+      rescue Errno::ECONNREFUSED
+        sleep 1
+      end
+    end
+  end
+end
+```
+
 ## Advantages
 
 Why use OCCukes?
