@@ -153,7 +153,7 @@ Source file for test case, `CucumberTests.m`:
 @end
 ```
 
-Link your test target against the `OCCukes.framework` for OS X platforms; or against the libOCCukes.a static library for iOS test targets. For iOS targets, you also need `OTHER_LDFLAGS` equal to `-all_load`.
+Link your test target against the `OCCukes.framework` for OS X platforms; or against the `libOCCukes.a` static library for iOS test targets. For iOS targets, you also need `OTHER_LDFLAGS` equal to `-all_load`.
 
 ## Advantages
 
