@@ -101,7 +101,7 @@ end
 
 ### Add test case
 
-Finally, integrate Cucumber tests with your standard unit test cases by adding a special test case.
+Finally, integrate Cucumber tests with your standard unit test cases by adding a special `SenTestCase` sub-class.
 
 Header file for test case, `CucumberTests.h`:
 ```objc
@@ -114,7 +114,6 @@ Header file for test case, `CucumberTests.h`:
 
 Source file for test case, `CucumberTests.m`:
 ```objective-c
-
 #import "CucumberTests.h"
 
 #import <OCCukes/OCCukes.h>
