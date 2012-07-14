@@ -4,7 +4,7 @@ AfterConfiguration do |config|
   # RVM, the pre-action script might look something like this:
   #
   #   PATH=$PATH:$HOME/.rvm/bin
-  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
+  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
   #
   Process.daemon(true, true)
 

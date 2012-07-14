@@ -32,7 +32,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "PATH=$PATH:$HOME/.rvm/bin&#10;rvm 1.9.3 do cucumber &quot;$SRCROOT/features&quot; --format html --out features.html">
+               scriptText = "PATH=$PATH:$HOME/.rvm/bin&#10;rvm 1.9.3 do cucumber &quot;$SRCROOT/features&quot; --format html --out &quot;$OBJROOT/features.html&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -50,7 +50,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "open &quot;$SRCROOT/features.html&quot;">
+               scriptText = "open &quot;$OBJROOT/features.html&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

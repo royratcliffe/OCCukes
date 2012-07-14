@@ -23,7 +23,7 @@ OCCukes integrates with Xcode. You launch a Cucumber-based test suite as you wou
 Make this your pre-action for the Test scheme:
 
 	PATH=$PATH:$HOME/.rvm/bin
-	rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
+	rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
 
 This assumes you have already installed Cucumber in the Ruby 1.9.3 RVM; adjust according to your local environment and personal preferences.
 
@@ -31,7 +31,7 @@ This assumes you have already installed Cucumber in the Ruby 1.9.3 RVM; adjust a
 
 Then make this your post-action:
 
-	open "$SRCROOT/features.html"
+	open "$OBJROOT/features.html"
 
 ### Wire protocol configuration
 
@@ -59,7 +59,7 @@ AfterConfiguration do |config|
   # RVM, the pre-action script might look something like this:
   #
   #   PATH=$PATH:$HOME/.rvm/bin
-  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out features.html
+  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
   #
   Process.daemon(true, true)
 
