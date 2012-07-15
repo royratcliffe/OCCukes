@@ -8,7 +8,7 @@ It allows Cucumber to touch your application in _intimate places_. Goals include
 
 * Not to link against the C++ standard library.
 
-  Just pure Objective-C based on Apple's Foundation framework.
+  Just pure Automatic Reference Counting (ARC) Objective-C based on Apple's Foundation framework.
 
 Why the OC name-space prefix? OC stands for Objective-C. It emphasises the underlying dependency as well as the multiplatform capability. OCCukes supports Objective-C on all Apple platforms: iOS and OS X.
 
