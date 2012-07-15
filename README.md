@@ -153,7 +153,11 @@ Source file for test case, `CucumberTests.m`:
 @end
 ```
 
-Link your test target against the `OCCukes.framework` for OS X platforms; or against the `libOCCukes.a` static library for iOS test targets. For iOS targets, you also need `OTHER_LDFLAGS` equal to `-all_load`.
+Register your step definitions before executing the Objective-C Cucumber runtime by sending `-run`. As you see above, definitions manifest themselves in Objective-C as C blocks. These blocks assert the step's expectations, throwing an exception if any expectations fail. Steps therefore succeed when they encounter no exceptions.
+
+The runtime accepts connections until all connections disappear. By default, it offers an initial 10-second connection window; giving up if Cucumber fails to connect for 10 seconds. The runtime also offers a 1-second disconnection window before shutting down the socket. This allows all connections to disappear temporarily. You can adjust these connect and disconnect timeouts if necessary.
+
+Link your test target against the `OCCukes.framework` for OS X platforms; or against the `libOCCukes.a` static library for iOS test targets. For iOS targets, you also need `OTHER_LDFLAGS` equal to `-all_load`; the linker does not automatically load Objective-C categories when they appear in a static library but this flag forces it to.
 
 ## Advantages
 
