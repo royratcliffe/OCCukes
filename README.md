@@ -193,7 +193,7 @@ Step 2 raises issues when Cucumber tests actual iOS devices where the server doe
 
 ## MIT Licensing
 
-Copyright © 2012, Roy Ratcliffe, Pioneering Software, United Kingdom
+Copyright © 2012, The OCCukes Organisation. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the “Software”), to deal
@@ -212,3 +212,13 @@ EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+### Sponsors
+
+- Levide Capital Limited, Blenheim, New Zealand
+
+### Contributors
+
+- Roy Ratcliffe, Pioneering Software, United Kingdom
+- Bennett Smith, Focal Shift LLC, United States
+- Terry Tucker, Focal Shift LLC, United States
