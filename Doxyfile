@@ -1,3 +1,4 @@
+PROJECT_NAME			= OCCukes
 GENERATE_DOCSET         = YES
 
 DOCSET_FEEDNAME         = "Objective-C Cucumber Documentation Set"
