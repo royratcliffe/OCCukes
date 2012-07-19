@@ -1,4 +1,4 @@
-# Objective-C Cucumber Wire Protocol
+# ![Cucumber Roll](http://files.softicons.com/download/object-icons/richs-misc-icons-by-rich-d/png/24/Cucumber%20Roll.png) Objective-C Cucumber Wire Protocol
 
 It allows Cucumber to touch your application in _intimate places_. Goals include and exclude:
 
