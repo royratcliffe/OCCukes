@@ -1,9 +1,9 @@
 GENERATE_DOCSET         = YES
 
 DOCSET_FEEDNAME         = "Objective-C Cucumber Documentation Set"
-DOCSET_BUNDLE_ID        = uk.co.pioneeringsoftware.OCCukesDocSet
-DOCSET_PUBLISHER_ID     = uk.co.pioneeringsoftware.OCCukesDocSet.documentation
-DOCSET_PUBLISHER_NAME   = Pioneering Software
+DOCSET_BUNDLE_ID        = info.cukes.OCCukesDocSet
+DOCSET_PUBLISHER_ID     = info.cukes.OCCukesDocSet.documentation
+DOCSET_PUBLISHER_NAME   = The OCCukes Organisation
 
 EXTRACT_ALL             = YES
 EXTRACT_PRIVATE         = YES
