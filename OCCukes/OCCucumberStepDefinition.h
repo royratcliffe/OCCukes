@@ -35,7 +35,8 @@
  * TextMate and RubyMine. Very useful when developing. Note that `__FILE__` is a
  * pointer to a static string of characters. No need to copy the static
  * null-terminated C string. As a static, the string will remain in place and
- * unchanged.
+ * unchanged. Line numbers are ordinal, rather than cardinal. Line 1 is the
+ * first line, not the second line. Hence line 0 means line number unspecified.
  */
 @interface OCCucumberStepDefinition : NSObject
 
