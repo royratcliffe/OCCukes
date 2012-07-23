@@ -115,7 +115,7 @@ Header file for test case, `CucumberTests.h`:
 ```
 
 Source file for test case, `CucumberTests.m`:
-```objective-c
+```objc
 #import "CucumberTests.h"
 
 #import <OCCukes/OCCukes.h>
