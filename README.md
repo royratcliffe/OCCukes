@@ -12,7 +12,9 @@ It allows Cucumber to touch your application in _intimate places_. Goals include
 
 Why the OC name-space prefix? OC stands for Objective-C. It emphasises the underlying dependency as well as the multiplatform capability. OCCukes supports Objective-C on all Apple platforms: iOS and OS X.
 
-The project does _not_ include an expectation framework. It only runs Objective-C coded step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions. Since you write your Cucumber step definitions in Objective-C, you can use any kind of assertion framework, or even write your own. Exceptions thrown by the step become Cucumber step failures.
+The project does _not_ include an expectation framework. It only runs Objective-C coded step definitions. Your step definitions must assert appropriate expectations, possibly by running other step definitions. Since you write your Cucumber step definitions in Objective-C, you can use any kind of assertion framework, or even write your own. Exceptions thrown by the step become Cucumber step failures. See [OCExpectations](https://github.com/OCCukes/OCExpectations) for an expectations library.
+
+OCCukes and its companion OCExpectations sails as close to Cucumber and RSpec shores as is possible. If you are familiar with Cucumber and RSpec, you should find these projects refreshingly familiar; despite the differing implementation languages. Interfaces and implementations mirror their Ruby counterparts.
 
 ## Usage
 
