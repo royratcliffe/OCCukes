@@ -134,7 +134,17 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	NSString *multilineArgClass = [hash objectForKey:@"multiline_arg_class"];
 	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
 	NSString *stepName = [hash objectForKey:@"step_name"];
-	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t} file:__FILE__ line:__LINE__];", [stepKeyword lowercaseString], stepName], nil];
+	
+	// Handle argument patterns: double-quoted strings and digit sequences.
+	NSMutableString *snippetPattern = [NSMutableString stringWithString:[NSRegularExpression escapedPatternForString:stepName]];
+	for (NSString *pattern in [NSArray arrayWithObjects:@"\"(.*?)\"", @"(\\d+)", nil])
+	{
+		NSError *__autoreleasing error = nil;
+		NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+		[regularExpression replaceMatchesInString:snippetPattern options:0 range:NSMakeRange(0, [snippetPattern length]) withTemplate:pattern];
+	}
+	
+	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t} file:__FILE__ line:__LINE__];", [stepKeyword lowercaseString], snippetPattern], nil];
 }
 
 - (id)handleBeginScenario
