@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberStepDefinition.h"
+#import "OCCucumberStepArgument.h"
 
 @implementation OCCucumberStepDefinition
 
@@ -69,7 +70,11 @@
 		// match regular expression capture groups.
 		for (NSUInteger i = 1; i < [match numberOfRanges]; i++)
 		{
-			[arguments addObject:[stepName substringWithRange:[match rangeAtIndex:i]]];
+			OCCucumberStepArgument *argument = [[OCCucumberStepArgument alloc] init];
+			NSRange range = [match rangeAtIndex:i];
+			[argument setOffset:range.location];
+			[argument setVal:[stepName substringWithRange:range]];
+			[arguments addObject:argument];
 		}
 	}
 	else

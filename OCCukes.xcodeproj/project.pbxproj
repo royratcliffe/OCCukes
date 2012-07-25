@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7817A72A15C03E96008EBB70 /* OCCucumberStepArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 7817A72815C03E96008EBB70 /* OCCucumberStepArgument.h */; settings = {ATTRIBUTES = (); }; };
+		7817A72B15C03E96008EBB70 /* OCCucumberStepArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 7817A72815C03E96008EBB70 /* OCCucumberStepArgument.h */; settings = {ATTRIBUTES = (); }; };
+		7817A72C15C03E96008EBB70 /* OCCucumberStepArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817A72915C03E96008EBB70 /* OCCucumberStepArgument.m */; };
+		7817A72D15C03E96008EBB70 /* OCCucumberStepArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817A72915C03E96008EBB70 /* OCCucumberStepArgument.m */; };
 		781DF0FF1592EDE0007270C8 /* OCCucumberLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		781DF1001592EDE0007270C8 /* OCCucumberLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		781DF1011592EDE0007270C8 /* OCCucumberLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */; };
@@ -116,6 +120,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7817A72815C03E96008EBB70 /* OCCucumberStepArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberStepArgument.h; sourceTree = "<group>"; };
+		7817A72915C03E96008EBB70 /* OCCucumberStepArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberStepArgument.m; sourceTree = "<group>"; };
 		781DF0FD1592EDE0007270C8 /* OCCucumberLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberLanguage.h; sourceTree = "<group>"; };
 		781DF0FE1592EDE0007270C8 /* OCCucumberLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberLanguage.m; sourceTree = "<group>"; };
 		781DF1031592EF79007270C8 /* OCCucumberStepDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberStepDefinition.h; sourceTree = "<group>"; };
@@ -268,6 +274,8 @@
 				781DF1041592EF79007270C8 /* OCCucumberStepDefinition.m */,
 				78F4DAC6159310A000122A3B /* OCCucumberStepMatch.h */,
 				78F4DAC7159310A000122A3B /* OCCucumberStepMatch.m */,
+				7817A72815C03E96008EBB70 /* OCCucumberStepArgument.h */,
+				7817A72915C03E96008EBB70 /* OCCucumberStepArgument.m */,
 				788046E3158A244E00881CEA /* Versioning.h */,
 				788046E4158A244E00881CEA /* Versioning.m */,
 				78A9B86A1589E14900FEFFA8 /* Supporting Files */,
@@ -321,6 +329,7 @@
 				781DF1051592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */,
 				78F4DAC8159310A000122A3B /* OCCucumberStepMatch.h in Headers */,
 				78F4DACE1593489900122A3B /* OCCucumber.h in Headers */,
+				7817A72A15C03E96008EBB70 /* OCCucumberStepArgument.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +345,7 @@
 				781DF1061592EF79007270C8 /* OCCucumberStepDefinition.h in Headers */,
 				78F4DAC9159310A000122A3B /* OCCucumberStepMatch.h in Headers */,
 				78F4DACF1593489900122A3B /* OCCucumber.h in Headers */,
+				7817A72B15C03E96008EBB70 /* OCCucumberStepArgument.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +578,7 @@
 				781DF1071592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */,
 				78F4DACA159310A000122A3B /* OCCucumberStepMatch.m in Sources */,
 				78F4DAD01593489900122A3B /* OCCucumber.m in Sources */,
+				7817A72C15C03E96008EBB70 /* OCCucumberStepArgument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +602,7 @@
 				781DF1081592EF79007270C8 /* OCCucumberStepDefinition.m in Sources */,
 				78F4DACB159310A000122A3B /* OCCucumberStepMatch.m in Sources */,
 				78F4DAD11593489900122A3B /* OCCucumber.m in Sources */,
+				7817A72D15C03E96008EBB70 /* OCCucumberStepArgument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

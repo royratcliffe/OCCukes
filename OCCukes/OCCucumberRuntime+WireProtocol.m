@@ -26,6 +26,7 @@
 #import "OCCucumberLanguage.h"
 #import "OCCucumberStepDefinition.h"
 #import "OCCucumberStepMatch.h"
+#import "OCCucumberStepArgument.h"
 
 // Semantic issue: performSelector may cause a leak because its selector is
 // unknown! Ignore this "ARC performSelector leaks" warning.
@@ -119,9 +120,9 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 		// The "args" response is an array of hashes. Each hash has a "val" and
 		// "pos" key specifying the argument's value and position.
 		NSMutableArray *args = [NSMutableArray array];
-		for (NSString *argument in [match stepArguments])
+		for (OCCucumberStepArgument *argument in [match stepArguments])
 		{
-			[args addObject:[NSDictionary dictionaryWithObject:argument forKey:@"val"]];
+			[args addObject:[NSDictionary dictionaryWithObjectsAndKeys:[argument val], @"val", [NSNumber numberWithUnsignedInteger:[argument offset]], @"pos", nil]];
 		}
 		
 		const char *file = [stepDefinition file];
