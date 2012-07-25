@@ -113,9 +113,18 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
 	{
 		OCCucumberStepDefinition *stepDefinition = [match stepDefinition];
+		
+		// The "args" response is an array of hashes. Each hash has a "val" and
+		// "pos" key specifying the argument's value and position.
+		NSMutableArray *args = [NSMutableArray array];
+		for (NSString *argument in [match stepArguments])
+		{
+			[args addObject:[NSDictionary dictionaryWithObject:argument forKey:@"val"]];
+		}
+		
 		const char *file = [stepDefinition file];
 		NSString *source = file ? [NSString stringWithFormat:@"%s:%u", file, [stepDefinition line]] : nil;
-		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[stepDefinition identifierString], @"id", [match stepArguments], @"args", source, @"source", nil]];
+		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[stepDefinition identifierString], @"id", args, @"args", source, @"source", nil]];
 	}
 	return [NSArray arrayWithObjects:@"success", [stepMatches copy], nil];
 }
