@@ -6,6 +6,12 @@ AfterConfiguration do |config|
   #   PATH=$PATH:$HOME/.rvm/bin
   #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
   #
+  # Please be aware: from this point forward, the Cucumber process
+  # forks away from the parent process and becomes a background
+  # process. The parent process, typically Xcode, continues. However,
+  # the fork interferes if you want to debug the Cucumber
+  # client. Breakpoints will never break if set beyond the
+  # fork. Better to comment out the following line when debugging.
   Process.daemon(true, true)
 
   # Navigate to the wire language configuration. Cucumber supports
