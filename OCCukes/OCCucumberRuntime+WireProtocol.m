@@ -137,7 +137,9 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
 	NSString *stepName = [hash objectForKey:@"step_name"];
 	
-	// Handle argument patterns: double-quoted strings and digit sequences.
+	// Handle argument patterns: double-quoted strings and digit
+	// sequences. Note, the question mark in *? means match zero
+	// or more times and match as few times as possible.
 	NSMutableString *snippetPattern = [NSMutableString stringWithString:[NSRegularExpression escapedPatternForString:stepName]];
 	for (NSString *pattern in [NSArray arrayWithObjects:@"\"(.*?)\"", @"(\\d+)", nil])
 	{
