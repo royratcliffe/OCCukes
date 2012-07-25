@@ -12,7 +12,14 @@ AfterConfiguration do |config|
   # the fork interferes if you want to debug the Cucumber
   # client. Breakpoints will never break if set beyond the
   # fork. Better to comment out the following line when debugging.
-  Process.daemon(true, true)
+  #
+  # Work out if the current process runs from Xcode or not. Only fork
+  # if it does. Avoid the fork if running independently. This will
+  # help when debugging. Use XCODE_VERSION_ACTUAL to determine if
+  # launching from Xcode. Xcode sets up that environment variable,
+  # assuming you provide build settings from your test target. For
+  # Xcode 4.4, the actual version equals 0440.
+  Process.daemon(true, true) if ENV['XCODE_VERSION_ACTUAL']
 
   # Navigate to the wire language configuration. Cucumber supports
   # multiple languages, even during the same run. The wire language is
