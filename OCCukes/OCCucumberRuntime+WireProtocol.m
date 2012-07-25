@@ -143,7 +143,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	{
 		NSError *__autoreleasing error = nil;
 		NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
-		[regularExpression replaceMatchesInString:snippetPattern options:0 range:NSMakeRange(0, [snippetPattern length]) withTemplate:pattern];
+		[regularExpression replaceMatchesInString:snippetPattern options:0 range:NSMakeRange(0, [snippetPattern length]) withTemplate:[NSRegularExpression escapedPatternForString:pattern]];
 	}
 	
 	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t} file:__FILE__ line:__LINE__];", [stepKeyword lowercaseString], snippetPattern], nil];
