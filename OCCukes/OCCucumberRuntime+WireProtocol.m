@@ -103,6 +103,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 {
 	NSMutableArray *stepMatches = [NSMutableArray array];
 	NSString *nameToMatch = [hash objectForKey:@"name_to_match"];
+	
 	// You can override the runtime instance's language. By default, if language
 	// equals nil, the runtime picks up the shared language.
 	OCCucumberLanguage *language = [self language];
@@ -110,6 +111,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	{
 		language = [OCCucumberLanguage sharedLanguage];
 	}
+	
 	for (OCCucumberStepMatch *match in [language stepMatches:nameToMatch])
 	{
 		OCCucumberStepDefinition *stepDefinition = [match stepDefinition];
