@@ -34,6 +34,18 @@
 		// express the regular expression above with the code you wish you had
 		[OCCucumber pending:@"WIP"];
 	}];
+	
+	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
+		[self setQuotedArgument:[arguments objectAtIndex:0]];
+	} file:__FILE__ line:__LINE__];
+	[OCCucumber then:@"^the \"(.*?)\" string appears as an argument to the step definition$" step:^(NSArray *arguments) {
+		NSString *argument0 = [arguments objectAtIndex:0];
+		if (![argument0 isEqualToString:[self quotedArgument]])
+		{
+			[NSException raise:@"QuotedArgumentMismatch" format:@"\"%@\" does not equal \"%@\"", argument0, [self quotedArgument]];
+		}
+	} file:__FILE__ line:__LINE__];
+	
 	[[OCCucumberRuntime sharedRuntime] setUp];
 }
 

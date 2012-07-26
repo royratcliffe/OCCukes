@@ -26,4 +26,6 @@
 
 @interface OCCukesTests : SenTestCase
 
+@property(strong, NS_NONATOMIC_IOSONLY) NSString *quotedArgument;
+
 @end
