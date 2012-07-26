@@ -28,13 +28,11 @@ __attribute__((constructor))
 void LoadQuotedArgumentSteps()
 {
 	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
-		[world setValue:[arguments objectAtIndex:0] forKey:@"quotedArgument"];
+		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"quotedArgument"];
 	} file:__FILE__ line:__LINE__];
 	
 	[OCCucumber then:@"^the \"(.*?)\" string appears as an argument to the step definition$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
-		NSString *quotedArgument = [world valueForKey:@"quotedArgument"];
+		NSString *quotedArgument = [[OCCucumber currentWorld] valueForKey:@"quotedArgument"];
 		NSString *argument0 = [arguments objectAtIndex:0];
 		if (![argument0 isEqualToString:quotedArgument])
 		{

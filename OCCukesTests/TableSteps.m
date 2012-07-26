@@ -28,8 +28,7 @@ __attribute__((constructor))
 void LoadTableSteps()
 {
 	[OCCucumber given:@"^a table:$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
-		[world setValue:[arguments objectAtIndex:0] forKey:@"table"];
+		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"table"];
 	} file:__FILE__ line:__LINE__];
 	
 	// Cucumber sends the table as an array of arrays, a two-dimensional
@@ -39,10 +38,9 @@ void LoadTableSteps()
 	// -integerValue method to convert from string to integer. Adjust the
 	// row and column numbers for 1-based versus 0-based addressing.
 	[OCCucumber then:@"^row (\\d+), column (\\d+) equals \"(.*?)\"$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
 		NSInteger rowNumber = [(NSString *)[arguments objectAtIndex:0] integerValue];
 		NSInteger columnNumber = [(NSString *)[arguments objectAtIndex:1] integerValue];
-		NSArray *row = [[world valueForKey:@"table"] objectAtIndex:rowNumber - 1];
+		NSArray *row = [[[OCCucumber currentWorld] valueForKey:@"table"] objectAtIndex:rowNumber - 1];
 		NSString *actual = [row objectAtIndex:columnNumber - 1];
 		NSString *expected = [arguments objectAtIndex:2];
 		if (![actual isEqualToString:expected])

@@ -24,6 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class OCCucumberWorld;
+
 /*!
  * @brief Offers a set of class-scoped convenience methods for interacting with
  * Cucumber language and runtime.
@@ -42,6 +44,8 @@
 + (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
+
++ (OCCucumberWorld *)currentWorld;
 
 //------------------------------------------------------------ Runtime Shortcuts
 

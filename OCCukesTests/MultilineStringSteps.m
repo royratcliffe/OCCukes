@@ -28,13 +28,11 @@ __attribute__((constructor))
 void LoadMultilineStringSteps()
 {
 	[OCCucumber given:@"^a multiline string containing$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
-		[world setValue:[arguments objectAtIndex:0] forKey:@"lines"];
+		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"lines"];
 	} file:__FILE__ line:__LINE__];
 	
 	[OCCucumber then:@"^there are (\\d+) lines of text$" step:^(NSArray *arguments) {
-		OCCucumberWorld *world = [[OCCucumberLanguage sharedLanguage] currentWorld];
-		NSArray *lines = [[world valueForKey:@"lines"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+		NSArray *lines = [[[OCCucumber currentWorld] valueForKey:@"lines"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 		if ([lines count] != [[arguments objectAtIndex:0] integerValue])
 		{
 			[NSException raise:@"MultilineString" format:@"expected %lu lines, actually %lu lines", [lines count], [[arguments objectAtIndex:0] integerValue]];

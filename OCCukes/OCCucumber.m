@@ -24,6 +24,7 @@
 
 #import "OCCucumber.h"
 #import "OCCucumberLanguage.h"
+#import "OCCucumberWorld.h"
 #import "OCCucumberStepDefinition.h"
 
 @implementation OCCucumber
@@ -62,6 +63,11 @@
 	OCCucumberStepDefinition *stepDefinition = [[OCCucumberLanguage sharedLanguage] registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
+}
+
++ (OCCucumberWorld *)currentWorld
+{
+	return [[OCCucumberLanguage sharedLanguage] currentWorld];
 }
 
 + (void)pending
