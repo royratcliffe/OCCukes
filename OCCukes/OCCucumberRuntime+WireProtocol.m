@@ -113,7 +113,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 		NSMutableArray *args = [NSMutableArray array];
 		for (OCCucumberStepArgument *argument in [match stepArguments])
 		{
-			[args addObject:[NSDictionary dictionaryWithObjectsAndKeys:[argument val], @"val", [NSNumber numberWithUnsignedInteger:[argument offset]], @"pos", nil]];
+			[args addObject:[NSDictionary dictionaryWithObjectsAndKeys:[argument value], @"val", [NSNumber numberWithUnsignedInteger:[argument offset]], @"pos", nil]];
 		}
 		
 		const char *file = [stepDefinition file];

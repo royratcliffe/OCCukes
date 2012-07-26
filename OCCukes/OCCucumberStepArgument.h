@@ -27,6 +27,6 @@
 @interface OCCucumberStepArgument : NSObject
 
 @property(assign, NS_NONATOMIC_IOSONLY) NSUInteger offset;
-@property(strong, NS_NONATOMIC_IOSONLY) NSString *val;
+@property(strong, NS_NONATOMIC_IOSONLY) NSString *value;
 
 @end

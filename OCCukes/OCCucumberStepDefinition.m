@@ -73,7 +73,7 @@
 			OCCucumberStepArgument *argument = [[OCCucumberStepArgument alloc] init];
 			NSRange range = [match rangeAtIndex:i];
 			[argument setOffset:range.location];
-			[argument setVal:[stepName substringWithRange:range]];
+			[argument setValue:[stepName substringWithRange:range]];
 			[arguments addObject:argument];
 		}
 	}
