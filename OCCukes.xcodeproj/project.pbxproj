@@ -35,6 +35,8 @@
 		788758A915C175BD00E20376 /* OCCucumberWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 788758A515C175BD00E20376 /* OCCucumberWorld.m */; };
 		788758AB15C1809700E20376 /* TableSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 788758AA15C1809700E20376 /* TableSteps.m */; };
 		788758AC15C1809700E20376 /* TableSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 788758AA15C1809700E20376 /* TableSteps.m */; };
+		788758AE15C1876200E20376 /* QuotedArgumentSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 788758AD15C1876200E20376 /* QuotedArgumentSteps.m */; };
+		788758AF15C1876200E20376 /* QuotedArgumentSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 788758AD15C1876200E20376 /* QuotedArgumentSteps.m */; };
 		78A9B8641589E14900FEFFA8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8631589E14900FEFFA8 /* Cocoa.framework */; };
 		78A9B86E1589E14900FEFFA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78A9B86C1589E14900FEFFA8 /* InfoPlist.strings */; };
 		78A9B87A1589E14900FEFFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A9B8791589E14900FEFFA8 /* SenTestingKit.framework */; };
@@ -140,6 +142,7 @@
 		788758A415C175BD00E20376 /* OCCucumberWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberWorld.h; sourceTree = "<group>"; };
 		788758A515C175BD00E20376 /* OCCucumberWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberWorld.m; sourceTree = "<group>"; };
 		788758AA15C1809700E20376 /* TableSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSteps.m; sourceTree = "<group>"; };
+		788758AD15C1876200E20376 /* QuotedArgumentSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuotedArgumentSteps.m; sourceTree = "<group>"; };
 		78A9B8601589E14900FEFFA8 /* OCCukes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OCCukes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A9B8631589E14900FEFFA8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		78A9B8661589E14900FEFFA8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -309,6 +312,7 @@
 			children = (
 				78A9B8851589E14900FEFFA8 /* OCCukesTests.h */,
 				78A9B8861589E14900FEFFA8 /* OCCukesTests.m */,
+				788758AD15C1876200E20376 /* QuotedArgumentSteps.m */,
 				788758AA15C1809700E20376 /* TableSteps.m */,
 				78CAE1571591BC6300BA2E63 /* LineRangeTests.h */,
 				78CAE1581591BC6300BA2E63 /* LineRangeTests.m */,
@@ -604,6 +608,7 @@
 				78A9B8871589E14900FEFFA8 /* OCCukesTests.m in Sources */,
 				78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */,
 				788758AB15C1809700E20376 /* TableSteps.m in Sources */,
+				788758AE15C1876200E20376 /* QuotedArgumentSteps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +635,7 @@
 				78A9B8B81589E31900FEFFA8 /* OCCukesTests.m in Sources */,
 				78CAE15A1591BC6300BA2E63 /* LineRangeTests.m in Sources */,
 				788758AC15C1809700E20376 /* TableSteps.m in Sources */,
+				788758AF15C1876200E20376 /* QuotedArgumentSteps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
