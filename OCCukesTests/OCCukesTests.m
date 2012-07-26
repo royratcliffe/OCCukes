@@ -30,11 +30,6 @@
 
 - (void)setUp
 {
-	[OCCucumber given:@"^a standard Cucumber project directory structure$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"WIP"];
-	}];
-	
 	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
 		[self setQuotedArgument:[arguments objectAtIndex:0]];
 	} file:__FILE__ line:__LINE__];
