@@ -26,10 +26,6 @@
 
 #import <OCCukes/OCCukes.h>
 
-@interface OCCukesTests()
-
-@end
-
 @implementation OCCukesTests
 
 - (void)setUp
