@@ -56,8 +56,8 @@
 		// Cucumber sends the arguments in quotes. They are strings. Use the
 		// -integerValue method to convert from string to integer. Adjust the
 		// row and column numbers for 1-based versus 0-based addressing.
-		NSInteger rowNumber = [(NSNumber *)[arguments objectAtIndex:0] integerValue];
-		NSInteger columnNumber = [(NSNumber *)[arguments objectAtIndex:1] integerValue];
+		NSInteger rowNumber = [(NSString *)[arguments objectAtIndex:0] integerValue];
+		NSInteger columnNumber = [(NSString *)[arguments objectAtIndex:1] integerValue];
 		NSArray *row = [[self table] objectAtIndex:rowNumber - 1];
 		NSString *actual = [row objectAtIndex:columnNumber - 1];
 		NSString *expected = [arguments objectAtIndex:2];
