@@ -46,6 +46,27 @@
 		}
 	} file:__FILE__ line:__LINE__];
 	
+	[OCCucumber given:@"^a table:$" step:^(NSArray *arguments) {
+		[self setTable:[arguments objectAtIndex:0]];
+	} file:__FILE__ line:__LINE__];
+	[OCCucumber then:@"^row (\\d+), column (\\d+) equals \"(.*?)\"$" step:^(NSArray *arguments) {
+		// Cucumber sends the table as an array of arrays, a two-dimensional
+		// array. The arguments are strings, even the numbers. Apple's JSON
+		// decoder does not make numbers out of the arguments simply because
+		// Cucumber sends the arguments in quotes. They are strings. Use the
+		// -integerValue method to convert from string to integer. Adjust the
+		// row and column numbers for 1-based versus 0-based addressing.
+		NSInteger rowNumber = [(NSNumber *)[arguments objectAtIndex:0] integerValue];
+		NSInteger columnNumber = [(NSNumber *)[arguments objectAtIndex:1] integerValue];
+		NSArray *row = [[self table] objectAtIndex:rowNumber - 1];
+		NSString *actual = [row objectAtIndex:columnNumber - 1];
+		NSString *expected = [arguments objectAtIndex:2];
+		if (![actual isEqualToString:expected])
+		{
+			[NSException raise:@"TableCellMismatch" format:@"cell at row %lu, column %lu equals %@; expected %@", rowNumber, columnNumber, actual, expected];
+		}
+	} file:__FILE__ line:__LINE__];
+	
 	[[OCCucumberRuntime sharedRuntime] setUp];
 }
 

@@ -7,3 +7,11 @@ Feature: Wire Protocol
     When my scenario includes some "quoted argument"
     Then the "quoted argument" string appears as an argument to the step definition
 
+  Scenario: Tables
+    Given a table:
+      | row 1, column 1 | row 1, column 2 |
+      | row 2, column 1 | row 2, column 2 |
+    Then row 1, column 1 equals "row 1, column 1"
+    And row 1, column 2 equals "row 1, column 2"
+    And row 2, column 1 equals "row 2, column 1"
+    And row 2, column 2 equals "row 2, column 2"
