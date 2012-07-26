@@ -15,3 +15,12 @@ Feature: Wire Protocol
     And row 1, column 2 equals "row 1, column 2"
     And row 2, column 1 equals "row 2, column 1"
     And row 2, column 2 equals "row 2, column 2"
+
+  Scenario: Multiline strings
+    Given a multiline string containing
+      """
+      This is a
+      string with multiple
+      lines of text
+      """
+    Then there are 3 lines of text
