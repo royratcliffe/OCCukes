@@ -23,11 +23,13 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberLanguage.h"
+#import "OCCucumberWorld.h"
 #import "OCCucumberStepDefinition.h"
 #import "OCCucumberStepMatch.h"
 
 @implementation OCCucumberLanguage
 
+@synthesize currentWorld = _currentWorld;
 @synthesize stepDefinitions = _stepDefinitions;
 
 // designated initialiser
@@ -71,6 +73,16 @@
 		}
 	}
 	return [matches copy];
+}
+
+- (void)beginScenario
+{
+	[self setCurrentWorld:[[OCCucumberWorld alloc] init]];
+}
+
+- (void)endScenario
+{
+	[self setCurrentWorld:nil];
 }
 
 + (OCCucumberLanguage *)sharedLanguage

@@ -1,4 +1,4 @@
-// OCCukes OCCucumberLanguage.h
+// OCCukes OCCucumberWorld.h
 //
 // Copyright © 2012, The OCCukes Organisation. All rights reserved.
 //
@@ -24,29 +24,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class OCCucumberWorld;
-@class OCCucumberStepDefinition;
-
-@interface OCCucumberLanguage : NSObject
-
-@property(strong, NS_NONATOMIC_IOSONLY) OCCucumberWorld *currentWorld;
-@property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *stepDefinitions;
-
-- (void)registerStepDefinition:(OCCucumberStepDefinition *)stepDefinition;
-- (OCCucumberStepDefinition *)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
-- (OCCucumberStepDefinition *)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
-
 /*!
- * @brief Answers the steps matching a given step name.
- * @details There could be more than one. The resulting array contains Step
- * Match objects. Each Step Match retains its step definition for later
- * invocation and the argument values derived from the match.
+ * Scenarios create worlds. Worlds carry state for steps. When a scenario
+ * begins, Cucumber creates and sets up the current world.
+ *
+ * In Objective-C, worlds instantiate when scenarios begin. The OCCucumber
+ * language creates and connects it. In order to facilitate a similar paradigm
+ * within Objective-C, steps can also access the current world via the shared
+ * language. Each scenario's world acts as a vehicle for carrying values
+ * in-between steps. Use the key-value coding interface to set up and access
+ * your custom values.
  */
-- (NSArray *)stepMatches:(NSString *)nameToMatch;
-
-- (void)beginScenario;
-- (void)endScenario;
-
-+ (OCCucumberLanguage *)sharedLanguage;
+@interface OCCucumberWorld : NSObject
 
 @end

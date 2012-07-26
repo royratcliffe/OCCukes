@@ -147,11 +147,13 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 
 - (id)handleBeginScenario
 {
+	[[self language] beginScenario];
 	return [NSArray arrayWithObject:@"success"];
 }
 
 - (id)handleEndScenario
 {
+	[[self language] endScenario];
 	return [NSArray arrayWithObject:@"success"];
 }
 

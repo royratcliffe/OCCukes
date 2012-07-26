@@ -25,5 +25,6 @@
 #import <OCCukes/OCCucumber.h>
 #import <OCCukes/OCCucumberRuntime.h>
 #import <OCCukes/OCCucumberLanguage.h>
+#import <OCCukes/OCCucumberWorld.h>
 #import <OCCukes/OCCucumberStepDefinition.h>
 #import <OCCukes/Versioning.h>
