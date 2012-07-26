@@ -24,6 +24,7 @@
 
 #import "OCCucumberRuntime.h"
 #import "OCCucumberRuntime+WireProtocol.h"
+#import "OCCucumberLanguage.h"
 
 @interface OCCucumberRuntime()
 
@@ -50,6 +51,18 @@
 @synthesize wirePairs = _wirePairs;
 
 @synthesize expiresDate = _expiresDate;
+
+- (void)setLanguage:(OCCucumberLanguage *)language
+{
+	_language = language;
+}
+
+- (OCCucumberLanguage *)language
+{
+	// You can override the runtime instance's language. By default, if language
+	// equals nil, the runtime picks up the shared language.
+	return _language ? _language : [OCCucumberLanguage sharedLanguage];
+}
 
 - (id)init
 {
