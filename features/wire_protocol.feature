@@ -3,7 +3,7 @@ Feature: Wire Protocol
   As an Apple developer
   I want to utilise the low-level Cucumber wire protocol to run steps within my application
 
-  Scenario: Quoted arguments
+  Scenario: Arguments in double quotes
     When my scenario includes some "quoted argument"
     Then the "quoted argument" string appears as an argument to the step definition
 

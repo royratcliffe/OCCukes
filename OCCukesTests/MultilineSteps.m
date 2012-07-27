@@ -1,4 +1,4 @@
-/* OCCukesTests QuotedArgumentSteps.m
+/* OCCukesTests MultilineSteps.m
  *
  * Copyright © 2012, The OCCukes Organisation. All rights reserved.
  *
@@ -27,16 +27,15 @@
 __attribute__((constructor))
 static void StepDefinitions()
 {
-	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
-		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"quotedArgument"];
+	[OCCucumber given:@"^a multiline string containing$" step:^(NSArray *arguments) {
+		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"lines"];
 	} file:__FILE__ line:__LINE__];
 	
-	[OCCucumber then:@"^the \"(.*?)\" string appears as an argument to the step definition$" step:^(NSArray *arguments) {
-		NSString *quotedArgument = [[OCCucumber currentWorld] valueForKey:@"quotedArgument"];
-		NSString *argument0 = [arguments objectAtIndex:0];
-		if (![argument0 isEqualToString:quotedArgument])
+	[OCCucumber then:@"^there are (\\d+) lines of text$" step:^(NSArray *arguments) {
+		NSArray *lines = [[[OCCucumber currentWorld] valueForKey:@"lines"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+		if ([lines count] != [[arguments objectAtIndex:0] integerValue])
 		{
-			[NSException raise:@"QuotedArgumentMismatch" format:@"\"%@\" does not equal \"%@\"", argument0, quotedArgument];
+			[NSException raise:@"MultilineString" format:@"expected %lu lines, actually %ld lines", (unsigned long)[lines count], (long)[[arguments objectAtIndex:0] integerValue]];
 		}
 	} file:__FILE__ line:__LINE__];
 }
