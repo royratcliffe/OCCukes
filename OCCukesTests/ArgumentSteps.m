@@ -28,15 +28,15 @@ __attribute__((constructor))
 static void StepDefinitions()
 {
 	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
-		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"quotedArgument"];
+		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"argument"];
 	} file:__FILE__ line:__LINE__];
 	
 	[OCCucumber then:@"^the \"(.*?)\" string appears as an argument to the step definition$" step:^(NSArray *arguments) {
-		NSString *quotedArgument = [[OCCucumber currentWorld] valueForKey:@"quotedArgument"];
+		NSString *argument = [[OCCucumber currentWorld] valueForKey:@"argument"];
 		NSString *argument0 = [arguments objectAtIndex:0];
-		if (![argument0 isEqualToString:quotedArgument])
+		if (![argument0 isEqualToString:argument])
 		{
-			[NSException raise:@"QuotedArgumentMismatch" format:@"\"%@\" does not equal \"%@\"", argument0, quotedArgument];
+			[NSException raise:@"ArgumentMismatch" format:@"\"%@\" does not equal \"%@\"", argument0, argument];
 		}
 	} file:__FILE__ line:__LINE__];
 }
