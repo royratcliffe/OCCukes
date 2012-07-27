@@ -181,6 +181,14 @@ This also means that you do not need to build and maintain a skeletal structure 
 
 The software only makes use of public APIs. This makes it far less brittle. Private frameworks can and do change without notice. Projects relying on them can easily become redundant especially as Apple's operating systems advance rapidly.
 
+### Multiple subprojects
+
+The OCCukes organisation publishes [various Cucumber-related subprojects](https://github.com/OCCukes/OCCukes/wiki/Repos). Although the OCCukes project lies at the core, complementary projects OCExpectations and a slew of iOS-specific spinoffs exist: UICukes, UIExpectations and UIAutomation. The structure helps to avoid an all-or-nothing mindset. Take whatever best suits your needs. The projects aim at various kinds of development projects: iOS application, Mac application, iOS library, or Mac framework.
+
+OCCukes sub-projects prefixed by `OC` have Objective-C and Foundation framework dependencies. That means they work on iOS _and_ OS X platforms. They are cross-platform projects and incorporate iOS library targets as well as OS X framework targets.
+
+Projects prefixed by `UI` have iOS UIKit dependencies. They aim at iOS projects only. Their Xcode projects contain a single iOS static library target. [UICukes](https://github.com/OCCukes/UICukes) acts as an umbrella project for iOS dependencies. It pulls in all other sub-projects needed for Cucumber on iOS. iOS developers will therefore normally clone out the UICukes submodule by itself. Doing so pulls in all other dependencies as sub-submodules.
+
 ## When and how to launch Cucumber?
 
 Running Cucumber with Mac or iOS software requires two synchronised processes: a Cucumber client in Ruby, and an Objective-C wire server running within an application test bundle. The server needs to run first in order to open a wire server socket. The socket may be local or on another device. Actual iOS devices do not share the same local host. Hence the Cucumber client cannot assume `localhost`.
