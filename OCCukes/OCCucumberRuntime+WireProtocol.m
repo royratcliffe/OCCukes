@@ -125,7 +125,6 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 
 - (id)handleSnippetTextWithHash:(NSDictionary *)hash
 {
-	NSString *multilineArgClass = [hash objectForKey:@"multiline_arg_class"];
 	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
 	NSString *stepName = [hash objectForKey:@"step_name"];
 	
