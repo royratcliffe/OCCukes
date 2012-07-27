@@ -35,7 +35,10 @@ static void StepDefinitions()
 		NSArray *lines = [[[OCCucumber currentWorld] valueForKey:@"lines"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 		if ([lines count] != [[arguments objectAtIndex:0] integerValue])
 		{
-			[NSException raise:@"MultilineString" format:@"expected %lu lines, actually %ld lines", (unsigned long)[lines count], (long)[[arguments objectAtIndex:0] integerValue]];
+			[NSException raise:@"MultilineString"
+						format:@"expected %lu lines, actually %ld lines",
+			 (unsigned long)[lines count],
+			 (long)[[arguments objectAtIndex:0] integerValue]];
 		}
 	} file:__FILE__ line:__LINE__];
 }
