@@ -26,7 +26,4 @@
 
 @interface OCCukesTests : SenTestCase
 
-@property(strong, NS_NONATOMIC_IOSONLY) NSString *quotedArgument;
-@property(strong, NS_NONATOMIC_IOSONLY) NSArray *table;
-
 @end
