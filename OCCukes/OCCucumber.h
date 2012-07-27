@@ -45,6 +45,12 @@
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
 
+/*!
+ * @brief Answers the shared language's current world, a shortcut.
+ * @details World's appear and disappear as scenarios begin and end. Step
+ * definitions use them as scratchpads for persisting arguments and other pieces
+ * of information in-between steps. Use key-value coding to access world values.
+ */
 + (OCCucumberWorld *)currentWorld;
 
 //------------------------------------------------------------ Runtime Shortcuts
