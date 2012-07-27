@@ -25,7 +25,7 @@
 #import <OCCukes/OCCukes.h>
 
 __attribute__((constructor))
-void LoadTableSteps()
+static void StepDefinitions()
 {
 	[OCCucumber given:@"^a table:$" step:^(NSArray *arguments) {
 		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"table"];

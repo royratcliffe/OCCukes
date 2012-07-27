@@ -25,7 +25,7 @@
 #import <OCCukes/OCCukes.h>
 
 __attribute__((constructor))
-void LoadQuotedArgumentSteps()
+static void StepDefinitions()
 {
 	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
 		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"quotedArgument"];
