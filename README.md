@@ -16,6 +16,8 @@ The project does _not_ include an expectation framework. It only runs Objective-
 
 OCCukes and its companion OCExpectations sails as close to Cucumber and RSpec shores as is possible. If you are familiar with Cucumber and RSpec, you should find these projects refreshingly familiar; despite the differing implementation languages. Interfaces and implementations mirror their Ruby counterparts.
 
+To use OCCukes, you need Xcode 4.4 or above, Ruby as well as Apple's Command Line Tools package. Install them on your Mac first. See [Prerequisites](https://github.com/OCCukes/OCCukes/wiki/Prerequisites) for details.
+
 ## Usage
 
 OCCukes integrates with Xcode. You launch a Cucumber-based test suite as you would any other Xcode project test suite: just press Command+U. To set up the pre- and post-actions for your test target, just install Cucumber using RVM.
