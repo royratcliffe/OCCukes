@@ -27,8 +27,6 @@
 #import "OCCucumberLanguage.h"
 #import "OCCucumberWorld.h"
 #import "OCCucumberStepDefinition.h"
-#import "OCCucumberStepMatch.h"
-#import "OCCucumberExceptions.h"
 
 @implementation OCCucumber
 
@@ -75,11 +73,7 @@
 
 + (void)step:(NSString *)name arguments:(NSArray *)arguments
 {
-	NSArray *stepMatches = [[[OCCucumberRuntime sharedRuntime] language] stepMatches:name];
-	if ([stepMatches count] == 0) [NSException raise:OCCucumberUndefinedException format:@"Undefined step \"%@\"", name];
-	if ([stepMatches count] > 1) [NSException raise:OCCucumberAmbiguousException format:@"Ambiguous match of \"%@\"", name];
-	OCCucumberStepMatch *stepMatch = [stepMatches objectAtIndex:0];
-	[[stepMatch stepDefinition] invokeWithArguments:arguments ? [[stepMatch stepArguments] arrayByAddingObjectsFromArray:arguments] : [stepMatch stepArguments]];
+	[[[OCCucumberRuntime sharedRuntime] language] step:name arguments:arguments];
 }
 
 + (void)step:(NSString *)name

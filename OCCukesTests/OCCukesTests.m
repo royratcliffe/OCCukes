@@ -38,4 +38,15 @@
 	STAssertEquals(integer, 1, nil);
 }
 
+- (void)testInvokeSingleStepWithArguments
+{
+	NSMutableArray *strings = [NSMutableArray array];
+	[OCCucumber given:@"^single step with \"(.*)\"$" step:^(NSArray *arguments) {
+		[strings addObjectsFromArray:arguments];
+	}];
+	[OCCucumber step:@"single step with \"a\"" arguments:@[ @"b", @"c" ]];
+	NSArray *abc = @[ @"a", @"b", @"c" ];
+	STAssertEqualObjects(strings, abc, nil);
+}
+
 @end
