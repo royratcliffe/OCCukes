@@ -56,6 +56,8 @@
 		78C514E015CBA6BC00FD46D4 /* OCCucumberExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C514DD15CBA6BC00FD46D4 /* OCCucumberExceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C514E115CBA6BC00FD46D4 /* OCCucumberExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514DE15CBA6BC00FD46D4 /* OCCucumberExceptions.m */; };
 		78C514E215CBA6BC00FD46D4 /* OCCucumberExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514DE15CBA6BC00FD46D4 /* OCCucumberExceptions.m */; };
+		78C514E515CBAAF600FD46D4 /* CucumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514E415CBAAF600FD46D4 /* CucumberTests.m */; };
+		78C514E615CBAAF600FD46D4 /* CucumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514E415CBAAF600FD46D4 /* CucumberTests.m */; };
 		78CAE1551591B61000BA2E63 /* CFSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791DFD1590EF3200C09841 /* CFSockets.framework */; };
 		78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791E011590EF3200C09841 /* libCFSockets.a */; };
 		78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
@@ -171,6 +173,8 @@
 		78A9B8A31589E19500FEFFA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		78C514DD15CBA6BC00FD46D4 /* OCCucumberExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCucumberExceptions.h; sourceTree = "<group>"; };
 		78C514DE15CBA6BC00FD46D4 /* OCCucumberExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCucumberExceptions.m; sourceTree = "<group>"; };
+		78C514E315CBAAF600FD46D4 /* CucumberTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CucumberTests.h; sourceTree = "<group>"; };
+		78C514E415CBAAF600FD46D4 /* CucumberTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CucumberTests.m; sourceTree = "<group>"; };
 		78CAE1571591BC6300BA2E63 /* LineRangeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineRangeTests.h; sourceTree = "<group>"; };
 		78CAE1581591BC6300BA2E63 /* LineRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineRangeTests.m; sourceTree = "<group>"; };
 		78CAE167159237F100BA2E63 /* OCCucumberRuntime+WireProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCCucumberRuntime+WireProtocol.h"; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 			children = (
 				78A9B8851589E14900FEFFA8 /* OCCukesTests.h */,
 				78A9B8861589E14900FEFFA8 /* OCCukesTests.m */,
+				78C514E315CBAAF600FD46D4 /* CucumberTests.h */,
+				78C514E415CBAAF600FD46D4 /* CucumberTests.m */,
 				788758AD15C1876200E20376 /* ArgumentSteps.m */,
 				788758AA15C1809700E20376 /* TableSteps.m */,
 				788758DC15C18DCA00E20376 /* MultilineSteps.m */,
@@ -625,6 +631,7 @@
 				788758AB15C1809700E20376 /* TableSteps.m in Sources */,
 				788758AE15C1876200E20376 /* ArgumentSteps.m in Sources */,
 				788758DD15C18DCA00E20376 /* MultilineSteps.m in Sources */,
+				78C514E515CBAAF600FD46D4 /* CucumberTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +661,7 @@
 				788758AC15C1809700E20376 /* TableSteps.m in Sources */,
 				788758AF15C1876200E20376 /* ArgumentSteps.m in Sources */,
 				788758DE15C18DCA00E20376 /* MultilineSteps.m in Sources */,
+				78C514E615CBAAF600FD46D4 /* CucumberTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukesTests CucumberTests.m
 //
 // Copyright © 2012, The OCCukes Organisation. All rights reserved.
 //
@@ -22,10 +22,25 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import "CucumberTests.h"
 
 #import <OCCukes/OCCukes.h>
 
-@implementation OCCukesTests
+@implementation CucumberTests
+
+- (void)setUp
+{
+	[[OCCucumberRuntime sharedRuntime] setUp];
+}
+
+- (void)tearDown
+{
+	[[OCCucumberRuntime sharedRuntime] tearDown];
+}
+
+- (void)testCucumberRuntime
+{
+	[[OCCucumberRuntime sharedRuntime] run];
+}
 
 @end

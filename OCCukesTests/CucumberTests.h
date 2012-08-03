@@ -1,4 +1,4 @@
-// OCCukesTests OCCukesTests.m
+// OCCukesTests CucumberTests.h
 //
 // Copyright © 2012, The OCCukes Organisation. All rights reserved.
 //
@@ -22,10 +22,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "OCCukesTests.h"
+#import <SenTestingKit/SenTestingKit.h>
 
-#import <OCCukes/OCCukes.h>
-
-@implementation OCCukesTests
+@interface CucumberTests : SenTestCase
 
 @end
