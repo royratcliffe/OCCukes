@@ -204,6 +204,16 @@ OCCukes sub-projects prefixed by `OC` have Objective-C and Foundation framework 
 
 Projects prefixed by `UI` have iOS UIKit dependencies. They aim at iOS projects only. Their Xcode projects contain a single iOS static library target. [UICukes](https://github.com/OCCukes/UICukes) acts as an umbrella project for iOS dependencies. It pulls in all other sub-projects needed for Cucumber on iOS. iOS developers will therefore normally clone out the UICukes submodule by itself. Doing so pulls in all other dependencies as sub-submodules.
 
+## Troubleshooting
+
+### Cucumber launches but invokes no steps
+
+You press Cmd+U in Xcode to run your tests. There is a brief pause then you see the Cucumber output. Cucumber has executed and parsed the features and scenarios. Trouble is, Cucumber stops at the first scenario's first step. No steps execute. When you set a breakpoint within your step definitions, sure enough, they never run.
+
+#### Solution
+
+Make sure that you are not running a Cucumber instance in some other process. For example, you might be running it as part of an IDE for some other project, or some other components of the same project. Terminate the other Cucumbers and re-test.
+
 ## When and how to launch Cucumber?
 
 Running Cucumber with Mac or iOS software requires two synchronised processes: a Cucumber client in Ruby, and an Objective-C wire server running within an application test bundle. The server needs to run first in order to open a wire server socket. The socket may be local or on another device. Actual iOS devices do not share the same local host. Hence the Cucumber client cannot assume `localhost`.
