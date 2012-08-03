@@ -58,6 +58,16 @@
  */
 + (OCCucumberWorld *)currentWorld;
 
+/*!
+ * @brief Invokes a single step.
+ * @exception Raises an ambiguity exception if more than one match. Raises an
+ * undefined exception if no match.
+ * @details Be careful when invoking steps. Make sure you do not invoke yourself
+ * and recurse infinitely.
+ */
++ (void)step:(NSString *)name arguments:(NSArray *)arguments;
++ (void)step:(NSString *)name;
+
 //------------------------------------------------------------ Runtime Shortcuts
 
 + (void)pending;
