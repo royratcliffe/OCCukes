@@ -83,6 +83,7 @@
 	[socket addToCurrentRunLoopForCommonModes];
 	[self setWireSocket:socket];
 	[self setWirePairs:[NSMutableSet set]];
+	[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self connectTimeout]]];
 }
 
 - (void)tearDown
@@ -100,17 +101,16 @@
 	//
 	[self setWireSocket:nil];
 	[self setWirePairs:nil];
+	[self setExpiresDate:nil];
 }
 
 - (void)run
 {
-	[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self connectTimeout]]];
 	do
 	{
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	}
 	while ([[self expiresDate] compare:[NSDate date]] == NSOrderedDescending);
-	[self setExpiresDate:nil];
 }
 
 - (void)socket:(CFSocket *)socket acceptStreamPair:(CFStreamPair *)streamPair
