@@ -28,4 +28,14 @@
 
 @implementation OCCukesTests
 
+- (void)testInvokeSingleStep
+{
+	int __block integer = 0;
+	[OCCucumber given:@"^single step$" step:^(NSArray *arguments) {
+		integer++;
+	}];
+	[OCCucumber step:@"single step"];
+	STAssertEquals(integer, 1, nil);
+}
+
 @end
