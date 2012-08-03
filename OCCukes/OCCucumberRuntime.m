@@ -110,7 +110,13 @@
 	{
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	}
-	while ([[self expiresDate] compare:[NSDate date]] == NSOrderedDescending);
+	while ([self isRunning]);
+}
+
+- (BOOL)isRunning
+{
+	NSDate *expiresDate = [self expiresDate];
+	return expiresDate && [expiresDate compare:[NSDate date]] == NSOrderedDescending;
 }
 
 - (void)socket:(CFSocket *)socket acceptStreamPair:(CFStreamPair *)streamPair

@@ -57,6 +57,16 @@
  */
 - (void)run;
 
+/*!
+ * @brief Answers YES if the runtime wants to continue running.
+ * @details The runtime continues running while connections exist, or the
+ * current time lies within connection and disconnection timeout
+ * periods. Outside these conditions, the runtime will continue to accept new
+ * connections if you ignore the running status. In such event, the is-running
+ * status will revert to YES when incoming new connections establish.
+ */
+- (BOOL)isRunning;
+
 + (OCCucumberRuntime *)sharedRuntime;
 
 @end
