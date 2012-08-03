@@ -32,6 +32,11 @@
  * @details Typically, your unit tests will interact via this interface, rather
  * than via the Cucumber shared language, or some other instance of the language
  * class.
+ *
+ * All the class-scoped methods access the shared runtime's language, rather
+ * than the shared language. Typically this amounts to exactly the same
+ * thing. The answer differs only in one case: when the runtime overrides the
+ * language. In that case, the runtime takes precedence.
  */
 @interface OCCucumber : NSObject
 
