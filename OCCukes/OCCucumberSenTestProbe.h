@@ -27,11 +27,18 @@
 /*!
  * @brief Dynamically probes for the SenTestingKit, removing the
  * exit-after-running-tests feature!
- * @details SenTestingKit launches from +[SenTestProbe initialize] by
- * sending a 0-second delayed selector perform to +[SenTestProbe
- * runTests:ignored]. Trouble is, the +runTests:ignored class method
- * calls exit(status) and terminates the process. This is bad when
- * running Cucumber tests within an application test host.
+ * @details SenTestingKit launches from +[SenTestProbe initialize] by sending a
+ * 0-second delayed selector perform to +[SenTestProbe
+ * runTests:ignored]. Trouble is, the +runTests:ignored class method calls
+ * exit(status) and terminates the process. This is bad when running Cucumber
+ * tests within an application test host.
+ *
+ * The implementation takes care not to address SenTestingKit classes and
+ * methods directly. You do not need to link against the kit. But if you do, the
+ * Cucumber probe replaces the +[SenTestProbe runTests:ignored] method with an
+ * alternative implementation. The new implementation does exactly the same as
+ * the old with one exception: it does not terminate the process. The method
+ * instead returns and the process can continue running if necessary.
  */
 @interface OCCucumberSenTestProbe : NSObject
 
