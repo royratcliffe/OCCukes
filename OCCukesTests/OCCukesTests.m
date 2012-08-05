@@ -28,6 +28,32 @@
 
 @implementation OCCukesTests
 
++ (void)initialize
+{
+	if (self == [OCCukesTests class])
+	{
+		// You will see two connections and disconnections. The first incoming
+		// connection originates from env.rb where the Ruby-based Cucumber
+		// process synchronises with the Objective-C wire server. This
+		// connection appears and immediately disappears without sending or
+		// receiving wire messages. The second connection runs the wire protocol
+		// proper.
+		NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+		[center addObserverForName:OCCucumberRuntimeConnectNotification
+							object:nil
+							 queue:nil
+						usingBlock:^(NSNotification *note) {
+			NSLog(@"*** CONNECT at %@", [NSDate date]);
+		}];
+		[center addObserverForName:OCCucumberRuntimeDisconnectNotification
+							object:nil
+							 queue:nil
+						usingBlock:^(NSNotification *note) {
+			NSLog(@"*** DISCONNECT at %@", [NSDate date]);
+		}];
+	}
+}
+
 - (void)testInvokeSingleStep
 {
 	int __block integer = 0;
