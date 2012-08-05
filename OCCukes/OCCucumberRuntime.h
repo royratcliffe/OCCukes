@@ -70,3 +70,7 @@
 + (OCCucumberRuntime *)sharedRuntime;
 
 @end
+
+extern NSString *const OCCucumberRuntimeConnectNotification;
+extern NSString *const OCCucumberRuntimeDisconnectNotification;
+extern NSString *const OCCucumberRuntimeStreamPairKey;

@@ -134,6 +134,9 @@
 	[[self wirePairs] addObject:streamPair];
 	[streamPair setDelegate:self];
 	[streamPair open];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeStreamPairKey];
+	NSNotification *notification = [NSNotification notificationWithName:OCCucumberRuntimeConnectNotification object:self userInfo:userInfo];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
 }
 
 - (void)streamPair:(CFStreamPair *)streamPair hasBytesAvailable:(NSUInteger)bytesAvailable
@@ -176,12 +179,17 @@
 	switch (eventCode)
 	{
 		case NSStreamEventEndEncountered:
+		{
+			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeStreamPairKey];
+			NSNotification *notification = [NSNotification notificationWithName:OCCucumberRuntimeDisconnectNotification object:self userInfo:userInfo];
+			[[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
 			[[self wirePairs] removeObject:streamPair];
 			if ([[self wirePairs] count] == 0)
 			{
 				[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self disconnectTimeout]]];
 			}
 			break;
+		}
 		default:
 			;
 	}
@@ -198,3 +206,7 @@
 }
 
 @end
+
+NSString *const OCCucumberRuntimeConnectNotification = @"OCCucumberRuntimeConnect";
+NSString *const OCCucumberRuntimeDisconnectNotification = @"OCCucumberRuntimeDisconnect";
+NSString *const OCCucumberRuntimeStreamPairKey = @"OCCucumberRuntimeStreamPair";
