@@ -28,9 +28,11 @@
 
 static id RunTestsAndReturn(id self, SEL _cmd, ...)
 {
-	[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
-	NSClassFromString(@"SenTestObserver");
-	[[self performSelector:@selector(specifiedTestSuite)] performSelector:@selector(run)];
+	@autoreleasepool {
+		[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
+		NSClassFromString(@"SenTestObserver");
+		[[self performSelector:@selector(specifiedTestSuite)] performSelector:@selector(run)];
+	}
 	return nil;
 }
 
