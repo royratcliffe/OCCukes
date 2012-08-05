@@ -180,6 +180,11 @@
 	{
 		case NSStreamEventEndEncountered:
 		{
+			// Enqueue the disconnect notification. It does not post
+			// immediately. By the time the notification arrives at its
+			// destination, or destinations, the stream pair no longer appears
+			// as a wire pair; and if it was the very last wire pair, the
+			// expires date reflects the disconnect timeout since now.
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeStreamPairKey];
 			NSNotification *notification = [NSNotification notificationWithName:OCCucumberRuntimeDisconnectNotification object:self userInfo:userInfo];
 			[[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
