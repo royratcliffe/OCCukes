@@ -37,8 +37,6 @@
 @property(strong, NS_NONATOMIC_IOSONLY) CFSocket *wireSocket;
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *wirePairs;
 
-@property(strong, NS_NONATOMIC_IOSONLY) NSDate *expiresDate;
-
 @end
 
 @implementation OCCucumberRuntime
@@ -47,10 +45,10 @@
 @synthesize connectTimeout = _connectTimeout;
 @synthesize disconnectTimeout = _disconnectTimeout;
 
+@synthesize expiresDate = _expiresDate;
+
 @synthesize wireSocket = _wireSocket;
 @synthesize wirePairs = _wirePairs;
-
-@synthesize expiresDate = _expiresDate;
 
 - (void)setLanguage:(OCCucumberLanguage *)language
 {
@@ -62,6 +60,11 @@
 	// You can override the runtime instance's language. By default, if language
 	// equals nil, the runtime picks up the shared language.
 	return _language ? _language : [OCCucumberLanguage sharedLanguage];
+}
+
+- (NSSet *)allConnections
+{
+	return [[self wirePairs] copy];
 }
 
 - (id)init

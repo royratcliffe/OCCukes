@@ -37,6 +37,23 @@
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval connectTimeout;
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval disconnectTimeout;
 
+/*!
+ * @brief Date when the runtime expires.
+ * @details Expiring date describes when the runtime should stop running. While
+ * connections exist, the runtime never expires, or expires in the distant
+ * future to be more precise. The runtime expires after the disconnect timeout
+ * after all connections disconnect. It also expires after the connect timeout
+ * after setting up the runtime.
+ */
+@property(strong, NS_NONATOMIC_IOSONLY) NSDate *expiresDate;
+
+/*!
+ * @brief Answers all the current connections as a set.
+ * @details Connections change dynamically as remote Cucumber clients connect to
+ * and disconnect from the wire server.
+ */
+- (NSSet *)allConnections;
+
 - (void)setUp;
 - (void)tearDown;
 
