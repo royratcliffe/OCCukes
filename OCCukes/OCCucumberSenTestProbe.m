@@ -23,6 +23,7 @@
 //------------------------------------------------------------------------------
 
 #import "OCCucumberSenTestProbe.h"
+#import "OCCucumberRuntime.h"
 
 #import <objc/runtime.h>
 
@@ -32,6 +33,37 @@ static id RunTestsAndReturn(id self, SEL _cmd, ...)
 		[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
 		NSClassFromString(@"SenTestObserver");
 		[[self performSelector:@selector(specifiedTestSuite)] performSelector:@selector(run)];
+		
+		// Various routes exist for launching tests. If outside an application
+		// bundle, tests launch directly by sending +runTests:ignored to
+		// SenTestProbe. There is no run loop. However, if within an application
+		// test host, the same message executes but from within the
+		// application's run loop. The Cucumber wire server always requires a
+		// run-loop. If a run-loop is not already running therefore, OCCukes
+		// needs to start one. It also needs to stop the run-loop when tests and
+		// Cucumber feature testing completes.
+		OCCucumberRuntime *runtime = [OCCucumberRuntime sharedRuntime];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		NSTimeInterval connectTimeout = [defaults doubleForKey:@"OCCucumberRuntimeConnectTimeout"];
+		NSTimeInterval disconnectTimeout = [defaults doubleForKey:@"OCCucumberRuntimeDisconnectTimeout"];
+		if (connectTimeout > DBL_EPSILON)
+		{
+			[runtime setConnectTimeout:connectTimeout];
+		}
+		if (disconnectTimeout > DBL_EPSILON)
+		{
+			[runtime setDisconnectTimeout:disconnectTimeout];
+		}
+		[runtime setUp];
+		if ([self performSelector:@selector(isLoadedFromApplication)])
+		{
+			
+		}
+		else
+		{
+			[runtime run];
+			[runtime tearDown];
+		}
 	}
 	return nil;
 }
