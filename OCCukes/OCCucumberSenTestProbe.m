@@ -27,7 +27,13 @@
 
 #import <objc/runtime.h>
 
-static id RunTestsAndReturn(id self, SEL _cmd, ...)
+@interface OCCucumberSenTestProbe()
+
++ (void)exit;
+
+@end
+
+static id RunTests(id self, SEL _cmd, ...)
 {
 	@autoreleasepool {
 		[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
@@ -42,6 +48,14 @@ static id RunTestsAndReturn(id self, SEL _cmd, ...)
 		// run-loop. If a run-loop is not already running therefore, OCCukes
 		// needs to start one. It also needs to stop the run-loop when tests and
 		// Cucumber feature testing completes.
+		//
+		// Send +isLoadedFromApplication to the SenTestProbe class. It answers
+		// YES if the test suite loads from an application. If this is the case,
+		// execute the Cucumber wire server in parallel with the application, by
+		// utilising the application's run loop. Catch the connection and
+		// disconnection notifications. Disconnection starts a delayed exit;
+		// delayed by the remaining disconnect timeout interval. Connections
+		// cancel any previous delayed exits.
 		OCCucumberRuntime *runtime = [OCCucumberRuntime sharedRuntime];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		NSTimeInterval connectTimeout = [defaults doubleForKey:@"OCCucumberRuntimeConnectTimeout"];
@@ -57,7 +71,23 @@ static id RunTestsAndReturn(id self, SEL _cmd, ...)
 		[runtime setUp];
 		if ([self performSelector:@selector(isLoadedFromApplication)])
 		{
-			
+			NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+			[center addObserverForName:OCCucumberRuntimeDisconnectNotification
+								object:nil
+								 queue:nil
+							usingBlock:^(NSNotification *note) {
+								[OCCucumberSenTestProbe performSelector:@selector(exit)
+															 withObject:nil
+															 afterDelay:[[runtime expiresDate] timeIntervalSinceNow]];
+							}];
+			[center addObserverForName:OCCucumberRuntimeConnectNotification
+								object:nil
+								 queue:nil
+							usingBlock:^(NSNotification *note) {
+								[NSObject cancelPreviousPerformRequestsWithTarget:[OCCucumberSenTestProbe class]
+																		 selector:@selector(exit)
+																		   object:nil];
+							}];
 		}
 		else
 		{
@@ -76,7 +106,19 @@ static id RunTestsAndReturn(id self, SEL _cmd, ...)
 	if (senTestProbeClass)
 	{
 		Method runTestsClassMethod = class_getClassMethod(senTestProbeClass, @selector(runTests:));
-		method_setImplementation(runTestsClassMethod, RunTestsAndReturn);
+		method_setImplementation(runTestsClassMethod, RunTests);
+	}
+}
+
++ (void)exit
+{
+	Class senTestProbeClass = NSClassFromString(@"SenTestProbe");
+	if (senTestProbeClass)
+	{
+		id senTestSuite = [senTestProbeClass performSelector:@selector(specifiedTestSuite)];
+		id senTestSuiteRun = [senTestSuite performSelector:@selector(run)];
+		BOOL hasFailed = [senTestSuiteRun performSelector:@selector(hasSucceeded)] == nil;
+		exit(hasFailed);
 	}
 }
 
