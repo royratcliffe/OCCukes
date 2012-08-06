@@ -137,7 +137,7 @@
 	[[self wirePairs] addObject:streamPair];
 	[streamPair setDelegate:self];
 	[streamPair open];
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeStreamPairKey];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeWirePairKey];
 	NSNotification *notification = [NSNotification notificationWithName:OCCucumberRuntimeConnectNotification object:self userInfo:userInfo];
 	[[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
 }
@@ -188,7 +188,7 @@
 			// destination, or destinations, the stream pair no longer appears
 			// as a wire pair; and if it was the very last wire pair, the
 			// expires date reflects the disconnect timeout since now.
-			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeStreamPairKey];
+			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:streamPair forKey:OCCucumberRuntimeWirePairKey];
 			NSNotification *notification = [NSNotification notificationWithName:OCCucumberRuntimeDisconnectNotification object:self userInfo:userInfo];
 			[[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
 			[[self wirePairs] removeObject:streamPair];
@@ -217,4 +217,4 @@
 
 NSString *const OCCucumberRuntimeConnectNotification = @"OCCucumberRuntimeConnect";
 NSString *const OCCucumberRuntimeDisconnectNotification = @"OCCucumberRuntimeDisconnect";
-NSString *const OCCucumberRuntimeStreamPairKey = @"OCCucumberRuntimeStreamPair";
+NSString *const OCCucumberRuntimeWirePairKey = @"OCCucumberRuntimeWirePair";
