@@ -60,8 +60,6 @@
 		78C514E015CBA6BC00FD46D4 /* OCCucumberExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C514DD15CBA6BC00FD46D4 /* OCCucumberExceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78C514E115CBA6BC00FD46D4 /* OCCucumberExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514DE15CBA6BC00FD46D4 /* OCCucumberExceptions.m */; };
 		78C514E215CBA6BC00FD46D4 /* OCCucumberExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514DE15CBA6BC00FD46D4 /* OCCucumberExceptions.m */; };
-		78C514E515CBAAF600FD46D4 /* CucumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514E415CBAAF600FD46D4 /* CucumberTests.m */; };
-		78C514E615CBAAF600FD46D4 /* CucumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C514E415CBAAF600FD46D4 /* CucumberTests.m */; };
 		78CAE1551591B61000BA2E63 /* CFSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791DFD1590EF3200C09841 /* CFSockets.framework */; };
 		78CAE1561591B61E00BA2E63 /* libCFSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78791E011590EF3200C09841 /* libCFSockets.a */; };
 		78CAE1591591BC6300BA2E63 /* LineRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAE1581591BC6300BA2E63 /* LineRangeTests.m */; };
@@ -642,7 +640,6 @@
 				788758AB15C1809700E20376 /* TableSteps.m in Sources */,
 				788758AE15C1876200E20376 /* ArgumentSteps.m in Sources */,
 				788758DD15C18DCA00E20376 /* MultilineSteps.m in Sources */,
-				78C514E515CBAAF600FD46D4 /* CucumberTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,7 +670,6 @@
 				788758AC15C1809700E20376 /* TableSteps.m in Sources */,
 				788758AF15C1876200E20376 /* ArgumentSteps.m in Sources */,
 				788758DE15C18DCA00E20376 /* MultilineSteps.m in Sources */,
-				78C514E615CBAAF600FD46D4 /* CucumberTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
