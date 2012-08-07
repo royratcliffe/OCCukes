@@ -76,17 +76,25 @@ static id RunTests(id self, SEL _cmd, ...)
 								object:nil
 								 queue:nil
 							usingBlock:^(NSNotification *note) {
-								[OCCucumberSenTestProbe performSelector:@selector(exit)
-															 withObject:nil
-															 afterDelay:[[runtime expiresDate] timeIntervalSinceNow]];
+								OCCucumberRuntime *runtime = [note object];
+								if ([[runtime allConnections] count] == 0)
+								{
+									[OCCucumberSenTestProbe performSelector:@selector(exit)
+																 withObject:nil
+																 afterDelay:[[runtime expiresDate] timeIntervalSinceNow]];
+								}
 							}];
 			[center addObserverForName:OCCucumberRuntimeConnectNotification
 								object:nil
 								 queue:nil
 							usingBlock:^(NSNotification *note) {
-								[NSObject cancelPreviousPerformRequestsWithTarget:[OCCucumberSenTestProbe class]
-																		 selector:@selector(exit)
-																		   object:nil];
+								OCCucumberRuntime *runtime = [note object];
+								if ([[runtime allConnections] count])
+								{
+									[NSObject cancelPreviousPerformRequestsWithTarget:[OCCucumberSenTestProbe class]
+																			 selector:@selector(exit)
+																			   object:nil];
+								}
 							}];
 		}
 		else
