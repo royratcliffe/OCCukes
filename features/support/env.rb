@@ -37,14 +37,16 @@ AfterConfiguration do |config|
   params = YAML.load(ERB.new(File.read(wire_files[0])).result)
 
   # Finally, wait for the wire socket to open. Try a connection once a
-  # second for ten seconds. Continue when the connection does not
-  # refuse. This adds a short latency: the distance in time between
-  # the wire server accepting connections and the socket probe finding
-  # a non-refusal. The latency is always less than one second.
+  # second for thirty seconds. Give Xcode thirty seconds to set up the
+  # test host. This could involve launching the iOS simulator. So it
+  # might take a little while at first. Continue when the connection
+  # does not refuse. This adds a short latency: the distance in time
+  # between the wire server accepting connections and the socket probe
+  # finding a non-refusal. The latency is always less than one second.
   #
   # No need to send an exit message. The wire server automatically exits
   # when all the connections close.
-  Timeout.timeout(10) do
+  Timeout.timeout(30) do
     loop do
       begin
         TCPSocket.open(params['host'], params['port']).close
