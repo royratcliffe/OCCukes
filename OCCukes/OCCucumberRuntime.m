@@ -84,7 +84,7 @@
 	CFSocket *socket = [[CFSocket alloc] initForTCPv6];
 	[socket setDelegate:self];
 	[socket setReuseAddressOption:YES];
-	[socket setAddress:CFSocketAddressDataFromAnyIPv6WithPort(54321) error:NULL];
+	[socket setAddress:CFSocketAddressDataFromAnyIPv6WithPort(0) error:NULL];
 	[socket addToCurrentRunLoopForCommonModes];
 	[self setWireSocket:socket];
 	[self setWirePairs:[NSMutableSet set]];
