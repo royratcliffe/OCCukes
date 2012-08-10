@@ -13,3 +13,9 @@ gem 'syntax'
 # run Cucumber from TextMate without error. TextMate looks for the
 # Gemfile and runs Cucumber and RSpec within the bundled environment.
 gem 'rspec'
+
+# If your Ruby gems include "dnssd" then the AfterConfiguration
+# environment support block in env.rb will automatically synchronise
+# with the Cucumber wire runtime using Bonjour. See
+# http://dnssd.rubyforge.org for details.
+gem 'dnssd'
