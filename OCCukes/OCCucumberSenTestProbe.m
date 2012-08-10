@@ -56,8 +56,20 @@ static id RunTests(id self, SEL _cmd, ...)
 		// disconnection notifications. Disconnection starts a delayed exit;
 		// delayed by the remaining disconnect timeout interval. Connections
 		// cancel any previous delayed exits.
+		//
+		// You can override the Cucumber runtime connect and disconnect timeouts
+		// at the command line. For example, use
+		//
+		//	defaults write org.OCCukes OCCucumberRuntimeDisconnectTimeout -float 120.0
+		//
+		// to reconfigure the disconnect timeout to two minutes. Express
+		// timeouts in units of seconds. Display the current configuration using
+		//
+		//	defaults read org.OCCukes
+		//
 		OCCucumberRuntime *runtime = [OCCucumberRuntime sharedRuntime];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults addSuiteNamed:@"org.OCCukes"];
 		NSTimeInterval connectTimeout = [defaults doubleForKey:@"OCCucumberRuntimeConnectTimeout"];
 		NSTimeInterval disconnectTimeout = [defaults doubleForKey:@"OCCucumberRuntimeDisconnectTimeout"];
 		if (connectTimeout > DBL_EPSILON)
