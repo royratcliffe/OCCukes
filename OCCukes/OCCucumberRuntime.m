@@ -36,6 +36,7 @@
 // connection.
 @property(strong, NS_NONATOMIC_IOSONLY) CFSocket *wireSocket;
 @property(strong, NS_NONATOMIC_IOSONLY) NSMutableSet *wirePairs;
+@property(strong, NS_NONATOMIC_IOSONLY) NSNetService *netService;
 
 @end
 
@@ -49,6 +50,7 @@
 
 @synthesize wireSocket = _wireSocket;
 @synthesize wirePairs = _wirePairs;
+@synthesize netService = _netService;
 
 - (void)setLanguage:(OCCucumberLanguage *)language
 {
@@ -87,6 +89,14 @@
 	[self setWireSocket:socket];
 	[self setWirePairs:[NSMutableSet set]];
 	[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self connectTimeout]]];
+	
+	// Publish the Cucumber runtime as a "_oc-cucumber-runtime._tcp." network
+	// service type.
+	[self setNetService:[[NSNetService alloc] initWithDomain:@"" type:@"_oc-cucumber-runtime._tcp." name:@"" port:[socket port]]];
+	if ([self netService])
+	{
+		[[self netService] publish];
+	}
 }
 
 - (void)tearDown
@@ -105,6 +115,13 @@
 	[self setWireSocket:nil];
 	[self setWirePairs:nil];
 	[self setExpiresDate:nil];
+	
+	// Stop publishing the network service.
+	if ([self netService])
+	{
+		[[self netService] stop];
+		[self setNetService:nil];
+	}
 }
 
 - (void)run
