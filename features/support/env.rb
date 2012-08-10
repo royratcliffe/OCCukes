@@ -1,3 +1,32 @@
+require 'cucumber/wire_support/configuration'
+
+# This is a hacking way to interact with the wire configuration. It
+# redefines the instance host and port attribute readers and defines a
+# new pair of matching class-singleton accessors. If the configuration
+# cannot access the instance host and post attributes, it looks for
+# these within the singleton class. This way, our AfterConfiguration
+# block can provide default host and port for the wire configuration
+# for when it has no host and port. The configuration will pick up the
+# address and port number obtained via Bonjour or pick up the defaults
+# instead. Hence, the wire configuration does not require a host or
+# port value.
+module Cucumber
+  module WireSupport
+    class Configuration
+      class << self
+        attr_accessor :host
+        attr_accessor :port
+      end
+      def host
+        @host || self.class.host
+      end
+      def port
+        @port || self.class.port
+      end
+    end
+  end
+end
+
 AfterConfiguration do |config|
   # First, daemonise this Cucumber process. This assumes that Xcode
   # launches Cucumber as a pre-action for the test scheme. If you use
@@ -36,6 +65,46 @@ AfterConfiguration do |config|
   wire_files.reject! { |f| File.extname(f) != '.wire' }
   params = YAML.load(ERB.new(File.read(wire_files[0])).result)
 
+  # If the wire configuration does not specify the host then try
+  # Bonjour else fall back to local host. The port defaults to 54321.
+  #
+  # If Ruby can find the "dnssd" gem, try to resolve the host and port
+  # dynamically using DNSSD, DNS-based service discovery, also known
+  # as Bonjour. If discovery succeeds, no need to probe for the open
+  # socket. Instead, assume the open socket exists. Otherwise why
+  # would the server publish the service? Allow thirty seconds for
+  # service discovery to browse and resolve the service, and then look
+  # up the address information. The underlying Ruby socket
+  # implementation wants an IP address, a string in dotted decimal.
+  host = params['host']
+  port = params['port']
+  begin
+    require 'dnssd'
+    require 'timeout'
+    begin
+      Timeout::timeout(30) do
+        dnssd_params = params['dnssd'] || {}
+        DNSSD.browse!(dnssd_params['type'] || '_oc-cucumber-runtime._tcp.') do |browse|
+          DNSSD.resolve!(browse) do |resolve|
+            DNSSD::Service.new.getaddrinfo(resolve.target) do |addr_info|
+              host = addr_info.address
+              port = resolve.port
+              STDERR.puts "Cucumber wire connecting to #{resolve.name}, address #{host}, port #{port}"
+              raise Timeout::Error
+            end
+          end
+        end
+      end
+    rescue Timeout::Error
+    end
+  rescue LoadError
+  end if !host
+  sync_with_host = !host
+  host ||= 'localhost'
+  port ||= 54321
+  Cucumber::WireSupport::Configuration.host = host
+  Cucumber::WireSupport::Configuration.port = port
+
   # Finally, wait for the wire socket to open. Try a connection once a
   # second for thirty seconds. Give Xcode thirty seconds to set up the
   # test host. This could involve launching the iOS simulator. So it
@@ -49,11 +118,11 @@ AfterConfiguration do |config|
   Timeout::timeout(30) do
     loop do
       begin
-        TCPSocket.open(params['host'], params['port']).close
+        TCPSocket.open(host, port).close
         break
       rescue Errno::ECONNREFUSED
         sleep 1
       end
     end
-  end
+  end if sync_with_host
 end
