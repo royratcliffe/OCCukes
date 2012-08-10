@@ -46,7 +46,7 @@ AfterConfiguration do |config|
   #
   # No need to send an exit message. The wire server automatically exits
   # when all the connections close.
-  Timeout.timeout(30) do
+  Timeout::timeout(30) do
     loop do
       begin
         TCPSocket.open(params['host'], params['port']).close
