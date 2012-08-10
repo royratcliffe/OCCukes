@@ -84,7 +84,7 @@ AfterConfiguration do |config|
     begin
       Timeout::timeout(30) do
         dnssd_params = params['dnssd'] || {}
-        DNSSD.browse!(dnssd_params['type'] || '_oc-cucumber-runtime._tcp.') do |browse|
+        DNSSD.browse!(dnssd_params['type'] || '_occukes-runtime._tcp.') do |browse|
           DNSSD.resolve!(browse) do |resolve|
             DNSSD::Service.new.getaddrinfo(resolve.target) do |addr_info|
               host = addr_info.address

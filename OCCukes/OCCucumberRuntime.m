@@ -90,9 +90,10 @@
 	[self setWirePairs:[NSMutableSet set]];
 	[self setExpiresDate:[NSDate dateWithTimeIntervalSinceNow:[self connectTimeout]]];
 	
-	// Publish the Cucumber runtime as a "_oc-cucumber-runtime._tcp." network
-	// service type.
-	[self setNetService:[[NSNetService alloc] initWithDomain:@"" type:@"_oc-cucumber-runtime._tcp." name:@"" port:[socket port]]];
+	// Publish the Cucumber runtime as a "_occukes-runtime._tcp."  network
+	// service type. Application protocol name must be an underscore plus 1-15
+	// characters. See http://www.dns-sd.org/ServiceTypes.html for examples.
+	[self setNetService:[[NSNetService alloc] initWithDomain:@"" type:@"_occukes-runtime._tcp." name:@"" port:[socket port]]];
 	if ([self netService])
 	{
 		[[self netService] publish];
