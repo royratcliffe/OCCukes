@@ -48,8 +48,10 @@ module Cucumber
         @net_service_port || original_port || 54321
       end
 
+      # Answers non-nil if the host configuration conforms to DNS
+      # Service Discovery type expectations. Answers nil if not.
       def net_service_discovery?
-        original_host =~ /_[-a-z]+._[-a-z]+./
+        original_host =~ /_[-a-z0-9]+._[-a-z0-9]+./
       end
 
       # If the wire configuration does not specify the host then try
