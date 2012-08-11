@@ -7,16 +7,16 @@ end
 
 require 'timeout'
 
-# This is a hacking way to interact with the wire configuration. It
-# redefines the instance host and port attribute readers and defines a
-# new pair of matching class-singleton accessors. If the configuration
-# cannot access the instance host and post attributes, it looks for
-# these within the singleton class. This way, our AfterConfiguration
-# block can provide default host and port for the wire configuration
-# for when it has no host and port. The configuration will pick up the
-# address and port number obtained via Bonjour or pick up the defaults
-# instead. Hence, the wire configuration does not require a host or
-# port value.
+# Extends Cucumber's wire support configuration class.
+#
+# Replaces the #initialize, #host and #port methods. The new method
+# implementations allow for DNS service discovery, or synchronisation
+# when using explicit host address and port number.  The configuration
+# will pick up the address and port number obtained via Bonjour or
+# pick up the defaults instead. Hence, the wire configuration does not
+# require a host or port value. If the host specifies a service type
+# of the form "_service-type._tcp." then the replacement initialiser
+# attempts a service discovery using DNS-SD.
 module Cucumber
   module WireSupport
     class Configuration
@@ -24,13 +24,8 @@ module Cucumber
       alias_method :original_host, :host
       alias_method :original_port, :port
 
-      # Navigate to the wire language configuration. Cucumber supports
-      # multiple languages, even during the same run. The wire language is
-      # just one of many. No straightforward way exists for accessing the
-      # current language, or even the current runtime from within Cucumber
-      # at this point during the AfterConfiguration block. Instead
-      # therefore, replicate Cucumber's way of finding and loading the
-      # wire configuration.
+      # Cucumber supports multiple languages, even during the same
+      # run. The wire language is just one of many.
       def initialize(wire_file)
         original_initialize(wire_file)
         if net_service_discovery?
@@ -54,17 +49,15 @@ module Cucumber
         original_host =~ /_[-a-z0-9]+._[-a-z0-9]+./
       end
 
-      # If the wire configuration does not specify the host then try
-      # Bonjour else fall back to local host. The port defaults to 54321.
-      #
-      # If Ruby can find the "dnssd" gem, try to resolve the host and port
-      # dynamically using DNSSD, DNS-based service discovery, also known
-      # as Bonjour. If discovery succeeds, no need to probe for the open
-      # socket. Instead, assume the open socket exists. Otherwise why
-      # would the server publish the service? Allow thirty seconds for
-      # service discovery to browse and resolve the service, and then look
-      # up the address information. The underlying Ruby socket
-      # implementation wants an IP address, a string in dotted decimal.
+      # If Ruby can find the "dnssd" gem, try to resolve the host and
+      # port dynamically using DNS-SD, DNS-based service discovery,
+      # also known as Bonjour. If discovery succeeds, no need to probe
+      # for the open socket. Instead, assume the open socket
+      # exists. Otherwise why would the server publish the service?
+      # Allow thirty seconds for service discovery to browse and
+      # resolve the service, and then look up the address
+      # information. The underlying Ruby socket implementation wants
+      # an IP address, a string in dotted decimal.
       def discover_net_service
         begin
           Timeout::timeout(30) do
@@ -83,15 +76,16 @@ module Cucumber
       end
 
       # Wait for the wire socket to open. Try a connection once a
-      # second for thirty seconds. Give Xcode thirty seconds to set up the
-      # test host. This could involve launching the iOS simulator. So it
-      # might take a little while at first. Continue when the connection
-      # does not refuse. This adds a short latency: the distance in time
-      # between the wire server accepting connections and the socket probe
-      # finding a non-refusal. The latency is always less than one second.
+      # second for thirty seconds. Give Xcode thirty seconds to set up
+      # the test host. This could involve launching the iOS
+      # simulator. So it might take a little while at first. Continue
+      # when the connection does not refuse. This adds a short
+      # latency: the distance in time between the wire server
+      # accepting connections and the socket probe finding a
+      # non-refusal. The latency is always less than one second.
       #
-      # No need to send an exit message. The wire server automatically exits
-      # when all the connections close.
+      # No need to send an exit message. The wire server automatically
+      # exits when all the connections close.
       def sync
         Timeout::timeout(30) do
           loop do
@@ -108,24 +102,24 @@ module Cucumber
   end
 end
 
-# Daemonise this Cucumber process. This assumes that Xcode
-# launches Cucumber as a pre-action for the test scheme. If you use
-# RVM, the pre-action script might look something like this:
+# Daemonise this Cucumber process. This assumes that Xcode launches
+# Cucumber as a pre-action for the test scheme. If you use RVM, the
+# pre-action script might look something like this:
 #
 #   PATH=$PATH:$HOME/.rvm/bin
 #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
 #
-# Please be aware: from this point forward, the Cucumber process
-# forks away from the parent process and becomes a background
-# process. The parent process, typically Xcode, continues. However,
-# the fork interferes if you want to debug the Cucumber
-# client. Breakpoints will never break if set beyond the
-# fork.
+# Please be aware: from this point forward, the Cucumber process forks
+# away from the parent process and becomes a background process. The
+# parent process, Xcode, continues. However, the fork interferes if
+# you want to debug the Cucumber client. Breakpoints will never break
+# if set beyond the fork.
 #
-# Work out if the current process runs from Xcode or not. Only fork
-# if it does. Avoid the fork if running independently. This will
-# help when debugging. Use XCODE_VERSION_ACTUAL to determine if
-# launching from Xcode. Xcode sets up that environment variable,
-# assuming you provide build settings from your test target. For
-# Xcode 4.4, the actual version equals 0440.
+# Therefore, work out if the current process runs from Xcode or
+# not. Only fork if it does. Avoid the fork if running
+# independently. This helps when debugging. Use XCODE_VERSION_ACTUAL
+# to determine if launching from Xcode. Xcode sets up that environment
+# variable, assuming you provide build settings from your test
+# target. For Xcode 4.4, the actual version equals 0440. Actual value
+# does not matter; only presence matters.
 Process.daemon(true, true) if ENV['XCODE_VERSION_ACTUAL']
