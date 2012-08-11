@@ -80,7 +80,7 @@ module Cucumber
         end
       end
 
-      # Finally, wait for the wire socket to open. Try a connection once a
+      # Wait for the wire socket to open. Try a connection once a
       # second for thirty seconds. Give Xcode thirty seconds to set up the
       # test host. This could involve launching the iOS simulator. So it
       # might take a little while at first. Continue when the connection
@@ -106,7 +106,7 @@ module Cucumber
   end
 end
 
-# First, daemonise this Cucumber process. This assumes that Xcode
+# Daemonise this Cucumber process. This assumes that Xcode
 # launches Cucumber as a pre-action for the test scheme. If you use
 # RVM, the pre-action script might look something like this:
 #
@@ -118,7 +118,7 @@ end
 # process. The parent process, typically Xcode, continues. However,
 # the fork interferes if you want to debug the Cucumber
 # client. Breakpoints will never break if set beyond the
-# fork. Better to comment out the following line when debugging.
+# fork.
 #
 # Work out if the current process runs from Xcode or not. Only fork
 # if it does. Avoid the fork if running independently. This will
