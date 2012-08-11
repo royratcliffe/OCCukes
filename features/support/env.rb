@@ -106,26 +106,24 @@ module Cucumber
   end
 end
 
-AfterConfiguration do |config|
-  # First, daemonise this Cucumber process. This assumes that Xcode
-  # launches Cucumber as a pre-action for the test scheme. If you use
-  # RVM, the pre-action script might look something like this:
-  #
-  #   PATH=$PATH:$HOME/.rvm/bin
-  #   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
-  #
-  # Please be aware: from this point forward, the Cucumber process
-  # forks away from the parent process and becomes a background
-  # process. The parent process, typically Xcode, continues. However,
-  # the fork interferes if you want to debug the Cucumber
-  # client. Breakpoints will never break if set beyond the
-  # fork. Better to comment out the following line when debugging.
-  #
-  # Work out if the current process runs from Xcode or not. Only fork
-  # if it does. Avoid the fork if running independently. This will
-  # help when debugging. Use XCODE_VERSION_ACTUAL to determine if
-  # launching from Xcode. Xcode sets up that environment variable,
-  # assuming you provide build settings from your test target. For
-  # Xcode 4.4, the actual version equals 0440.
-  Process.daemon(true, true) if ENV['XCODE_VERSION_ACTUAL']
-end
+# First, daemonise this Cucumber process. This assumes that Xcode
+# launches Cucumber as a pre-action for the test scheme. If you use
+# RVM, the pre-action script might look something like this:
+#
+#   PATH=$PATH:$HOME/.rvm/bin
+#   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
+#
+# Please be aware: from this point forward, the Cucumber process
+# forks away from the parent process and becomes a background
+# process. The parent process, typically Xcode, continues. However,
+# the fork interferes if you want to debug the Cucumber
+# client. Breakpoints will never break if set beyond the
+# fork. Better to comment out the following line when debugging.
+#
+# Work out if the current process runs from Xcode or not. Only fork
+# if it does. Avoid the fork if running independently. This will
+# help when debugging. Use XCODE_VERSION_ACTUAL to determine if
+# launching from Xcode. Xcode sets up that environment variable,
+# assuming you provide build settings from your test target. For
+# Xcode 4.4, the actual version equals 0440.
+Process.daemon(true, true) if ENV['XCODE_VERSION_ACTUAL']
