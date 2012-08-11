@@ -1,3 +1,5 @@
+host: _occukes-runtime._tcp.
+
 # The default three-second time-out might not help a debugging
 # effort. Instead, lengthen the timeouts for specific wire protocol
 # messages.
