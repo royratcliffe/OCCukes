@@ -81,10 +81,17 @@
 
 - (void)setUp
 {
+	// Port number zero requests any available port. The operating system
+	// chooses a suitable and available port.
+	[self setUpWithPort:0 serviceType:@"occukes-runtime"];
+}
+
+- (void)setUpWithPort:(int)port serviceType:(NSString *)serviceType
+{
 	CFSocket *socket = [[CFSocket alloc] initForTCPv6];
 	[socket setDelegate:self];
 	[socket setReuseAddressOption:YES];
-	[socket setAddress:CFSocketAddressDataFromAnyIPv6WithPort(0) error:NULL];
+	[socket setAddress:CFSocketAddressDataFromAnyIPv6WithPort(port) error:NULL];
 	[socket addToCurrentRunLoopForCommonModes];
 	[self setWireSocket:socket];
 	[self setWirePairs:[NSMutableSet set]];
@@ -93,7 +100,7 @@
 	// Publish the Cucumber runtime as a "_occukes-runtime._tcp."  network
 	// service type. Application protocol name must be an underscore plus 1-15
 	// characters. See http://www.dns-sd.org/ServiceTypes.html for examples.
-	[self setNetService:[[NSNetService alloc] initWithDomain:@"" type:@"_occukes-runtime._tcp." name:@"" port:[socket port]]];
+	[self setNetService:[[NSNetService alloc] initWithDomain:@"" type:[NSString stringWithFormat:@"_%@._tcp.", serviceType] name:@"" port:[socket port]]];
 	if ([self netService])
 	{
 		[[self netService] publish];

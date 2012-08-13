@@ -55,6 +55,7 @@
 - (NSSet *)allConnections;
 
 - (void)setUp;
+- (void)setUpWithPort:(int)port serviceType:(NSString *)serviceType;
 - (void)tearDown;
 
 /*!
