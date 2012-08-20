@@ -72,8 +72,13 @@
 		{
 			OCCucumberStepArgument *argument = [[OCCucumberStepArgument alloc] init];
 			NSRange range = [match rangeAtIndex:i];
-			[argument setOffset:range.location];
-			[argument setValue:[stepName substringWithRange:range]];
+			// Only set up an argument's offset and value if the range is found.
+			// Optional captures may find nothing.
+			if (range.location != NSNotFound)
+			{
+				[argument setOffset:range.location];
+				[argument setValue:[stepName substringWithRange:range]];
+			}
 			[arguments addObject:argument];
 		}
 	}
