@@ -46,9 +46,18 @@
 + (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 + (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block;
 
-+ (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
-+ (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
-+ (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line;
++ (void)given:(NSString *)pattern
+		 step:(void (^)(NSArray *arguments))block
+		 file:(const char *)file
+		 line:(unsigned int)line;
++ (void)when:(NSString *)pattern
+		step:(void (^)(NSArray *arguments))block
+		file:(const char *)file
+		line:(unsigned int)line;
++ (void)then:(NSString *)pattern
+		step:(void (^)(NSArray *arguments))block
+		file:(const char *)file
+		line:(unsigned int)line;
 
 /*!
  * @brief Answers the shared language's current world, a shortcut.

@@ -45,21 +45,30 @@
 	[[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
 }
 
-+ (void)given:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
++ (void)given:(NSString *)pattern
+		 step:(void (^)(NSArray *arguments))block
+		 file:(const char *)file
+		 line:(unsigned int)line
 {
 	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
 }
 
-+ (void)when:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
++ (void)when:(NSString *)pattern
+		step:(void (^)(NSArray *arguments))block
+		file:(const char *)file
+		line:(unsigned int)line
 {
 	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
 }
 
-+ (void)then:(NSString *)pattern step:(void (^)(NSArray *arguments))block file:(const char *)file line:(unsigned int)line
++ (void)then:(NSString *)pattern
+		step:(void (^)(NSArray *arguments))block
+		file:(const char *)file
+		line:(unsigned int)line
 {
 	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
