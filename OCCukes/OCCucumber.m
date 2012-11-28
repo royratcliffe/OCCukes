@@ -50,7 +50,8 @@
 		 file:(const char *)file
 		 line:(unsigned int)line
 {
-	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
+	OCCucumberLanguage *language = [[OCCucumberRuntime sharedRuntime] language];
+	OCCucumberStepDefinition *stepDefinition = [language registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
 }
@@ -60,7 +61,8 @@
 		file:(const char *)file
 		line:(unsigned int)line
 {
-	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
+	OCCucumberLanguage *language = [[OCCucumberRuntime sharedRuntime] language];
+	OCCucumberStepDefinition *stepDefinition = [language registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
 }
@@ -70,7 +72,8 @@
 		file:(const char *)file
 		line:(unsigned int)line
 {
-	OCCucumberStepDefinition *stepDefinition = [[[OCCucumberRuntime sharedRuntime] language] registerStepPattern:pattern block:block];
+	OCCucumberLanguage *language = [[OCCucumberRuntime sharedRuntime] language];
+	OCCucumberStepDefinition *stepDefinition = [language registerStepPattern:pattern block:block];
 	[stepDefinition setFile:file];
 	[stepDefinition setLine:line];
 }

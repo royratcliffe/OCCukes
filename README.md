@@ -37,7 +37,9 @@ details.
 
 ## Usage
 
-OCCukes integrates with Xcode. You launch a Cucumber-based test suite as you would any other Xcode project test suite: just press Command+U. To set up the pre- and post-actions for your test target, just install Cucumber using RVM.
+OCCukes integrates with Xcode. You launch a Cucumber-based test suite along with any other Xcode project test suite: just press Command+U. Cucumber piggy-backs on the standard SenTestKit (OCUnit) tests.
+
+To make this work, you need to launch Cucumber in the background while your test suite runs. Xcode's pre-actions let you do this. To set up the pre- and post-actions for your test target, just install Cucumber using RVM.
 
 ### Test scheme pre-action
 
@@ -46,7 +48,13 @@ Make this your pre-action for the Test scheme:
 	PATH=$PATH:$HOME/.rvm/bin
 	rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
 
-This assumes you have already installed Cucumber in the Ruby 1.9.3 RVM; adjust according to your local environment and personal preferences.
+It sets up the PATH variable so that the shell can find RVM; Xcode resets the
+PATH when shelling out. It then launches Cucumber using RVM with Ruby 1.9.3;
+this looks for the latest 1.9.3-version of Ruby installed, but quietly fails if
+the latest version is __not__ installed. Success assumes you have already
+installed Cucumber in the Ruby 1.9.3 RVM; adjust according to your local
+environment and personal preferences. Use `gem install cucumber dnssd` within
+the selected Ruby version to install Cucumber and its dependencies.
 
 ### Test scheme post-action
 
@@ -66,193 +74,38 @@ Add a wire configuration to your `features/step_definitions` folder, a YAML file
 	timeout:
 	  step_matches: 120
 
-Host and port describe where to find the wire socket service. The Cucumber wire service accepts connections at port 54321 on _any_ interface. So you can connect to non-local hosts as well.
+Host and port describe where to find the wire socket service. If you want to use Bonjour (DNS Service Discovery, DNSSD) to resolve the host address and the port number, specify a DNS service name as the host. This triggers Bonjour discovery. The Cucumber wire service accepts connections at port 54321 on _any_ interface. So you can connect to non-local hosts as well.
+
+You can override the Cucumber runtime connect and disconnect timeouts
+at the command line. For example, use
+
+	defaults write org.OCCukes OCCucumberRuntimeDisconnectTimeout -float 120.0
+
+to reconfigure the disconnect timeout to two minutes. Express
+timeouts in units of seconds. Display the current configuration using
+
+	defaults read org.OCCukes
 
 ### Environment Support
 
-Set up your `features/support/env.rb`; contents as follows. The Ruby code below defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration. You can copy this code from [`features/support/env.rb`](https://github.com/OCCukes/OCCukes/blob/master/features/support/env.rb).
-
-```ruby
-require 'cucumber/wire_support/configuration'
-
-begin
-  require 'dnssd'
-rescue LoadError
-end
-
-require 'timeout'
-
-# Extends Cucumber's wire support configuration class.
-#
-# Replaces the #initialize, #host and #port methods. The new method
-# implementations allow for DNS service discovery, or synchronisation
-# when using explicit host address and port number.  The configuration
-# will pick up the address and port number obtained via Bonjour or
-# pick up the defaults instead. Hence, the wire configuration does not
-# require a host or port value. If the host specifies a service type
-# of the form "_service-type._tcp." then the replacement initialiser
-# attempts a service discovery using DNS-SD.
-module Cucumber
-  module WireSupport
-    class Configuration
-      alias_method :original_initialize, :initialize
-      alias_method :original_host, :host
-      alias_method :original_port, :port
-
-      # Cucumber supports multiple languages, even during the same
-      # run. The wire language is just one of many.
-      def initialize(wire_file)
-        original_initialize(wire_file)
-        if net_service_discovery?
-          discover_net_service
-        else
-          sync
-        end
-      end
-
-      def host
-        @net_service_host || original_host || 'localhost'
-      end
-
-      def port
-        @net_service_port || original_port || 54321
-      end
-
-      # Answers non-nil if the host configuration conforms to DNS
-      # Service Discovery type expectations. Answers nil if not.
-      def net_service_discovery?
-        original_host =~ /_[-a-z0-9]+._[-a-z0-9]+./
-      end
-
-      # If Ruby can find the "dnssd" gem, try to resolve the host and
-      # port dynamically using DNS-SD, DNS-based service discovery,
-      # also known as Bonjour. If discovery succeeds, no need to probe
-      # for the open socket. Instead, assume the open socket
-      # exists. Otherwise why would the server publish the service?
-      # Allow thirty seconds for service discovery to browse and
-      # resolve the service, and then look up the address
-      # information. The underlying Ruby socket implementation wants
-      # an IP address, a string in dotted decimal.
-      def discover_net_service
-        begin
-          Timeout::timeout(30) do
-            DNSSD.browse!(original_host || '_occukes-runtime._tcp.') do |browse|
-              DNSSD.resolve!(browse) do |resolve|
-                DNSSD::Service.new.getaddrinfo(resolve.target) do |addr_info|
-                  @net_service_host, @net_service_port = addr_info.address, resolve.port
-                  STDERR.puts "Cucumber wire connecting to #{resolve.name}, address #{@net_service_host}, port #{@net_service_port}"
-                  raise Timeout::Error
-                end
-              end
-            end
-          end
-        rescue Timeout::Error
-        end
-      end
-
-      # Wait for the wire socket to open. Try a connection once a
-      # second for thirty seconds. Give Xcode thirty seconds to set up
-      # the test host. This could involve launching the iOS
-      # simulator. So it might take a little while at first. Continue
-      # when the connection does not refuse. This adds a short
-      # latency: the distance in time between the wire server
-      # accepting connections and the socket probe finding a
-      # non-refusal. The latency is always less than one second.
-      #
-      # No need to send an exit message. The wire server automatically
-      # exits when all the connections close.
-      def sync
-        Timeout::timeout(30) do
-          loop do
-            begin
-              TCPSocket.open(original_host, original_port).close
-              break
-            rescue Errno::ECONNREFUSED
-              sleep 1
-            end
-          end
-        end
-      end
-    end
-  end
-end
-
-# Daemonise this Cucumber process. This assumes that Xcode launches
-# Cucumber as a pre-action for the test scheme. If you use RVM, the
-# pre-action script might look something like this:
-#
-#   PATH=$PATH:$HOME/.rvm/bin
-#   rvm 1.9.3 do cucumber "$SRCROOT/features" --format html --out "$OBJROOT/features.html"
-#
-# Please be aware: from this point forward, the Cucumber process forks
-# away from the parent process and becomes a background process. The
-# parent process, Xcode, continues. However, the fork interferes if
-# you want to debug the Cucumber client. Breakpoints will never break
-# if set beyond the fork.
-#
-# Therefore, work out if the current process runs from Xcode or
-# not. Only fork if it does. Avoid the fork if running
-# independently. This helps when debugging. Use XCODE_VERSION_ACTUAL
-# to determine if launching from Xcode. Xcode sets up that environment
-# variable, assuming you provide build settings from your test
-# target. For Xcode 4.4, the actual version equals 0440. Actual value
-# does not matter; only presence matters.
-Process.daemon(true, true) if ENV['XCODE_VERSION_ACTUAL']
-```
+Set up your `features/support/env.rb`. You can copy this code from [`features/support/env.rb`](https://github.com/OCCukes/OCCukes/blob/master/features/support/env.rb). The Ruby code defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration.
 
 ### Add test case
 
-Finally, integrate Cucumber tests with your standard unit test cases by adding a special `SenTestCase` sub-class.
+Finally, integrate Cucumber tests with your standard unit test cases by adding steps.
 
-Header file for test case, `CucumberTests.h`:
+Basic template for some step definitions, `MySteps.m`:
 ```objc
-#import <SenTestingKit/SenTestingKit.h>
-
-@interface CucumberTests : SenTestCase
-
-@end
-```
-
-Source file for test case, `CucumberTests.m`:
-```objc
-#import "CucumberTests.h"
-
 #import <OCCukes/OCCukes.h>
 
-@implementation CucumberTests
-
-- (void)setUp
+__attribute__((constructor))
+static void StepDefinitions()
 {
-	[OCCucumber given:@"^context$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"TODO"];
-	} file:__FILE__ line:__LINE__];
 	
-	[OCCucumber when:@"^event$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"TODO"];
-	} file:__FILE__ line:__LINE__];
-	
-	[OCCucumber then:@"^outcome$" step:^(NSArray *arguments) {
-		// express the regular expression above with the code you wish you had
-		[OCCucumber pending:@"TODO"];
-	} file:__FILE__ line:__LINE__];
-	
-	[[OCCucumberRuntime sharedRuntime] setUp];
 }
-
-- (void)tearDown
-{
-	[[OCCucumberRuntime sharedRuntime] tearDown];
-}
-
-- (void)testCucumber
-{
-	[[OCCucumberRuntime sharedRuntime] run];
-}
-
-@end
 ```
+
+Make as many such step definition modules as required. Organise the steps around related features.
 
 Register your step definitions before executing the Objective-C Cucumber runtime by sending `-run`. As you see above, definitions manifest themselves in Objective-C as C blocks. These blocks assert the step's expectations, throwing an exception if any expectations fail. Steps therefore succeed when they encounter no exceptions.
 
