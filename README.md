@@ -58,8 +58,7 @@ Then make this your post-action:
 
 Add a wire configuration to your `features/step_definitions` folder, a YAML file with a `.wire` extension. Contents as follows.
 
-	host: localhost
-	port: 54321
+	host: _occukes-runtime._tcp.
 
 	# The default three-second time-out might not help a debugging
 	# effort. Instead, lengthen the timeouts for specific wire protocol
