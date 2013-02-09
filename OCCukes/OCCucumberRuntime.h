@@ -30,6 +30,8 @@
 
 /*!
  * @brief Ties everything together, the meaty part.
+ * @details You set up and tear down the run-time at run time. The runtime
+ * accepts socket connections from Cucumber.
  */
 @interface OCCucumberRuntime : NSObject<CFSocketDelegate, CFStreamPairDelegate>
 
