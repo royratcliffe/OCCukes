@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
+/**
  * Scenarios create worlds. Worlds carry state for steps. When a scenario
  * begins, Cucumber creates and sets up the current world.
  *

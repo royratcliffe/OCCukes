@@ -36,9 +36,10 @@
 - (OCCucumberStepDefinition *)registerStep:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
 - (OCCucumberStepDefinition *)registerStepPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
 
-/*!
- * @brief Answers the steps matching a given step name.
- * @details There could be more than one. The resulting array contains Step
+/**
+ * Answers the steps matching a given step name.
+ *
+ * There could be more than one. The resulting array contains Step
  * Match objects. Each Step Match retains its step definition for later
  * invocation and the argument values derived from the match.
  */
@@ -47,12 +48,14 @@
 - (void)beginScenario;
 - (void)endScenario;
 
-/*!
- * @brief Invokes a single step.
+/**
+ * Invokes a single step.
+ *
+ * Be careful when invoking steps. Make sure you do not invoke yourself
+ * and recurse infinitely.
+ *
  * @exception Raises an ambiguity exception if more than one match. Raises an
  * undefined exception if no match.
- * @details Be careful when invoking steps. Make sure you do not invoke yourself
- * and recurse infinitely.
  */
 - (void)step:(NSString *)name arguments:(NSArray *)arguments;
 - (void)step:(NSString *)name;

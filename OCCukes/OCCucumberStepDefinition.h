@@ -24,9 +24,10 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * @brief Step definitions hold a regular expression and a C block.
- * @details You create a step definition by registering a Give, When or Then
+/**
+ * Step definitions hold a regular expression and a C block.
+ *
+ * You create a step definition by registering a Give, When or Then
  * step. You can invoke a step definition.
  *
  * Step definitions carry a file and line property. Assign these to `__FILE__`
@@ -48,17 +49,19 @@
 // convenience initialisers
 - (id)initWithRegularExpression:(NSRegularExpression *)regularExpression block:(void (^)(NSArray *arguments))block;
 
-/*!
- * @brief Constructs a new step definition from a given pattern string.
- * @details Compiles a new regular expression for the step based on the given
+/**
+ * Constructs a new step definition from a given pattern string.
+ *
+ * Compiles a new regular expression for the step based on the given
  * pattern string. Answers a new step definition if the expression successfully
  * compiles. Otherwise answers @c nil.
  */
 - (id)initWithPattern:(NSString *)pattern block:(void (^)(NSArray *arguments))block;
 
-/*!
- * @brief Answers a unique string identifier for the step definition.
- * @details All step definitions need a unique string identifier. The Cucumber
+/**
+ * Answers a unique string identifier for the step definition.
+ *
+ * All step definitions need a unique string identifier. The Cucumber
  * client utilises these identifiers in order to reference remote step
  * definitions across the wire. Identifiers are string values. So long as they
  * are one-to-one with the identity of the step definition, and not the state of
@@ -67,7 +70,7 @@
  */
 - (NSString *)identifierString;
 
-/*!
+/**
  * @result Answers an array of regular-expression match capture values, one for
  * each matching capture group. Answers @c nil if the step definition's regular
  * expression pattern does not match the given step name. Answers an array of
@@ -76,9 +79,10 @@
  */
 - (NSArray *)argumentsFromStepName:(NSString *)stepName;
 
-/*!
- * @brief Invokes a step given its name, using the given arguments.
- * @details First derives the step matches. If it finds just one, invokes the
+/**
+ * Invokes a step given its name, using the given arguments.
+ *
+ * First derives the step matches. If it finds just one, invokes the
  * step using the supplied arguments.
  * Step definitions can invoke other step definitions as necessary. This method
  * gives access to the steps @em by @em name. There could be more than one

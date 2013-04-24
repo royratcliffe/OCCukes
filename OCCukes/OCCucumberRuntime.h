@@ -28,9 +28,10 @@
 
 @class OCCucumberLanguage;
 
-/*!
- * @brief Ties everything together, the meaty part.
- * @details You set up and tear down the run-time at run time. The runtime
+/**
+ * Ties everything together, the meaty part.
+ *
+ * You set up and tear down the run-time at run time. The runtime
  * accepts socket connections from Cucumber.
  */
 @interface OCCucumberRuntime : NSObject<CFSocketDelegate, CFStreamPairDelegate>
@@ -39,9 +40,10 @@
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval connectTimeout;
 @property(assign, NS_NONATOMIC_IOSONLY) NSTimeInterval disconnectTimeout;
 
-/*!
- * @brief Date when the runtime expires.
- * @details Expiring date describes when the runtime should stop running. While
+/**
+ * Date when the runtime expires.
+ *
+ * Expiring date describes when the runtime should stop running. While
  * connections exist, the runtime never expires, or expires in the distant
  * future to be more precise. The runtime expires after the disconnect timeout
  * after all connections disconnect. It also expires after the connect timeout
@@ -49,9 +51,10 @@
  */
 @property(strong, NS_NONATOMIC_IOSONLY) NSDate *expiresDate;
 
-/*!
- * @brief Answers all the current connections as a set.
- * @details Connections change dynamically as remote Cucumber clients connect to
+/**
+ * Answers all the current connections as a set.
+ *
+ * Connections change dynamically as remote Cucumber clients connect to
  * and disconnect from the wire server.
  */
 - (NSSet *)allConnections;
@@ -60,9 +63,10 @@
 - (void)setUpWithPort:(int)port serviceType:(NSString *)serviceType;
 - (void)tearDown;
 
-/*!
- * @brief Cucumber runtime runs, naturally.
- * @details When running the wire server, there are two timing
+/**
+ * Cucumber runtime runs, naturally.
+ *
+ * When running the wire server, there are two timing
  * requirements. First, wait at least for a nominal 10 seconds before giving up
  * on taking a connection. Call this the "connect timeout" period; it defines
  * the maximum delay in-between setting up the server and making the first
@@ -77,9 +81,10 @@
  */
 - (void)run;
 
-/*!
- * @brief Answers YES if the runtime wants to continue running.
- * @details The runtime continues running while connections exist, or the
+/**
+ * Answers YES if the runtime wants to continue running.
+ *
+ * The runtime continues running while connections exist, or the
  * current time lies within connection and disconnection timeout
  * periods. Outside these conditions, the runtime will continue to accept new
  * connections if you ignore the running status. In such event, the is-running

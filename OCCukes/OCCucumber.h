@@ -26,10 +26,11 @@
 
 @class OCCucumberWorld;
 
-/*!
- * @brief Offers a set of class-scoped convenience methods for interacting with
+/**
+ * Offers a set of class-scoped convenience methods for interacting with
  * Cucumber language and runtime.
- * @details Typically, your unit tests will interact via this interface, rather
+ *
+ * Typically, your unit tests will interact via this interface, rather
  * than via the Cucumber shared language, or some other instance of the language
  * class.
  *
@@ -59,9 +60,10 @@
 		file:(const char *)file
 		line:(unsigned int)line;
 
-/*!
- * @brief Answers the shared language's current world, a shortcut.
- * @details World's appear and disappear as scenarios begin and end. Step
+/**
+ * Answers the shared language's current world, a shortcut.
+ *
+ * World's appear and disappear as scenarios begin and end. Step
  * definitions use them as scratchpads for persisting arguments and other pieces
  * of information in-between steps. Use key-value coding to access world values.
  */

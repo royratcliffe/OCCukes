@@ -24,10 +24,11 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
- * @brief Dynamically probes for the SenTestingKit, removing the
+/**
+ * Dynamically probes for the SenTestingKit, removing the
  * exit-after-running-tests feature!
- * @details SenTestingKit launches from +[SenTestProbe initialize] by sending a
+ *
+ * SenTestingKit launches from +[SenTestProbe initialize] by sending a
  * 0-second delayed selector perform to +[SenTestProbe
  * runTests:ignored]. Trouble is, the +runTests:ignored class method calls
  * exit(status) and terminates the process. This is bad when running Cucumber
