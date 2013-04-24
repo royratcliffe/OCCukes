@@ -1,10 +1,4 @@
-PROJECT_NAME			= OCCukes
-GENERATE_DOCSET         = YES
-
-DOCSET_FEEDNAME         = "Objective-C Cucumber Documentation Set"
-DOCSET_BUNDLE_ID        = info.cukes.OCCukesDocSet
-DOCSET_PUBLISHER_ID     = info.cukes.OCCukesDocSet.documentation
-DOCSET_PUBLISHER_NAME   = The OCCukes Organisation
+PROJECT_NAME            = "OCCukes"
 
 EXTRACT_ALL             = YES
 EXTRACT_PRIVATE         = YES
@@ -17,7 +11,10 @@ GENERATE_BUGLIST        = YES
 GENERATE_DEPRECATEDLIST = YES
 
 STRIP_CODE_COMMENTS     = NO
+JAVADOC_AUTOBRIEF       = YES
 
 HAVE_DOT                = YES
 
 IMAGE_PATH              = Documents
+INPUT                  += README.md
+USE_MDFILE_AS_MAINPAGE  = README.md

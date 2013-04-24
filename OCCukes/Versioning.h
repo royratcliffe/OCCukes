@@ -1,6 +1,6 @@
 /* OCCukes Versioning.h
  *
- * Copyright © 2012, The OCCukes Organisation. All rights reserved.
+ * Copyright © 2012, 2013, The OCCukes Organisation. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the “Software”), to deal
@@ -27,7 +27,7 @@
 extern const unsigned char kOCCukesVersionString[];
 extern const double kOCCukesVersionNumber;
 
-/*!
+/**
  * Answers the current Apple-generic versioning-formatted version string. The
  * version string has been trimmed. It has no leading or trailing whitespace or
  * newlines. Note that the raw C-based version string contrastingly has a single
