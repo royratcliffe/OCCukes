@@ -92,7 +92,9 @@ timeouts in units of seconds. Display the current configuration using
 
 ### Environment Support
 
-Set up your `features/support/env.rb`. You can copy this code from [`features/support/env.rb`](https://github.com/OCCukes/OCCukes/blob/master/features/support/env.rb). The Ruby code defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration.
+[env-rb]:https://github.com/OCCukes/OCCukes/blob/master/features/support/env.rb
+
+Set up your `features/support/env.rb`. You can copy this code from [`features/support/env.rb`][env-rb]. The Ruby code defines a Cucumber `AfterConfiguration` block for daemonising the Cucumber process and waiting for the wire server to begin accepting socket connections. This block runs after Cucumber configuration.
 
 ### Add test case
 
