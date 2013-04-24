@@ -1,7 +1,11 @@
 # [![Cucumber Roll](http://files.softicons.com/download/object-icons/richs-misc-icons-by-rich-d/png/24/Cucumber%20Roll.png)](https://github.com/OCCukes/OCCukes) Objective-C Cucumber Wire Protocol
 
-It allows Cucumber to touch your application in _intimate places_. Goals
+[![Build Status](https://travis-ci.org/royratcliffe/OCCukes.png?branch=master)](https://travis-ci.org/royratcliffe/OCCukes)
+
+It allows Cucumber to touch your application in _intimate places_ (to quote Cucumber's [wire protocol feature description][wire-protocol]). Goals
 include and exclude:
+
+[wire-protocol]:https://github.com/cucumber/cucumber/blob/master/legacy_features/wire_protocol_erb.feature
 
 * Implement the Cucumber wire protocol.
 
