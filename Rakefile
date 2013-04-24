@@ -13,14 +13,15 @@ task :doxygen do
   # and style.
   doc_path = File.join(XcodePages.output_directory, 'html', 'index.html')
   doc = Nokogiri::HTML.parse(open(doc_path))
-  a = doc.xpath('//a[starts-with(., "![Build Status]")]').first
-  text = a.children.first
-  img = Nokogiri::XML::Element.new('img', doc)
-  text.replace(img)
-  text.content =~ /!\[(.+)\]\((.+)\)/
-  img['src'] = $2
-  img['alt'] = $1
-  img['style'] = 'max-width:100%;'
+  doc.xpath('//a[starts-with(., "!")]').each do |a|
+    text = a.children.first
+    img = Nokogiri::XML::Element.new('img', doc)
+    text.replace(img)
+    text.content =~ /!(.+)\((.+)\)/
+    img['src'] = $2
+    img['alt'] = $1
+    img['style'] = 'max-width:100%;'
+  end
   open(doc_path, 'w') do |f|
     f.write(doc.serialize)
   end
