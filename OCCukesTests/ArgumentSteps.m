@@ -30,7 +30,7 @@ static void StepDefinitions()
 	[OCCucumber when:@"^my scenario includes some \"(.*)\"$" step:^(NSArray *arguments) {
 		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"argument"];
 	} file:__FILE__ line:__LINE__];
-	
+
 	[OCCucumber then:@"^the \"(.*?)\" string appears as an argument to the step definition$" step:^(NSArray *arguments) {
 		NSString *argument = [[OCCucumber currentWorld] valueForKey:@"argument"];
 		NSString *argument0 = [arguments objectAtIndex:0];

@@ -30,7 +30,7 @@ static void StepDefinitions()
 	[OCCucumber given:@"^a multiline string containing$" step:^(NSArray *arguments) {
 		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"lines"];
 	} file:__FILE__ line:__LINE__];
-	
+
 	[OCCucumber then:@"^there are (\\d+) lines of text$" step:^(NSArray *arguments) {
 		NSArray *lines = [[[OCCucumber currentWorld] valueForKey:@"lines"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 		if ([lines count] != [[arguments objectAtIndex:0] integerValue])

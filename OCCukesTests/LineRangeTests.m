@@ -30,13 +30,13 @@
 {
 	// empty string --> no line
 	STAssertEqualObjects(NSStringFromRange([@"" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 0}", nil);
-	
+
 	// two lines --> first line only
 	STAssertEqualObjects(NSStringFromRange([@"\n\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 1}", nil);
-	
+
 	// carriage return, line feed --> one line terminator
 	STAssertEqualObjects(NSStringFromRange([@"123\r\n456\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 5}", nil);
-	
+
 	// carriage return --> one line terminator
 	STAssertEqualObjects(NSStringFromRange([@"123\r456\n" lineRangeForRange:NSMakeRange(0, 0)]), @"{0, 4}", nil);
 }

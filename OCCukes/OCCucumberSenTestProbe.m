@@ -39,7 +39,7 @@ static id RunTests(id self, SEL _cmd, ...)
 		[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
 		NSClassFromString(@"SenTestObserver");
 		[[self performSelector:@selector(specifiedTestSuite)] performSelector:@selector(run)];
-		
+
 		// Various routes exist for launching tests. If outside an application
 		// bundle, tests launch directly by sending +runTests:ignored to
 		// SenTestProbe. There is no run loop. However, if within an application
