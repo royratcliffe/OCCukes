@@ -99,15 +99,14 @@ Set up your `features/support/env.rb`. You can copy this code from [`features/su
 Finally, integrate Cucumber tests with your standard unit test cases by adding steps.
 
 Basic template for some step definitions, `MySteps.m`:
-```objc
-#import <OCCukes/OCCukes.h>
 
-__attribute__((constructor))
-static void StepDefinitions()
-{
-	
-}
-```
+	#import <OCCukes/OCCukes.h>
+
+	__attribute__((constructor))
+	static void StepDefinitions()
+	{
+
+	}
 
 Make as many such step definition modules as required. Organise the steps around related features.
 
