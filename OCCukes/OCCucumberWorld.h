@@ -1,6 +1,6 @@
 // OCCukes OCCucumberWorld.h
 //
-// Copyright © 2012, The OCCukes Organisation. All rights reserved.
+// Copyright © 2012, 2013, The OCCukes Organisation. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-/*!
+/**
  * Scenarios create worlds. Worlds carry state for steps. When a scenario
  * begins, Cucumber creates and sets up the current world.
  *

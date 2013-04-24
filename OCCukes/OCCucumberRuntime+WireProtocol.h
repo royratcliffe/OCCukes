@@ -1,6 +1,6 @@
 // OCCukes OCCucumberRuntime+WireProtocol.h
 //
-// Copyright © 2012, The OCCukes Organisation. All rights reserved.
+// Copyright © 2012, 2013, The OCCukes Organisation. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -29,11 +29,13 @@
 - (id)handleWirePacketWithObject:(id)object;
 - (id)handleWirePacketWithArray:(NSArray *)array;
 
-/*!
- * @brief Finds out whether the wire server has a definition for a given step.
- * @details When features have been parsed, Cucumber will send a "step_matches"
+/**
+ * Finds out whether the wire server has a definition for a given step.
+ *
+ * When features have been parsed, Cucumber will send a "step_matches"
  * message to ask the wire server if it can match a step name. This happens for
  * each of the steps in each of the features.
+ *
  * @result The wire server replies with an array of Step Match objects.
  * Each Step Match hash element comprises the following key-value pairs.
  * - An "id" string identifier for the step definition to be referenced later
@@ -44,23 +46,23 @@
  */
 - (id)handleStepMatchesWithHash:(NSDictionary *)hash;
 
-/*!
- * @brief Requests a snippet for an undefined step.
+/**
+ * Requests a snippet for an undefined step.
  */
 - (id)handleSnippetTextWithHash:(NSDictionary *)hash;
 
-/*!
- * @brief Signals that Cucumber is about to execute a scenario.
+/**
+ * Signals that Cucumber is about to execute a scenario.
  */
 - (id)handleBeginScenario;
 
-/*!
- * @brief Signals that Cucumber has finished executing a scenario.
+/**
+ * Signals that Cucumber has finished executing a scenario.
  */
 - (id)handleEndScenario;
 
-/*!
- * @brief Asks for a step definition to be invoked.
+/**
+ * Asks for a step definition to be invoked.
  */
 - (id)handleInvokeWithHash:(NSDictionary *)hash;
 
