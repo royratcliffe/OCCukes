@@ -1,11 +1,3 @@
-PROJECT_NAME			= OCCukes
-GENERATE_DOCSET         = YES
-
-DOCSET_FEEDNAME         = "Objective-C Cucumber Documentation Set"
-DOCSET_BUNDLE_ID        = info.cukes.OCCukesDocSet
-DOCSET_PUBLISHER_ID     = info.cukes.OCCukesDocSet.documentation
-DOCSET_PUBLISHER_NAME   = The OCCukes Organisation
-
 EXTRACT_ALL             = YES
 EXTRACT_PRIVATE         = YES
 EXTRACT_STATIC          = YES
