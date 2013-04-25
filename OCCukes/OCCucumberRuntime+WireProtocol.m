@@ -107,7 +107,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	for (OCCucumberStepMatch *match in [[self language] stepMatches:nameToMatch])
 	{
 		OCCucumberStepDefinition *stepDefinition = [match stepDefinition];
-		
+
 		// The "args" response is an array of hashes. Each hash has a "val" and
 		// "pos" key specifying the argument's value and position.
 		NSMutableArray *args = [NSMutableArray array];
@@ -115,7 +115,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 		{
 			[args addObject:[NSDictionary dictionaryWithObjectsAndKeys:[argument value], @"val", [NSNumber numberWithUnsignedInteger:[argument offset]], @"pos", nil]];
 		}
-		
+
 		const char *file = [stepDefinition file];
 		NSString *source = file ? [NSString stringWithFormat:@"%s:%u", file, [stepDefinition line]] : nil;
 		[stepMatches addObject:[NSDictionary dictionaryWithObjectsAndKeys:[stepDefinition identifierString], @"id", args, @"args", source, @"source", nil]];
@@ -127,7 +127,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 {
 	NSString *stepKeyword = [hash objectForKey:@"step_keyword"];
 	NSString *stepName = [hash objectForKey:@"step_name"];
-	
+
 	// Handle argument patterns: double-quoted strings and digit
 	// sequences. Note, the question mark in *? means match zero
 	// or more times and match as few times as possible.
@@ -140,7 +140,7 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	}
 	[snippetPattern replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [snippetPattern length])];
 	[snippetPattern replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:0 range:NSMakeRange(0, [snippetPattern length])];
-	
+
 	return [NSArray arrayWithObjects:@"success", [NSString stringWithFormat:@"\t[OCCucumber %@:@\"^%@$\" step:^(NSArray *arguments) {\n\t\t// express the regular expression above with the code you wish you had\n\t\t[OCCucumber pending:@\"TODO\"];\n\t} file:__FILE__ line:__LINE__];", [stepKeyword lowercaseString], [snippetPattern copy]], nil];
 }
 
