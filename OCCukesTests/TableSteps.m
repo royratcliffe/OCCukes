@@ -30,7 +30,7 @@ static void StepDefinitions()
 	[OCCucumber given:@"^a table:$" step:^(NSArray *arguments) {
 		[[OCCucumber currentWorld] setValue:[arguments objectAtIndex:0] forKey:@"table"];
 	} file:__FILE__ line:__LINE__];
-	
+
 	// Cucumber sends the table as an array of arrays, a two-dimensional
 	// array. The arguments are strings, even the numbers. Apple's JSON
 	// decoder does not make numbers out of the arguments simply because
