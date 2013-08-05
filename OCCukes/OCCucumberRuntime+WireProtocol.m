@@ -150,10 +150,20 @@ NSString *__OCCucumberRuntimeCamelize(NSString *string);
 	return [NSArray arrayWithObject:@"success"];
 }
 
+- (id)handleBeginScenarioWithHash:(NSDictionary *)hash
+{
+    return [self handleBeginScenario];
+}
+
 - (id)handleEndScenario
 {
 	[[self language] endScenario];
 	return [NSArray arrayWithObject:@"success"];
+}
+ 
+- (id)handleEndScenarioWithHash:(NSDictionary *)hash
+{
+    return [self handleEndScenario];
 }
 
 - (id)handleInvokeWithHash:(NSDictionary *)hash
