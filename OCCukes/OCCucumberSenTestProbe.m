@@ -37,7 +37,7 @@ static id RunTests(id self, SEL _cmd, ...)
 {
 	@autoreleasepool {
 		[[NSBundle allFrameworks] makeObjectsPerformSelector:@selector(principalClass)];
-		NSClassFromString(@"SenTestObserver");
+		NSClassFromString(@"XCTestObserver");
 		[[self performSelector:@selector(specifiedTestSuite)] performSelector:@selector(run)];
 
 		// Various routes exist for launching tests. If outside an application
@@ -122,7 +122,7 @@ static id RunTests(id self, SEL _cmd, ...)
 
 + (void)load
 {
-	Class senTestProbeClass = NSClassFromString(@"SenTestProbe");
+	Class senTestProbeClass = NSClassFromString(@"XCTestProbe");
 	if (senTestProbeClass)
 	{
 		Method runTestsClassMethod = class_getClassMethod(senTestProbeClass, @selector(runTests:));
@@ -132,7 +132,7 @@ static id RunTests(id self, SEL _cmd, ...)
 
 + (void)exit
 {
-	Class senTestProbeClass = NSClassFromString(@"SenTestProbe");
+	Class senTestProbeClass = NSClassFromString(@"XCTestProbe");
 	if (senTestProbeClass)
 	{
 		id senTestSuite = [senTestProbeClass performSelector:@selector(specifiedTestSuite)];

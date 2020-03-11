@@ -52,4 +52,8 @@
 	return [[self values] objectForKey:key];
 }
 
+- (void)setNilValueForKey:(NSString *)key {
+    return [[self values] removeObjectForKey:key];
+}
+
 @end
