@@ -41,7 +41,7 @@ GEM
     rspec-mocks (2.13.1)
     syntax (1.0.0)
     thread_safe (0.3.6)
-    tzinfo (1.2.6)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
 
 PLATFORMS
